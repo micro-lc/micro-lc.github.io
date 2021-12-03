@@ -1,0 +1,42 @@
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  background: #e6f3ff;
+}
+
+[dark-theme] .header_container {
+  background: #1e1e1e;
+}
+
+.header_content {
+  margin-left: 50px;
+}
+
+.header_content_title {
+  font-size: 60px;
+  color: #666666;
+}
+
+.header_content_title.header_primary_color {
+  color: var(--ifm-color-primary);
+}
+
+[dark-theme] .header_content_title.header_primary_color {
+  color: var(--ifm-color-primary-tint);
+}
+
+.header_content_subtitle {
+  font-size: 20px;
+  color: #666666;
+}
+
+.header_image {
+  width: 100%;
+  height: auto;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

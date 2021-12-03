@@ -1,0 +1,39 @@
+.home_banner_container {
+    display: flex;
+    justify-content: space-between;
+    background: var(--ifm-color-primary);
+    margin-top: -10px;
+}
+
+[dark-theme] .home_banner_container {
+    background: var(--ifm-color-primary-tint);
+}
+
+.home_banner_documentation {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 60px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.home_banner_button_container {
+    padding-right: 54px;
+}
+
+.home_banner_button {
+    background: white;
+    color: #666666;
+    border: 1px solid #D4D4D4;
+    box-sizing: border-box;
+    border-radius: 20px;
+    line-height: 22px;
+    padding: 10px 22px;
+    cursor: pointer;
+}
+
+.home_banner_button:hover {
+    color: #666666;
+    text-decoration: none;
+}

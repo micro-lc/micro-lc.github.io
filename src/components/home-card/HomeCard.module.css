@@ -1,0 +1,55 @@
+.home_card_container {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 25px 50px;
+  background: #ffffff;
+  border-radius: 8px;
+  flex: 1;
+}
+
+[dark-theme] .home_card_container, [data-theme="dark"] .home_card_container {
+  background: #1e1e1e;
+}
+
+.home_card_text_content {
+  flex-grow: 1;
+}
+
+.home_card_svg_placeholder {
+  height: 75px;
+}
+
+.home_card_title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--microlc-text-color);
+  margin-bottom: 12px;
+}
+
+.home_card_description {
+  color: var(--microlc-text-color);
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.home_card_explore {
+  color: var(--ifm-color-primary);
+  cursor: pointer;
+}
+
+.home_card_explore:hover {
+  text-decoration: none;
+}
+
+.home_card_explore_icon {
+  margin-left: 10px;
+}
+
+.featureSvg {
+  max-height: 50px;
+  max-width: 50px;
+  margin-bottom: 25px;
+}

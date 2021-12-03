@@ -1,0 +1,10 @@
+.discover_more_container {
+  margin-top: 60px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--microlc-text-color);
+  font-size: 40px;
+  line-height: 34px;
+}

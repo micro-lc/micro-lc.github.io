@@ -1,0 +1,10 @@
+.features {
+    display: flex;
+    width: 100%;
+}
+
+@media (max-width: 996px) {
+    .features {
+        flex-direction: column;
+    }
+}
