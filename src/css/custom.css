@@ -79,6 +79,22 @@
     stroke: var(--ifm-color-primary);
 }
 
+[class$="svg-container"] {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-top: 30%;
+    padding-bottom: 30%;
+    overflow: hidden;
+}
+
+[class$="svg-content"] { 
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 [class$="svg-tint-color"] {
     fill: var(--ifm-color-primary-tint);
 }
