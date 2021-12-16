@@ -57,6 +57,13 @@ Each element of this array is an object correspondent to an internal plugin. The
 
 For the details of its content, see the [analytics parameters](#analytics-parameters) section.
 
+### rightMenu
+
+- _type_: array;
+- _required_: `false`;
+- _description_: contains the list of web-components that will be injected in the right section of the topbar.
+
+For the details of its content, see the [right menu parameters](#right-menu-parameters) section.
 ## Theming parameters
 
 This bit of the configuration object enables the customization of some part of the user experience as well as the
@@ -333,6 +340,26 @@ The information regarding the plugins to embed in the application are contained 
 - _description_: container id for [Google Analytics](https://analytics.google.com/);
 - _example_: `GTM-XXXXXX`
 
+## Right menu parameters
+
+### entry
+
+- _type_: string;
+- _required_: `true`;
+- _description_: link of the entry point of your web-component
+
+### attributes
+
+- _type_: object;
+- _required_: `false`;
+- _description_: generic object that contains the attributes to be injected for the web-component
+
+### properties
+
+- _type_: object;
+- _required_: `false`;
+- _description_: generic object that contains the properties to be injected for the web-component
+
 ## Example
 
 ```json
@@ -357,6 +384,15 @@ The information regarding the plugins to embed in the application are contained 
     "disclaimer": "We use analytics cookies for...",
     "gtmId": "GTM-XXXXXX"
   },
+  "rightMenu": [{
+    "entry": "https://...",
+    "attributes": {
+      "id": "abc"
+    },
+    "properties": {
+      "propA": true
+    }
+  }],
   "plugins": [
     {
       "id": "plugin-1",
