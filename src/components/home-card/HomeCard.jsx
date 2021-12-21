@@ -10,20 +10,20 @@ import styles from '../home-card/HomeCard.module.css'
 
 function HomeCard ({Svg, title, description, navigateTo, isExternalMicroFrontEndLink = false}) {
   return (
-    <div className={styles.home_card_container}>
-        { Svg && <Svg alt={title} className={styles.featureSvg}/> }
-        { !Svg && <div className={styles.home_card_svg_placeholder}/> }
-        <div className={styles.home_card_text_content}>
-            <p className={styles.home_card_title}>{title}</p>
-            <p className={styles.home_card_description}>{description}</p>
-        </div>
-        <div>
-            <Link className={styles.home_card_explore} to={useBaseUrl(navigateTo)} useReactLink={isExternalMicroFrontEndLink} >
-                {'Explore'}
-                <FontAwesomeIcon className={styles.home_card_explore_icon} icon={faLongArrowAltRight}/>
-            </Link>
-        </div>
-    </div>
+    <Link className={styles.home_card_explore} to={useBaseUrl(navigateTo)} useReactLink={isExternalMicroFrontEndLink}>
+      <div className={styles.home_card_container}>
+          { Svg && <Svg alt={title} className={styles.featureSvg}/> }
+          { !Svg && <div className={styles.home_card_svg_placeholder}/> }
+          <div className={styles.home_card_text_content}>
+              <p className={styles.home_card_title}>{title}</p>
+              <p className={styles.home_card_description}>{description}</p>
+          </div>
+          <div>
+            {'Explore'}
+            <FontAwesomeIcon className={styles.home_card_explore_icon} icon={faLongArrowAltRight}/>
+          </div>
+      </div>
+   </Link>
   )
 }
 
