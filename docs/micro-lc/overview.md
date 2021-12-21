@@ -4,7 +4,7 @@ title: Micro Launch Complex
 sidebar_label: Overview
 ---
 
-`micro-lc` is the Mia-Platform solution for building flexible, multi-tenant front-end applications following the
+`micro-lc` is the open source solution for building flexible, multi-tenant front-end applications following the
 [Micro Frontend](https://micro-frontends.org/) architecture.
 
 `micro-lc` consists of a core interface that loads, embeds, and orchestrates **plugins** (your individual frontend
