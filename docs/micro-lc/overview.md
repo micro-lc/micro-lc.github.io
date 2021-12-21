@@ -14,6 +14,10 @@ The project is open source, and it can be found on [GitHub](https://github.com/m
 core components are written in Typescript and React, micro-lc is **technology-agnostic**, which means that it integrates
 seamlessly with your favorite toolkit, being it Angular, React, Vue, or anything else you like: even vanilla JavaScript!
 
+Take a look to the introduction about micro frontend and how micro-lc works:
+
+[![micro-lc introduction video](https://img.youtube.com/vi/QumadjC2krU/0.jpg)](https://www.youtube.com/watch?v=QumadjC2krU)
+
 ## Architecture
 
 ![Architecture](../img/microlc_architecture.png)
