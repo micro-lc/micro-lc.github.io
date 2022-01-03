@@ -22,18 +22,15 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved.`
     }
   },
+  plugins: [
+    require.resolve("@easyops-cn/docusaurus-search-local"),
+  ],
   presets: [
     [
       '@docusaurus/preset-classic',
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js')
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/'
         },
         theme: {
           customCss: [
