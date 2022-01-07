@@ -10,7 +10,7 @@ sidebar_label: Overview
 `micro-lc` consists of a core interface that loads, embeds, and orchestrates **plugins** (your individual frontend
 applications) at runtime, while providing configuration options and useful out-of-the-box features.
 
-The project is open source, and it can be found on [GitHub](https://github.com/mia-platform/micro-lc). Although the
+The project is open source, and it can be found on [GitHub](https://github.com/micro-lc/micro-lc). Although the
 core components are written in Typescript and React, micro-lc is **technology-agnostic**, which means that it integrates
 seamlessly with your favorite toolkit, being it Angular, React, Vue, or anything else you like: even vanilla JavaScript!
 

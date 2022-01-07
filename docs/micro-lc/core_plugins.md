@@ -10,7 +10,7 @@ These plugins are open source and can be deployed using the console with low eff
 
 ## microlc-element-composer
 
-This plugin is [publicly available on GitHub](https://github.com/mia-platform/microlc-element-composer) and 
+This plugin is [publicly available on GitHub](https://github.com/micro-lc/microlc-element-composer) and 
 can be used to compose the UI of your page, with the precondition that each piece has been made as [`custom-elements`](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements).
 
 The layout can be composed using rows and columns: it will be adaptive thanks to the `flex` layout.
