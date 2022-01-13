@@ -18,17 +18,12 @@ The layout can be composed using rows and columns: it will be adaptive thanks to
 :::caution
 In addition to the [properties that you can configure](./core_plugins.md#config) for each `custom-element`, 
 the plugin **always** injects 3 properties called `eventBus`, `currentUser`, and `headers`:
-`eventBus` is an [RxJS's Subject](https://rxjs.dev/guide/subject) used as communication channel between components.
+- `eventBus` is an [RxJS's Subject](https://rxjs.dev/guide/subject) used as communication channel between components;
 
-`currentUser` is an object which may represent the session currently authenticated user.
+- `currentUser` is an object which may represent the session currently authenticated user;
 
-`headers` is an object made of standard/custom HTTP headers which may propagate cookies and other helpful settings in order to manage frontend HTTP calls.
+- `headers` is an object made of standard/custom HTTP headers which may propagate cookies and other helpful settings in order to manage frontend HTTP calls.
 :::
-
-### elementsConfiguration
-- _type_: object;
-- _required_: `true`;
-- _description_: is the main object that must be injected as [prop](./core_configuration.md#props).
 
 #### type
 - _type_: string;
@@ -48,17 +43,15 @@ the plugin **always** injects 3 properties called `eventBus`, `currentUser`, and
 - _description_: URL of  the entry point used to register and boot the custom element.  
   **Is considered only for type `element`**.
 
-#### config
+#### attributes
 - _type_: object;
 - _required_: `false`;
-- _description_: property injection for the custom element.  
-  **Is considered only for type `element`**.
+- _description_: attributes injection for the DOM element.
 
-#### style
+#### properties
 - _type_: object;
 - _required_: `false`;
-- _description_: CSS style to inject to the DOM element.  
-  **Is considered only for type `element`**.
+- _description_: properties injection for the DOM element.
 
 #### busDiscriminator
 - _type_: string;
@@ -70,7 +63,7 @@ the plugin **always** injects 3 properties called `eventBus`, `currentUser`, and
 #### content
 - _type_: object;
 - _required_: `false`;
-- _description_: the definition of the child component. This field makes this structure recursive.
+- _description_: the definition of the children components. This field makes this structure recursive.
 
 ### Structure example
 ```json
@@ -78,12 +71,14 @@ the plugin **always** injects 3 properties called `eventBus`, `currentUser`, and
   "type": "row",
   "content": [{
     "type": "column",
-    "style": "width: 89%",
+    "attributes": {
+      "style": "width: 89%",
+    },
     "content": [{
       "type": "element",
       "tag": "button",
       "url": "https://your-host.com/your/component/entry.js",
-      "config": {
+      "properties": {
         "property-a": "value-a"
       }
     }]
