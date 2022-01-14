@@ -62,6 +62,52 @@ The entire flow can be summarized with the following picture:
 
 ![Authentication flow](../img/microlc_auth_process.png)
 
+
+### User info response
+To be valid for `micro-lc`, the [userInfoUrl](authentication.md#userinfourl) response must adhere to the following JSON schema:
+
+```javascript
+{
+  type: 'object',
+  properties: {
+    avatar: {
+      type: 'string',
+    },
+    email: {
+      type: 'string',
+    },
+    groups: {
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    name: {
+      type: 'string',
+    },
+    nickname: {
+      type: 'string',
+    },
+  },
+  required: ['email', 'groups', 'name'],
+}
+```
+
+#### Example
+```json
+{
+  "email": "mocked.user@mia-platform.eu",
+  "groups": [
+    "users",
+    "admin"
+  ],
+  "name": "Mocked User",
+  "nickname": "mocked.user",
+  "avatar": "https://i2.wp.com/cdn.auth0.com/avatars/md.png?ssl=1"
+}
+```
+
+
 ## Plugin ACL
 
 Each plugin can optionally adhere to an *ACL*,
