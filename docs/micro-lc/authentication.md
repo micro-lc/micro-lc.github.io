@@ -6,7 +6,7 @@ sidebar_label: Authentication
 
 ## Authentication configuration
 
-The endpoint that expose the authentication configuration is `/api/v1/microlc/authentication`.
+The endpoint that exposes the authentication configuration is `/api/v1/microlc/authentication`.
 
 ### Configuration structure
 
@@ -19,21 +19,21 @@ and where the user information are provided.
 - *required*: `false`
 - *default*: `false`
 - *description*: defines if the authentication process is expected.  
-  This property can be used to avoid the authentication process or to make a public instance of `micro-lc`.
+  This property can be used to avoid the authentication process, or to make a public instance of `micro-lc`.
 
 ### userInfoUrl
 
 - *type*: string
 - *required*: `false`
-- *description*: defines which endpoint expose the user information: it will be called using the `GET` method.  
-  If authentication is not expected, this should not be provided, otherwise is mandatory.
+- *description*: defines which endpoint exposes the user information: it will be called using the `GET` method.  
+  If authentication is not expected, this should not be provided. Otherwise, it is mandatory.
 
 ### userLogoutUrl
 
 - *type*: string
 - *required*: `false`
 - *description*: defines the page that will handle the user logout.  
-  If authentication is not expected, this should not be provided, otherwise is mandatory.
+  If authentication is not expected, this should not be provided. Otherwise, it is mandatory.
 
 
 ### Example
@@ -48,15 +48,16 @@ and where the user information are provided.
 
 ## User authentication
 
-The authentication process is optional and completely configurable: 
-the first endpoint called is the [authentication](authentication.md#authentication-configuration) one, that expose the authentication configuration.
+The authentication process is optional and completely configurable.
+The [authentication](authentication.md#authentication-configuration) endpoint, that exposes the authentication configuration, is called first.
 
-If authentication isn't necessary ([`isAuthNecessary = false`](authentication.md#isauthnecessary)), 
-then only the [configuration](core_configuration.md) endpoint is called.
+Then, the next endpoint to be called are different, depending on whether the authentication is required or not.
 
-If authentication is required ([`isAuthNecessary = true`](authentication.md#isauthnecessary)),
-then the endpoint provided in the [userInfoUrl](authentication.md#userinfourl) is called,
-in parallel with the [configuration](core_configuration.md) one.
+- If authentication is not required ([`isAuthNecessary = false`](authentication.md#isauthnecessary)), 
+  then only the [configuration](core_configuration.md) endpoint is called.
+- If authentication is required ([`isAuthNecessary = true`](authentication.md#isauthnecessary)),
+  then the endpoint provided in the [userInfoUrl](authentication.md#userinfourl) is called,
+  in parallel with the [configuration](core_configuration.md) endpoint.
 
 The entire flow can be summarized with the following picture:
 
@@ -117,11 +118,11 @@ that can be defined using the [`aclExpression`](core_configuration.md#aclexpress
 To evaluate, in the `aclExpression` is injected the `groups` object, take from the current user profiles (i.e. `groups.admin && groups.ceo`) 
 :::
 
-The match between the `aclExpression` and the current user profiles is made by **be-config**,
-which must receive them in a header whose name can be customized in **be-config** instance thanks to the environment variable `GROUPS_HEADER_KEY`.
+The match between the `aclExpression` and the current user profiles is made by **be-config**.
+**Be-config** must receive the user profile in a header. Thanks to the environment variable `GROUPS_HEADER_KEY`, you can customize the names of the user profiles in **be-config** instance.
 
 The only supported separator for the profiles injected in header is the comma `,` (i.e. `admin,developer,owner`).
 
 :::warning
-`micro-lc` doesn't inject any header: they must be provided using external services.
+`micro-lc` doesn't inject any header: they must be provided by external services.
 :::

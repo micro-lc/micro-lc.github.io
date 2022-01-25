@@ -5,12 +5,12 @@ sidebar_label: Core configuration
 ---
 
 To compose the application, `micro-lc` needs to consume a configuration at runtime. When loaded, the
-[fe-container](overview.md#front-end-container) performs a GET request to `/api/v1/microlc/configuration` expecting in
-response the configuration in JSON format. This endpoint is always called, even in parallel if necessary.
+[fe-container](overview.md#front-end-container) performs a GET request to `/api/v1/microlc/configuration`: the expected 
+response is the configuration in JSON format. This endpoint is always called, even in parallel if necessary.
 
 ## Configuration structure
 
-The configuration is a JSON object with two root properties which defines the theming of the application, and the
+The configuration is a JSON object with two root properties. It defines the theming of the application, and the
 characteristics of the plugins to render.
 
 ### theming
@@ -64,9 +64,10 @@ For the details of its content, see the [analytics parameters](#analytics-parame
 - _description_: contains the list of web-components that will be injected in the right section of the topbar.
 
 For the details of its content, see the [right menu parameters](#right-menu-parameters) section.
+
 ## Theming parameters
 
-This bit of the configuration object enables the customization of some part of the user experience as well as the
+This bit of the configuration object enables the customization of some part of the user experience, as well as the
 branding of the application.
 
 ### header
@@ -111,7 +112,7 @@ branding of the application.
 
 - _type_: string;
 - _required_: `false`;
-- _description_: the url of the site in which the user is redirected if the logo is clicked.
+- _description_: the url of the site the users are redirected to when they click the logo.
 
 #### alt
 
@@ -124,13 +125,13 @@ branding of the application.
 
 - _type_: object;
 - _required_: `true`;
-- _description_: contains the variables that will be used to brand the application overriding the default style.
+- _description_: contains the variables that will be used to brand the application, overriding the default style.
 
 #### primaryColor
 
 - _type_: string;
 - _required_: `false`;
-- _description_: the primary color of the application, accepted values are 3, 6, or 8 digits Hex and [CSS color keywords](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#color_keywords).  
+- _description_: the primary color of the application. Accepted values are 3, 6, or 8 digits Hex and [CSS color keywords](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#color_keywords).  
   Its value is applied to the `--microlc-primary-color` [`css variables`](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties),
   and is used to calculate the **89% tint** stored in the `--microlc-primary-color-tint-89` variable;
 - _default_: `#1890FF`.
@@ -151,17 +152,17 @@ branding of the application.
 
 ## Shared parameters
 
-This bit of the configuration object enables the injection of common properties shared by plugins
+This bit of the configuration object enables the injection of common properties shared by plugins.
 
 ### props
 
 - _type_: object;
 - _required_: `false`;
-- _description_: contains an object with properties to inject on plugin components
+- _description_: contains an object with properties to inject on plugin components.
 
 ## Plugin parameters
 
-The information regarding the plugins to embed in the application are contained in these object.
+Information about the plugins to be embedded in the application are contained in these object.
 
 ### id
 
@@ -179,13 +180,13 @@ The information regarding the plugins to embed in the application are contained 
 
 - _type_: string;
 - _required_: `true`;
-- _description_: the label visualized in the side menu.
+- _description_: the label showed in the side menu.
 
 ### icon
 
 - _type_: string;
 - _required_: `false`;
-- _description_: the icon visualized in the side menu. The supported icons are the
+- _description_: the icon showed in the side menu. The supported icons are the
   [Font Awesome free](https://fontawesome.com/icons?d=gallery&p=2&m=free) ones. You have to specify all the needed
   classes;
 - _example_: `fas fa-tag`;
@@ -203,7 +204,7 @@ The information regarding the plugins to embed in the application are contained 
 - _type_: string;
 - _enum_: `href`, `qiankun`, `iframe`;
 - _required_: `false`;
-- _description_: the way in which the plugin will be integrated in `micro-lc`, see [Plugin configuration](plugin_configuration.md) section for mode details.
+- _description_: the way in which the plugin will be integrated in `micro-lc`. See [Plugin configuration](plugin_configuration.md) section for mode details.
 
 ### pluginRoute
 
@@ -254,7 +255,7 @@ The information regarding the plugins to embed in the application are contained 
 
 ## Internal plugin parameters
 
-The information regarding the plugins to embed in the application are contained in these object.
+The information regarding the internal plugins to be embedded in the application are contained in these object.
 
 ### id
 
@@ -280,7 +281,7 @@ The information regarding the plugins to embed in the application are contained 
 - _type_: string;
 - _enum_: `href`, `qiankun`, `iframe`;
 - _required_: `false`;
-- _description_: the way in which the plugin will be integrated in `micro-lc`, see [Plugin configuration](plugin_configuration.md) section for mode details.
+- _description_: the way in which the plugin will be integrated in `micro-lc`. See [Plugin configuration](plugin_configuration.md) section for mode details.
 
 ### pluginRoute
 
@@ -317,7 +318,7 @@ The information regarding the plugins to embed in the application are contained 
 - _type_: boolean;
 - _required_: `true`;
 - _description_: states if the link should be opened in a new window;
-- _default_: `false`
+- _default_: `false`.
 
 ## Analytics parameters
 
@@ -325,20 +326,20 @@ The information regarding the plugins to embed in the application are contained 
 
 - _type_: string;
 - _required_: `true`;
-- _description_: link used to redirect the user to the privacy policy
+- _description_: link used to redirect the user to the privacy policy.
 
 ### disclaimer
 
 - _type_: string;
 - _required_: `true`;
-- _description_: disclaimer showed to the user, generally used to inform him about the cookies that will be used
+- _description_: disclaimer showed to the user, generally used to inform them about the cookies that will be used.
 
 ### gtmId
 
 - _type_: string;
 - _required_: `true`;
 - _description_: container id for [Google Analytics](https://analytics.google.com/);
-- _example_: `GTM-XXXXXX`
+- _example_: `GTM-XXXXXX`.
 
 ## Right menu parameters
 
@@ -346,19 +347,19 @@ The information regarding the plugins to embed in the application are contained 
 
 - _type_: string;
 - _required_: `true`;
-- _description_: link of the entry point of your web-component
+- _description_: link of the entry point of your web-component.
 
 ### attributes
 
 - _type_: object;
 - _required_: `false`;
-- _description_: generic object that contains the attributes to be injected for the web-component
+- _description_: generic object that contains the attributes to be injected for the web-component.
 
 ### properties
 
 - _type_: object;
 - _required_: `false`;
-- _description_: generic object that contains the properties to be injected for the web-component
+- _description_: generic object that contains the properties to be injected for the web-component.
 
 ## Example
 
