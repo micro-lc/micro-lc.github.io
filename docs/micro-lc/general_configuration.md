@@ -8,7 +8,7 @@ sidebar_label: General configuration
 
 All these configurations must be stored in the same path, defined by the `PLUGINS_CONFIGURATIONS_PATH` environment variable.
 
-To retrieve them, you can perform a GET request to `/api/v1/microlc/configuration/:configurationName`, where `configurationName`
+To retrieve the configuration, you can perform a GET request to `/api/v1/microlc/configuration/:configurationName`, where `configurationName`
 is the name of the `JSON` file that is stored in the path `${PLUGINS_CONFIGURATIONS_PATH}/${configurationName}.json`.
 
 :::info
@@ -395,7 +395,7 @@ For example, given this plain configuration:
 }
 ```
 
-if the `aclExpression` doesn't evaluate `true`, the result will be:
+If the `aclExpression` doesn't evaluate `true`, the result will be:
 
 ```json
 {

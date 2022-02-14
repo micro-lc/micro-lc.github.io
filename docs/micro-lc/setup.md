@@ -8,30 +8,30 @@ It is possible to integrate `micro-lc` inside the Mia-Platform Console with almo
 
 ## Integration requirements
 
-Following the requirements to integrate this functionality:
+Follow the requirements below to integrate this functionality:
 
 - access to the Console into the desired project;
 - the [authentication configuration](authentication.md) `JSON` and the [core configuration](core_configuration.md) `JSON` to expose.
 
 ## Integration steps
 
-Following steps must be made on Console and will deploy a `micro-lc` configured instance.
+Following steps must be made on Console, and will deploy a `micro-lc` configured instance.
 
 ### 1. Microservice creation for `fe-container`
  
-Here you are going to create an instance of `fe-container`.
+Here is the process to create an instance of `fe-container`.
 
 1. Go to the `Microservices` section;
-2. Create a new microservice using the `Microlc frontend` plugin available in the `Microfrontend` section of the marketplace;
+2. Create a new microservice using the `Microlc frontend` plugin (available in the `Microfrontend` section of the marketplace);
 3. Configure the microservice with a custom name and description;
 4. Complete the creation to deploy an instance of the `fe-container`.
 
 ### 2. Microservice creation for `be-config`
 
-Here you are going to create an instance of `be-config`.
+Here is the process to create an instance of `be-config`.
 
 1. Go to the `Microservices` section;
-2. Create a new microservice using the `Microlc backend` plugin available in the `Microfrontend` section of the marketplace;
+2. Create a new microservice using the `Microlc backend` plugin (available in the `Microfrontend` section of the marketplace);
 3. Configure the microservice with a custom name and description;
 4. Complete the creation of the `be-container` instance;
 5. In the `ConfigMap` section, edit the [`configuration.json`](core_configuration.md#example) and the [`authentication.json`](authentication.md#example),
@@ -68,8 +68,8 @@ After that, the situation should be similar to the following:
 :::caution
 From the outside, the endpoints `/api/v1/microlc/configuration` and `/api/v1/microlc/authentication` exposed by this microservice must be always reachable.
 
-So, if you set `/` as `Base path`, the `SERVICE_PREFIX` env variable must be set to `/api/v1/microlc`;  
-while, if you set `/api` as `Base path`, the `SERVICE_PREFIX` env variable must be set to `/v1/microlc`;  
+So, if you set `/` as `Base path`, the `SERVICE_PREFIX` environment variable must be set to `/api/v1/microlc`.  
+While, if you set `/api` as `Base path`, the `SERVICE_PREFIX` environment variable must be set to `/v1/microlc`;  
 and so on...
 :::
 

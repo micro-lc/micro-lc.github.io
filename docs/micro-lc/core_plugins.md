@@ -17,12 +17,12 @@ The layout can be composed using rows and columns: it will be adaptive thanks to
 
 :::caution
 In addition to the [properties that you can configure](./core_plugins.md#config) for each `custom-element`, 
-the plugin **always** injects 3 properties called `eventBus`, `currentUser`, and `headers`:
-- `eventBus` is an [RxJS's Subject](https://rxjs.dev/guide/subject) used as communication channel between components;
+the plugin **always** injects the 3 following properties:
+- `eventBus`: an [RxJS's Subject](https://rxjs.dev/guide/subject) used as communication channel between components;
 
-- `currentUser` is an object which may represent the session currently authenticated user;
+- `currentUser`: an object which may represent the session currently authenticated user;
 
-- `headers` is an object made of standard/custom HTTP headers which may propagate cookies and other helpful settings in order to manage frontend HTTP calls.
+- `headers`: an object made of standard/custom HTTP headers, which may propagate cookies and other helpful settings to manage frontend HTTP calls.
 :::
 
 #### type
@@ -35,13 +35,13 @@ the plugin **always** injects 3 properties called `eventBus`, `currentUser`, and
 - _type_: string;
 - _required_: `false`;
 - _description_: tag of the custom element to render.  
-  **Is mandatory only for type `element`**.
+  **Description is mandatory only for `element` type**.
 
 #### url
 - _type_: string;
 - _required_: `false`;
 - _description_: URL of  the entry point used to register and boot the custom element.  
-  **Is considered only for type `element`**.
+  **Description is considered only for `element` type**.
 
 #### attributes
 - _type_: object;
@@ -58,7 +58,7 @@ the plugin **always** injects 3 properties called `eventBus`, `currentUser`, and
 - _required_: `false`;
 - _description_: Event bus discriminator, used to create a dedicated communication channel.  
   By default, is injected the general communication channel.  
-  **Is considered only for type `element`**.
+  **Description is considered only for `element` type**.
 
 #### content
 - _type_: object;
