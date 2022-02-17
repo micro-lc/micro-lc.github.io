@@ -19,5 +19,4 @@ to redirect the requests made from crawlers to the `Prerender` instance.
 To enable this, you must set only the environment variable named `REPLACE_PRERENDER_HOST` in the `micro-lc` container.  
 The content of this environment variable must be the host that expose Prerender.
 
-E.g. if you have a Pod for Prerender called `my-prerender-instance`, the value of `REPLACE_PRERENDER_HOST` must be `my-prerender-instance`.  
 E.g. if you have are running the containers locally, the value of `REPLACE_PRERENDER_HOST` must be the IP of your PC.
