@@ -119,7 +119,7 @@ To evaluate, in the `aclExpression` is injected the `groups` object, take from t
 :::
 
 The match between the `aclExpression` and the current user profiles is made by **be-config**.
-**Be-config** must receive the user profile in a header. Thanks to the environment variable `GROUPS_HEADER_KEY`, you can customize the names of the user profiles in **be-config** instance.
+**be-config** must receive the user profile in a header. Thanks to the environment variable `GROUPS_HEADER_KEY`, you can customize the names of the user profiles in **be-config** instance.
 
 The only supported separator for the profiles injected in header is the comma `,` (i.e. `admin,developer,owner`).
 

@@ -54,7 +54,7 @@ While the top bar is always visible after the configuration load, the menu is de
 plugins.
 
 :::tip
-The plugins can implement their own sub-navigation with a dedicated side menu.  
+The plugins can implement their own sub-navigation with a dedicated side menu. Please note that the menu can be configured also on the topbar. 
 This will not graphically or logically interfere with `micro-lc`, which will integrate seamlessly the plugin routing in the main one.
 :::
 

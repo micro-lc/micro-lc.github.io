@@ -32,16 +32,16 @@ the plugin **always** injects the 3 following properties:
 - _description_: type of object to render.
 
 #### tag
+  **This property is mandatory only for `element` type**.
 - _type_: string;
 - _required_: `false`;
 - _description_: tag of the custom element to render.  
-  **Description is mandatory only for `element` type**.
 
 #### url
+  **This property is considered only for `element` type**.
 - _type_: string;
 - _required_: `false`;
 - _description_: URL of  the entry point used to register and boot the custom element.  
-  **Description is considered only for `element` type**.
 
 #### attributes
 - _type_: object;
@@ -54,11 +54,11 @@ the plugin **always** injects the 3 following properties:
 - _description_: properties injection for the DOM element.
 
 #### busDiscriminator
+  **This property is considered only for `element` type**.
 - _type_: string;
 - _required_: `false`;
 - _description_: Event bus discriminator, used to create a dedicated communication channel.  
   By default, is injected the general communication channel.  
-  **Description is considered only for `element` type**.
 
 #### content
 - _type_: object;
