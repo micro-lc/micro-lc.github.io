@@ -30,7 +30,7 @@ of **plugins**.
 The frontend core of `micro-lc` is the **fe-container**: a lightweight launcher written in `React` and `Typescript`. The **fe-container** 
 has two main responsabilities: 
 
-- to render the plugins 
+- to render the plugins;
 - providing the application a set of core functionalities.
 
 These functionalities are for the most part configurable through a [core configuration](core_configuration.md)
