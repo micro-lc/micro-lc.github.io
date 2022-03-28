@@ -332,7 +332,7 @@ The information regarding the internal plugins to be embedded in the application
 
 - _type_: string;
 - _required_: `true`;
-- _description_: disclaimer showed to the user, generally used to inform them about the cookies that will be used.
+- _description_: disclaimer showed to the users, generally used to inform them about the cookies that will be used.
 
 ### gtmId
 
