@@ -4,8 +4,8 @@ title: Analytics
 sidebar_label: Analytics
 ---
 
-Analytics are available through [Google Analytics](https://analytics.google.com/) but **are not activated by default**.
-if [analytics are configured](core_configuration.md#analytics), they are not enabled in the page until the user accept the
+Analytics are available through [Google Analytics](https://analytics.google.com/), but **are not activated by default**.
+If [analytics are configured](core_configuration.md#analytics), they are not enabled in the page until the user accept the
 [cookie utilization disclaimer](core_configuration.md#disclaimer) for the first time.
 
 The analytics authorization process can be summarized using the following schema:
