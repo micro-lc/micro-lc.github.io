@@ -18,6 +18,10 @@ module.exports = {
     },
     {
       type: 'doc',
+      id: 'micro-lc/base_tag_configuration'
+    },
+    {
+      type: 'doc',
       id: 'micro-lc/core_configuration'
     },
     {
