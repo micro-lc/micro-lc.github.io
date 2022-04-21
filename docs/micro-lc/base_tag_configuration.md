@@ -13,9 +13,7 @@ This script can be served using the [general configuration API](./general_config
 An example of the script's content can be the following:
 
 ```javascript
-var baseTag = document.createElement('base')
-baseTag.setAttribute('href', window.location.origin + '/your-base-path')
+var baseTag = document.querySelector('base')
+baseTag.setAttribute('href', '/your-base-path/')
 baseTag.setAttribute('target', '_blank')
-
-document.head.appendChild(baseTag)
 ```
