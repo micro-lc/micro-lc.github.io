@@ -19,9 +19,9 @@
     font-weight: bold;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .home_banner_documentation {
-        font-size: 4vw;
+        font-size: 5vw;
     }
   }
 
