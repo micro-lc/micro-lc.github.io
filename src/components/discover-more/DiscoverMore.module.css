@@ -11,6 +11,6 @@
 
 @media (max-width: 800px) {
   .discover_more_container {
-    font-size: min(32px, 5vw);
+    font-size: min(32px, 6vw);
   }
 }

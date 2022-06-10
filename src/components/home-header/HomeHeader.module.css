@@ -19,7 +19,7 @@
 
 @media (max-width: 800px) {
   .header_content_title {
-    font-size: min(40px, 6vw);
+    font-size: min(40px, 7vw);
   }
 }
 
