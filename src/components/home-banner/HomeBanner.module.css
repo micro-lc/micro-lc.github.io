@@ -21,7 +21,7 @@
 
 @media (max-width: 800px) {
     .home_banner_documentation {
-        font-size: 5vw;
+        font-size: min(32px, 5vw);
     }
   }
 
