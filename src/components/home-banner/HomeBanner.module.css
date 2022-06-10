@@ -1,6 +1,10 @@
 .home_banner_container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 60px;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     background: var(--ifm-color-primary);
     margin-top: -10px;
 }
@@ -10,9 +14,6 @@
 }
 
 .home_banner_documentation {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-left: 60px;
     color: white;
     font-size: 40px;
     font-weight: bold;
