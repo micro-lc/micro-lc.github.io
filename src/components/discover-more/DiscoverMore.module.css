@@ -8,3 +8,9 @@
   font-size: 40px;
   line-height: 34px;
 }
+
+@media (max-width: 600px) {
+  .discover_more_container {
+    font-size: 4vw;
+  }
+}

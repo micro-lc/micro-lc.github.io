@@ -17,6 +17,12 @@
   color: #666666;
 }
 
+@media (max-width: 600px) {
+  .header_content_title {
+    font-size: 5vw;
+  }
+}
+
 .header_content_title.header_primary_color {
   color: var(--ifm-color-primary);
 }

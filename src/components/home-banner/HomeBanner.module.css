@@ -19,8 +19,14 @@
     font-weight: bold;
 }
 
+@media (max-width: 600px) {
+    .home_banner_documentation {
+        font-size: 4vw;
+    }
+  }
+
 .home_banner_button_container {
-    padding-right: 54px;
+    padding-right: 3%;
 }
 
 .home_banner_button {
