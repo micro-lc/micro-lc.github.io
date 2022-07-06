@@ -347,7 +347,13 @@ The information regarding the internal plugins to be embedded in the application
 
 - _type_: string;
 - _required_: `true`;
-- _description_: link of the entry point of your web-component.
+- _description_: link to the file containing the web-component declaration.
+
+### tag
+
+- _type_: string;
+- _required_: `true`;
+- _description_: name of the web-component (to be inserted in HTML tags).
 
 ### attributes
 
@@ -386,7 +392,8 @@ The information regarding the internal plugins to be embedded in the application
     "gtmId": "GTM-XXXXXX"
   },
   "rightMenu": [{
-    "entry": "https://...",
+    "entry": "https://test.it/my-web-components.es.js",
+    "tag": "my-web-component-name",
     "attributes": {
       "id": "abc"
     },
