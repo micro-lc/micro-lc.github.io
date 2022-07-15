@@ -38,6 +38,10 @@ module.exports = {
     },
     {
       type: 'doc',
+      id: 'micro-lc/seo'
+    },
+    {
+      type: 'doc',
       id: 'micro-lc/setup'
     }
   ]
