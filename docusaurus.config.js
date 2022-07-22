@@ -4,7 +4,7 @@ const baseUrl = require('./baseUrl')
 module.exports = {
   title: 'micro-lc',
   tagline: 'micro-lc project documentation',
-  url: 'https://github.com/',
+  url: 'https://github.com/micro-lc',
   baseUrl,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
