@@ -8,7 +8,7 @@ export default function Docs () {
       <Head>
         <title>{'Dev Portal'}</title>
       </Head>
-      <Redirect to='intro/getting_started'/>
+      <Redirect to='micro-lc/overview'/>
     </>
   )
 }
