@@ -7,7 +7,7 @@ if (typeof window !== 'undefined' && window.__POWERED_BY_QIANKUN__) {
 const onAClickListener = (e) => {
   if (e.srcElement.tagName === 'A') {
     const hrefValue = e.srcElement.getAttribute('href')
-    if(hrefValue.startsWith('#')) {
+    if (hrefValue.startsWith('#')) {
       window.location.hash = hrefValue
       e.preventDefault()
     }
