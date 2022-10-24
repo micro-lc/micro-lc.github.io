@@ -174,7 +174,7 @@ Information about the plugins to be embedded in the application are contained in
 
 - _type_: string;
 - _required_: `false`;
-- _description_: expression to evaluate the users that can access the plugin (i.e. `groups.admin && groups.ceo`).
+- _description_: expression to evaluate the users that can access the plugin (i.e. `groups.admin && groups.ceo` or `groups.admin && permissions.companies.view` from version `0.9.0`).
 
 ### label
 

@@ -402,3 +402,22 @@ If the `aclExpression` doesn't evaluate `true`, the result will be:
   "acl": {}
 }
 ```
+
+From version `0.9.0` user's permissions on their own or can be used alongside the user's groups, both the following configurations are valid:
+
+```json
+{
+	"groupsAndPermissionsAcl": {
+    "nested": {
+      "aclExpression": "groups.admin && permissions.companies.view",
+      "object": {}
+    }
+  },
+  "permissionsAcl": {
+    "nested": {
+      "aclExpression": "permissions.companies.view && permissions.companies.create",
+      "object": {}
+    }
+  },
+}
+```
