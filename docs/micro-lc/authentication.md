@@ -115,13 +115,24 @@ Each plugin can optionally adhere to an *ACL*,
 that can be defined using the [`aclExpression`](core_configuration.md#aclexpression) configuration.
 
 :::info
-To evaluate, in the `aclExpression` is injected the `groups` object, take from the current user profiles (i.e. `groups.admin && groups.ceo`) 
+To evaluate, in the `aclExpression` is injected the `groups` object, take from the current user profiles (i.e. `groups.admin && groups.ceo`)
 :::
 
 The match between the `aclExpression` and the current user profiles is made by **be-config**.
 **be-config** must receive the user profile in a header. Thanks to the environment variable `GROUPS_HEADER_KEY`, you can customize the names of the user profiles in **be-config** instance.
 
 The only supported separator for the profiles injected in header is the comma `,` (i.e. `admin,developer,owner`).
+
+From version `0.9.0`, in addition to user profiles it is possible evaluate in the `aclExpression` also the user permissions required to access a specific resource.
+**be-config** must receive the user's permissions in stringified additional properties object in a header. Thanks to the environment variable `USER_PROPERTIES_HEADER_KEY`, you can customize the header used in **be-config** instance. Though, the property that contains the user's permissions string array must be `permissions` as shown in the following example:
+
+```json
+{"{{USER_PROPERTIES_HEADER_KEY}}":"{\"permissions\":[\"api.companies.view\",\"api.companies.create\"]}"}
+```
+
+:::info
+From version `0.9.0`, in the `aclExpression` is injected the `permissions` object alongside the `groups` object, so it's possible to write them combining user profiles and permissions (i.e. `groups.admin && permissions.api.companies.create`)
+:::
 
 :::warning
 `micro-lc` doesn't inject any header: they must be provided by external services.
