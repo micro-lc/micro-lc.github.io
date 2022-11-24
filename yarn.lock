@@ -2428,51 +2428,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@micro-lc/documentation@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@micro-lc/documentation@workspace:."
-  dependencies:
-    "@cspell/cspell-types": ^6.14.3
-    "@docusaurus/core": ^2.2.0
-    "@docusaurus/module-type-aliases": ^2.2.0
-    "@docusaurus/plugin-content-docs": ^2.2.0
-    "@docusaurus/plugin-content-pages": ^2.2.0
-    "@docusaurus/theme-classic": ^2.2.0
-    "@docusaurus/theme-common": ^2.2.0
-    "@mdx-js/react": 1.6.22
-    "@tsconfig/docusaurus": ^1.0.6
-    "@types/eslint": ^8.4.10
-    "@types/node": ^18.11.9
-    "@types/react": ^18.0.25
-    "@types/react-dom": ^18.0.9
-    "@typescript-eslint/eslint-plugin": ^5.44.0
-    "@typescript-eslint/parser": ^5.44.0
-    clsx: ^1.2.1
-    confusing-browser-globals: ^1.0.11
-    cspell: ^6.14.3
-    eslint: ^8.28.0
-    eslint-config-esnext: ^4.1.0
-    eslint-plugin-import: ^2.26.0
-    eslint-plugin-jsx-a11y: ^6.6.1
-    eslint-plugin-n: ^15.5.1
-    eslint-plugin-react: ^7.31.11
-    eslint-plugin-react-hooks: ^4.6.0
-    eslint-plugin-sort-keys-fix: ^1.1.2
-    eslint-plugin-typescript-sort-keys: ^2.1.0
-    eslint-visitor-keys: ^3.3.0
-    husky: ^8.0.2
-    npm-run-all: ^4.1.5
-    prism-react-renderer: ^1.3.5
-    react: ^17.0.2
-    react-dom: ^17.0.2
-    stylelint: ^14.15.0
-    stylelint-config-rational-order: ^0.1.2
-    stylelint-config-standard: ^29.0.0
-    stylelint-declaration-block-no-ignored-properties: ^2.6.0
-    typescript: ^4.9.3
-  languageName: unknown
-  linkType: soft
-
 "@mrmlnc/readdir-enhanced@npm:^2.2.1":
   version: 2.2.1
   resolution: "@mrmlnc/readdir-enhanced@npm:2.2.1"
@@ -5801,6 +5756,51 @@ __metadata:
   checksum: fd7673ca77fe26cd5cba38d816bc72d641f500f1f9b25b83e8ce28827fe2da7ad583a8da26ab6af85f834138cf8dae9f69b0cd6ab925f52ddab1754db44d99ce
   languageName: node
   linkType: hard
+
+"documentation@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "documentation@workspace:."
+  dependencies:
+    "@cspell/cspell-types": ^6.14.3
+    "@docusaurus/core": ^2.2.0
+    "@docusaurus/module-type-aliases": ^2.2.0
+    "@docusaurus/plugin-content-docs": ^2.2.0
+    "@docusaurus/plugin-content-pages": ^2.2.0
+    "@docusaurus/theme-classic": ^2.2.0
+    "@docusaurus/theme-common": ^2.2.0
+    "@mdx-js/react": 1.6.22
+    "@tsconfig/docusaurus": ^1.0.6
+    "@types/eslint": ^8.4.10
+    "@types/node": ^18.11.9
+    "@types/react": ^18.0.25
+    "@types/react-dom": ^18.0.9
+    "@typescript-eslint/eslint-plugin": ^5.44.0
+    "@typescript-eslint/parser": ^5.44.0
+    clsx: ^1.2.1
+    confusing-browser-globals: ^1.0.11
+    cspell: ^6.14.3
+    eslint: ^8.28.0
+    eslint-config-esnext: ^4.1.0
+    eslint-plugin-import: ^2.26.0
+    eslint-plugin-jsx-a11y: ^6.6.1
+    eslint-plugin-n: ^15.5.1
+    eslint-plugin-react: ^7.31.11
+    eslint-plugin-react-hooks: ^4.6.0
+    eslint-plugin-sort-keys-fix: ^1.1.2
+    eslint-plugin-typescript-sort-keys: ^2.1.0
+    eslint-visitor-keys: ^3.3.0
+    husky: ^8.0.2
+    npm-run-all: ^4.1.5
+    prism-react-renderer: ^1.3.5
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    stylelint: ^14.15.0
+    stylelint-config-rational-order: ^0.1.2
+    stylelint-config-standard: ^29.0.0
+    stylelint-declaration-block-no-ignored-properties: ^2.6.0
+    typescript: ^4.9.3
+  languageName: unknown
+  linkType: soft
 
 "dom-converter@npm:^0.2.0":
   version: 0.2.0
