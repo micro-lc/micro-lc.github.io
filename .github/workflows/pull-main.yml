@@ -12,5 +12,4 @@ on:
 
 jobs:
   checks:
-    runs-on: ubuntu-latest
     uses: micro-lc/documentation/.github/workflows/checks.yml@main
