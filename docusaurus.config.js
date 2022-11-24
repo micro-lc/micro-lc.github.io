@@ -4,7 +4,7 @@ const lightCodeTheme = require('prism-react-renderer/themes/github')
 const pluginContentDocsConfig = {
   breadcrumbs: true,
   editUrl: ({ versionDocsDirPath, docPath }) => {
-    return `https://github.com/micro-lc/micro-lc/edit/v2/main/packages/documentation/${versionDocsDirPath}/${docPath}`
+    return `https://github.com/micro-lc/documentation/edit/main/${versionDocsDirPath}/${docPath}`
   },
   lastVersion: 'current',
   path: 'docs',
@@ -91,7 +91,7 @@ const themeConfig = {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  baseUrl: '/micro-lc/',
+  baseUrl: '/documentation/',
   favicon: 'img/favicon.png',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -100,8 +100,8 @@ const config = {
     ['@docusaurus/plugin-content-docs', pluginContentDocsConfig],
     '@docusaurus/plugin-content-pages',
   ],
-  projectName: 'micro-lc',
-  tagline: 'micro-lc project documentation',
+  projectName: 'documentation',
+  tagline: 'micro-lc & add-ons documentation',
   themeConfig,
   themes: [['@docusaurus/theme-classic', themeClassicConfig]],
   title: 'micro-lc',
