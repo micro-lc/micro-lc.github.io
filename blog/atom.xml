@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://micro-lc.io/documentation/blog</id>
+    <title>micro-lc Blog</title>
+    <updated>2022-11-24T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://micro-lc.io/documentation/blog"/>
+    <subtitle>micro-lc Blog</subtitle>
+    <icon>https://micro-lc.io/documentation/img/favicon.png</icon>
+    <entry>
+        <title type="html"><![CDATA[Welcome micro-lc v2]]></title>
+        <id>welcome-micro-lc-v2</id>
+        <link href="https://micro-lc.io/documentation/blog/welcome-micro-lc-v2"/>
+        <updated>2022-11-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[micro-lc version 2 is out!]]></summary>
+        <content type="html"><![CDATA[<p><em>Coming soon...</em></p>]]></content>
+    </entry>
+</feed>
