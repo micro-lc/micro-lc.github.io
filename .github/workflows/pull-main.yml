@@ -1,0 +1,16 @@
+name: Main
+
+env:
+  context: './'
+  cache-name: cache-release
+  node-version: 16.x
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    uses: micro-lc/documentation/.github/workflows/checks.yml@main

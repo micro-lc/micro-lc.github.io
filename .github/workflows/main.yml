@@ -1,0 +1,41 @@
+name: Main
+
+env:
+  context: './'
+  cache-name: cache-release
+  node-version: 16.x
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    uses: micro-lc/documentation/.github/workflows/checks.yml@main
+
+  deploy-pages:
+    needs:
+      - checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use ${{ env.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node-version }}
+          cache: yarn
+
+      - name: Install
+        run: yarn install --immutable
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
