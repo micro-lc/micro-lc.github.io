@@ -21,6 +21,9 @@ jobs:
           node-version: ${{ inputs.node-version }}
           cache: yarn
 
+      - name: Install
+        run: yarn install --immutable
+
       - name: Linting
         run: yarn lint
 
