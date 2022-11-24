@@ -1,137 +1,42 @@
 :root {
-    --ifm-color-primary: var(--microlc-primary-color, #4568b5);
-    --ifm-color-primary-tint: var(--microlc-primary-color-tint-89, #adbcf5);
-    --ifm-color-primary-dark: rgb(33, 175, 144);
-    --ifm-color-primary-darker: rgb(31, 165, 136);
-    --ifm-color-primary-darkest: rgb(26, 136, 112);
-    --ifm-color-primary-light: rgb(70, 203, 174);
-    --ifm-color-primary-lighter: rgb(102, 212, 189);
-    --ifm-color-primary-lightest: rgb(146, 224, 208);
-    --ifm-code-font-size: 95%;
-
-    --ifm-footer-background-color: #2f2f2f;
-    --ifm-footer-color: #ffffff;
-    --ifm-footer-padding-vertical: 17px;
-    --ifm-heading-color: var(--microlc-primary-color, inherit);
-    --ifm-navbar-height: 55px;
-    --ifm-navbar-padding-vertical: 0;
-    --ifm-navbar-padding-horizontal: 0;
-    --ifm-dropdown-background-color: var(--ifm-navbar-background-color);
-    --ifm-dropdown-hover-background-color: var(--ifm-navbar-background-color);
-    --ifm-navbar-link-color: #858585;
-    --ifm-menu-color: var(--ifm-navbar-link-color);
-    --ifm-dropdown-link-color: var(--ifm-navbar-link-color);
-    --ifm-table-background: transparent;
-    --ifm-table-stripe-background: var(--ifm-table-background);
-    --ifm-table-cell-color: var(--microlc-text-color);
-    --ifm-navbar-search-input-color: var(--ifm-color-primary);
+  --ifm-color-primary: #de1f92;
+  --ifm-color-primary-dark: #c81c83;
+  --ifm-color-primary-darker: #bd1a7c;
+  --ifm-color-primary-darkest: #9b1666;
+  --ifm-color-primary-light: #e3349d;
+  --ifm-color-primary-lighter: #e43fa2;
+  --ifm-color-primary-lightest: #e960b2;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
 }
 
-[dark-theme], [data-theme=dark] {
-    --ifm-navbar-link-color: #CDCDCE;
+[data-theme="dark"] {
+  --ifm-color-primary: #db5ca0;
+  --ifm-color-primary-dark: #d54391;
+  --ifm-color-primary-darker: #d3368a;
+  --ifm-color-primary-darkest: #b22772;
+  --ifm-color-primary-light: #e175af;
+  --ifm-color-primary-lighter: #e382b6;
+  --ifm-color-primary-lightest: #eca8cd;
+  --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 30%);
 }
 
-.he .navbar__link {
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 18px;
+.header-github-link:hover {
+  opacity: 0.6;
 }
 
-.navbar__toggle {
-    margin-left: 10px;
+.header-github-link::before {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
+    no-repeat;
+  content: "";
 }
 
-.navbar-sidebar__items {
-    padding: 2rem 0.5rem 0.5rem;
-}
-
-.main-wrapper {
-    background: #fafafa !important;
-    padding-bottom: 2rem;
-}
-
-[data-theme=dark] .main-wrapper {
-    background: inherit !important;
-}
-
-[dark-theme] .main-wrapper {
-    background: #121212 !important;
-}
-
-.docusaurus-highlight-code-line {
-    background-color: rgb(72, 77, 91);
-    display: block;
-    margin: 0 calc(-1 * var(--ifm-pre-padding));
-    padding: 0 var(--ifm-pre-padding);
-}
-
-.flex_content_center {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-}
-
-[class$="svg-primary-color"] {
-    fill: var(--ifm-color-primary);
-}
-
-[class$="svg-stroke"] {
-    stroke: var(--ifm-color-primary);
-}
-
-[class$="svg-container"] {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    padding-top: 30%;
-    padding-bottom: 30%;
-    overflow: hidden;
-}
-
-[class$="svg-content"] { 
-	display: inline-block;
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-[class$="svg-tint-color"] {
-    fill: var(--ifm-color-primary-tint);
-}
-
-svg[aria-label="Menu"] > path {
-    color: var(--microlc-menu-label-color) !important;
-}
-
-.pagination-nav__sublabel,
-p,
-li {
-    color: var(--microlc-text-color) !important;
-}
-
-.button--secondary {
-    display: none !important;
-}
-
-.navbar__item.dropdown {
-    cursor: pointer;
-}
-
-.menu__list-item--collapsed .menu__link--sublist:after {
-    transform: rotate(0deg);
-}
-
-.menu__link--sublist:after {
-    background: var(--ifm-color-primary) !important;
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 129 129'%3E%3Cpath d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z' /%3E%3C/svg%3E");
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 129 129'%3E%3Cpath d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z' /%3E%3C/svg%3E");
-}
-
-.navbar-sidebar__close {
-    margin-right: 10px;
-}
-
-.navbar__search {
-    margin-right: 10px;
+[data-theme="dark"] .header-github-link::before {
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
+    no-repeat;
 }

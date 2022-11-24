@@ -1,0 +1,16 @@
+.pnp.*
+.yarn/*
+
+build/
+node_modules/
+.docusaurus/
+
+.vscode/
+.idea/
+
+# This file has to be a module with .js extension otherwise Docusaurus will not recognize it. Eslint fails at parsing it
+# since it expect js files to be commonJS
+/src/theme/MDXComponents.js
+
+# docs static assets
+static/
