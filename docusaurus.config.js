@@ -23,6 +23,11 @@ const pluginContentDocsConfig = {
   },
 }
 
+const pluginContentBlogConfig = {
+  editUrl: 'https://github.com/micro-lc/documentation/edit/main/',
+  path: 'blog',
+}
+
 const themeClassicConfig = {
   customCss: require.resolve('./src/css/custom.css'),
 }
@@ -65,6 +70,7 @@ const themeConfig = {
         target: '_blank',
         to: '/playground',
       },
+      { label: 'Blog', position: 'left', to: 'blog' },
       {
         position: 'right',
         type: 'docsVersionDropdown',
@@ -98,6 +104,7 @@ const config = {
   organizationName: 'micro-lc',
   plugins: [
     ['@docusaurus/plugin-content-docs', pluginContentDocsConfig],
+    ['@docusaurus/plugin-content-blog', pluginContentBlogConfig],
     '@docusaurus/plugin-content-pages',
   ],
   projectName: 'documentation',

@@ -1998,7 +1998,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/plugin-content-blog@npm:2.2.0":
+"@docusaurus/plugin-content-blog@npm:2.2.0, @docusaurus/plugin-content-blog@npm:^2.2.0":
   version: 2.2.0
   resolution: "@docusaurus/plugin-content-blog@npm:2.2.0"
   dependencies:
@@ -5764,6 +5764,7 @@ __metadata:
     "@cspell/cspell-types": ^6.14.3
     "@docusaurus/core": ^2.2.0
     "@docusaurus/module-type-aliases": ^2.2.0
+    "@docusaurus/plugin-content-blog": ^2.2.0
     "@docusaurus/plugin-content-docs": ^2.2.0
     "@docusaurus/plugin-content-pages": ^2.2.0
     "@docusaurus/theme-classic": ^2.2.0
