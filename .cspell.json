@@ -16,7 +16,8 @@
     "keyof",
     "lexer",
     "iframes",
-    "qiankun"
+    "qiankun",
+    "srcdoc"
   ],
   "dictionaries": [
     "softwareTerms",

@@ -5,6 +5,11 @@ sidebar_label: Composer API
 sidebar_position: 30
 ---
 
+```mdx-code-block
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+```
+
 Any HTML element mounted in <micro-lc></micro-lc> via [layout](../docs/guides/layout.md) or
 [mount point](../docs/guides/layout.md#mount-point), or any 
 [composable application](../docs/guides/applications/compose.md) is provided with the property `composerApi`, which
@@ -97,3 +102,60 @@ interface ComposerApi {
 
 Alternatively, if the use case requires to append a `ResolvedConfig` to a `container` html element
 and inject a `context` of properties, `render` provides a useful shortcut.
+
+## Standalone usage
+
+The composer API can be directly injected in your browser as a module by adding a script import from CDN source
+or in your code as a `dependency`.
+
+To add it to your codebase: 
+
+```mdx-code-block
+<Tabs groupId="pkg-manager">
+<TabItem value="npm" label="npm" default>
+```
+```shell
+npm install @micro-lc/composer
+```
+```mdx-code-block
+</TabItem>
+<TabItem value="yarn" label="yarn">
+```
+```shell
+yarn add @micro-lc/composer
+```
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
+
+Otherwise, add to your `index.html` the following script:
+
+```html
+  <script type="importmap">
+    {
+      "imports": {
+        "@micro-lc/composer": "https://cdn.jsdelivr.net/npm/@micro-lc/composer@latest/dist/bundle/index.min.js"
+      }
+    }
+  </script>
+```
+
+and then use it in your scripts:
+
+```html
+<body>
+  <div id="root"></div>
+  <script type="module">
+    import {render} from '@micro-lc/composer'
+
+    (async function () {
+      const root = document.getElementById('root')
+
+      render({content: "Hello 👋"}, root)
+    })()
+  </script>
+</body>
+```
+
+in case your browser does not support modules we recommend to add [es-module-shims](https://github.com/guybedford/es-module-shims).

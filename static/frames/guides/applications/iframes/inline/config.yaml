@@ -1,0 +1,29 @@
+$schema: https://cdn.jsdelivr.net/npm/@micro-lc/interfaces@latest/schemas/v2/config.schema.json
+version: 2
+
+layout:
+  sources: https://cdn.jsdelivr.net/npm/@micro-lc/layout@latest/dist/mlc-layout.js
+  content:
+    - tag: mlc-layout
+      properties:
+        mode: topBar
+        logo:
+          url: ../../../../../img/favicon.png
+        menuItems:
+          - icon:
+              library: '@ant-design/icons-svg'
+              selector: GlobalOutlined
+            id: main
+            label: Hello
+            type: application
+
+applications:
+  main:
+    integrationMode: iframe
+    route: ./
+    srcdoc: |
+      <!DOCTYPE html>
+      <html>
+      <head></head>
+      <body>Hello 👋</body>
+      </html>

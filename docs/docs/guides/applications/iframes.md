@@ -30,16 +30,20 @@ Declare an application with integration mode `iframe` in <micro-lc></micro-lc> c
 ```typescript
 interface IFrameApplication {
   integrationMode: "iframe"
-  src: string // iFrame src attribute value
   route: string // Path on which the iFrame will be rendered
-  attributes?: Record<string, unknown> // Valid attributes of iframe HTML element
+  src?: string // iFrame src attribute value
+  srcdoc?: string // iFrame content
+  attributes?: Record<string, string> // Valid attributes of iframe HTML element
 }
 ```
+
+`src` and `srcdoc` are mirrors of the iframe attributes and will override any declaration in the `attributes` field.
+Anyway if unused, the declaration of `src` and `srcdoc` in `attributes` is valid and will produce a working iframe.
 
 ```mdx-code-block
 <></>
 <example-frame
-  base="../../../frames/guides/applications/iframes"
+  base="../../../frames/guides/applications/iframes/standard"
   height="550px"
   sourceTabs={[
     { filePath: "/index.html" },
@@ -47,6 +51,24 @@ interface IFrameApplication {
   ]}
   src={"/"}
   title="iFrame integration"
+></example-frame>
+```
+
+:::tip
+In case of unknown embedding website, `srcdoc` can be useful to inline your application html document
+:::
+
+```mdx-code-block
+<></>
+<example-frame
+  base="../../../frames/guides/applications/iframes/inline"
+  height="550px"
+  sourceTabs={[
+    { filePath: "/index.html" },
+    { filePath: "/config.yaml", isDefault: true }
+  ]}
+  src={"/"}
+  title="iFrame inline integration"
 ></example-frame>
 ```
 
