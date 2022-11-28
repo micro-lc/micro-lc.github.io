@@ -8,12 +8,18 @@ sidebar_position: 30
 Routing refers to the logic <micro-lc></micro-lc> applies when choosing which micro-frontend should be loaded in the
 [dynamic section](../concepts/separation-of-concerns.md) of the application based on the current URL.
 
-Each [registered application](./applications) has to **declare its route**, which must be a valid URL pathname like:
+Each [registered application](./applications) has to **declare its route**, which must be a valid URL pathname
+or an URL in combination with parametric values prepended with a colon (:) like:
 - /home
 - /home/accessible/
 - /my-awesome-application/
 - ./application
+- ./:user/profile
+- ./application/:id/details/
 - ./react-application/about
+
+Parametric values must start with a colon and must contain only letters (uppercase or lowercase)
+with no whitespaces. Upon pattern matching evaluation will match any valid pathname part (i.e., `/\/([^/#?]+)/`)
 
 :::caution
 Absolute paths do not interact with any [_base_ tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
@@ -64,6 +70,11 @@ found and `settings.defaultUrl` is declared to be `/home`.
 When the client requires `/about/details`, the longest match is given by the `about-details` application, despite `/about`
 being also available (and this behaviour is the one enabling the **construction of entire SPA-like applications** using
 <micro-lc></micro-lc> router).
+
+:::tip
+Due to their own dynamic nature, parametric values will not be included in the match length evaluation
+since it would force the configuration to rely on parametric values which must have the same length
+:::
 
 Finally, when a router application is called, like browsing to `/application/` the internal router of the application
 kicks in. If the browser navigate to `/application`, no exact match is found, but a trailing slash is found on
