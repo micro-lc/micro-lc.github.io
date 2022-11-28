@@ -207,6 +207,7 @@ This type of menu items triggers the navigation to a specific <micro-lc></micro-
 |:--------:|:---------------------------------------------------------------------:|:--------------------------------------------------------------------------:|----------------------------------------------------------------------------------------------------------------------------------------|
 |  `icon`  |                 <code><a href="#icon">Icon</a></code>                 | [Ant Design](https://ant.design/components/icon/) `DeploymentUnitOutlined` | Icon icon of the menu item                                                                                                             |
 |   `id`   |                          <code>string</code>                          |                                **Required**                                | Unique identifier of the menu item. It **must** match the id of the <micro-lc></micro-lc> application the menu item should navigate to |
+|  `selectedAlsoOn`  |                         <code>string[]</code>                         |                     Optional subapplication `id`s                     | Applications that also select this item |
 | `label`  | <code>string &#124; <a href="#localizedtext">LocalizedText</a></code> |                             Value of `id` prop                             | Menu label                                                                                                                             |
 |  `type`  |                             `application`                             |                                **Required**                                | Type of the item: <micro-lc></micro-lc> application                                                                                    |
 
@@ -231,11 +232,11 @@ Groups **cannot** be used at first level when mode is `topBar`.
 This type of menu items is a grouping of other items.
 
 |  Property  |                                 Type                                  |                                Default                                | Description                         |
-|:----------:|:---------------------------------------------------------------------:|:---------------------------------------------------------------------:|-------------------------------------|
-| `children` |             <code><a href="#menuitem">MenuItem</a></code>             |                                  []                                   | Content of the group                |
-|    `id`    |                          <code>string</code>                          |                             **Required**                              | Unique identifier of the menu item. |
-|  `label`   | <code>string &#124; <a href="#localizedtext">LocalizedText</a></code> |                          Value of `id` prop                           | Menu label                          |
-|   `type`   |                                `group`                                |                             **Required**                              | Type of the item: group of items    |
+|:----------:|:---------------------------------------------------------------------:|:---------------------------------------------------------------------:|-----------------------------------------|
+| `children` |             <code><a href="#menuitem">MenuItem</a></code>             |                                  []                                   | Content of the group                    |
+|    `id`    |                          <code>string</code>                          |                             **Required**                               | Unique identifier of the menu item.     |
+|  `label`   | <code>string &#124; <a href="#localizedtext">LocalizedText</a></code> |                          Value of `id` prop                           | Menu label                              |
+|   `type`   |                                `group`                                |                             **Required**                               | Type of the item: group of items        |
 
 #### `Icon`
 
