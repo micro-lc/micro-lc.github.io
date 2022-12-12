@@ -44,7 +44,6 @@ const frameUrlChangeListener = (element: HTMLIFrameElement, callback: UrlChangeC
 
   element.contentWindow?.addEventListener('popstate', function onPopState(event: PopStateEvent) {
     const targetWindow = (event.target as Window | null) ?? window
-    console.log('popstate', targetWindow.location.href)
 
     dispatchChange(targetWindow.location.href)
   })

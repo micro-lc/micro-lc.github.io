@@ -12,7 +12,7 @@
         "properties": {
           "mode": "topBar",
           "logo": {
-            "url": "/documentation/img/favicon.png"
+            "url": "/img/favicon.png"
           },
           "menuItems": [
             {
@@ -43,12 +43,12 @@
       "integrationMode": "parcel",
       "injectBase": true,
       "route": "./browser/",
-      "entry": "/documentation/applications/react-browser-router/"
+      "entry": "/applications/react-browser-router/"
     },
     "hash": {
       "integrationMode": "parcel",
       "route": "./hash/",
-      "entry": "/documentation/applications/react-hash-router/"
+      "entry": "/applications/react-hash-router/"
     }
   }
 }

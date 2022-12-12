@@ -97,7 +97,7 @@ const themeConfig = {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  baseUrl: '/documentation/',
+  baseUrl: '/',
   favicon: 'img/favicon.png',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
