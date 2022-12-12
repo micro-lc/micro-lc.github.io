@@ -1,7 +1,7 @@
 ---
-title: 🛠 Servo
+title: 🛠 Middleware
 description: Configurations service station
-sidebar_label: 🛠 Servo
+sidebar_label: 🛠 Middleware
 sidebar_position: 10
 ---
 
@@ -10,21 +10,21 @@ import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 ```
 
-**Servo** is a backend middleware responsible for serving <micro-lc></micro-lc> configuration files, applying
+**Middleware** is a backend middleware responsible for serving <micro-lc></micro-lc> configuration files, applying
 some useful [parsing logic](#configurations-parsing) before returning their content. This logic is also distributed
 through an [SDK](#sdk) to ease the process of building custom configurations serves.
 
 ## Usage
 
-Servo is available as a Docker image on [Dockerhub](https://hub.docker.com/r/microlc/servo).
+Middleware is available as a Docker image on [Dockerhub](https://hub.docker.com/r/microlc/middleware).
 
 ### Environment variables
 
-Servo it built using Mia-Platform's [custom-plugin-lib](https://github.com/mia-platform/custom-plugin-lib), hence it
+Middleware it built using Mia-Platform's [custom-plugin-lib](https://github.com/mia-platform/custom-plugin-lib), hence it
 needs the environment variables outlined in the 
 [library documentation](https://github.com/mia-platform/custom-plugin-lib#environment-variables-configuration).
 
-On top of those, Servo accepts the following environment variables:
+On top of those, Middleware accepts the following environment variables:
 
 |            Name            |   Type   | Required | Description                                                                                 |
 |:--------------------------:|:--------:|:--------:|---------------------------------------------------------------------------------------------|
@@ -32,7 +32,7 @@ On top of those, Servo accepts the following environment variables:
 
 ### Serving from file system
 
-Configuration files are loaded from file system. In particular, Servo searches in the directory specified with the
+Configuration files are loaded from file system. In particular, Middleware searches in the directory specified with the
 `RESOURCES_DIRECTORY_PATH` [environment variable](#environment-variables) for JSON (`.json`) and YAML (`.yaml` or `.yml`)
 files (even in subdirectories) and exposes a route for each of them.
 
@@ -40,7 +40,7 @@ files (even in subdirectories) and exposes a route for each of them.
 Since routes are created at service startup, adding or removing files will **not change the exposes routes** until the
 service is restarted.
 
-However, since Servo reloads a file each time its corresponding route is called, any change to the content of a file 
+However, since Middleware reloads a file each time its corresponding route is called, any change to the content of a file 
 **will be immediately reflected** without need of restarting the service.
 :::
 
@@ -54,7 +54,7 @@ For example, given a directory with the following structure:
     └── admin-config.json
 ```
 
-Servo will expose the following routes:
+Middleware will expose the following routes:
 
 ```text
 GET - /config.json
@@ -68,18 +68,18 @@ JSON files will be returned with `Content-Type` header set to `application/json`
 
 ## Configurations parsing
 
-Before returning a request file, Servo applies some parsing logics to its content.
+Before returning a request file, Middleware applies some parsing logics to its content.
 
 ### ACL application
 
-Servo allows you to implement **access control limit** on served files, removing sections of configurations based on
-certain properties of the caller. Namely, Servo considers caller's **groups** and **permissions**.
+Middleware allows you to implement **access control limit** on served files, removing sections of configurations based on
+certain properties of the caller. Namely, Middleware considers caller's **groups** and **permissions**.
 
 Caller's **groups** are extracted from request headers, particularly from the header the key of which is specified through
 `GROUPS_HEADER_KEY` [environment variable](#environment-variables). The value of the header should be a comma-separated
 list of groups (e.g., `"admin,user"`).
 
-Caller's **permissions** are extracted from request headers too. Servo takes the header the key of which is specified
+Caller's **permissions** are extracted from request headers too. Middleware takes the header the key of which is specified
 through `USER_PROPERTIES_HEADER_KEY` [environment variable](#environment-variables) and expects a stringified JSON
 object containing a comma-separated list of permissions under the key `permissions` (e.g.,
 `"{\"permissions\":"api.users.get,api.users.post"}"`).
@@ -99,13 +99,13 @@ For example, the following expressions are all valid:
 * `(groups.admin === true && permissions.api.users.post === true)`
 :::
 
-Servo evaluates each ACL expression against caller's properties and, if the expression results in a `falsy value`, it
+Middleware evaluates each ACL expression against caller's properties and, if the expression results in a `falsy value`, it
 removes from the configuration the **whole object** which the expression is a property of. It then proceeds to remove
 any `aclExpression` key left over to not leak server-side logic into the client.
 
 #### Example
 
-Let's consider the following configuration file served under `GET - /servo/config.json`.
+Let's consider the following configuration file served under `GET - /middleware/config.json`.
 
 ```json
 {
@@ -130,7 +130,7 @@ Let's consider the following configuration file served under `GET - /servo/confi
 The response of the following request
 
 ```shell
-curl 'https://*********/servo/config.json' \
+curl 'https://*********/middleware/config.json' \
   -H 'user-groups: user' \
   -H 'user-properties: { "permissions": "api.users.get" }'
 ```
@@ -152,18 +152,18 @@ will be
 
 ### References resolution
 
-In order to avoid writing repeating values multiple times in your configurations, Servo supports references resolutions
+In order to avoid writing repeating values multiple times in your configurations, Middleware supports references resolutions
 following [JSON schema specification](https://json-schema.org/understanding-json-schema/structuring.html#ref). In
 particular, if you need to repeat the same value in various places of your configuration, you can **define it once** in
 the dedicated top-level key `definitions`, and then **references it** wherever you like using the keyword `$ref` (e.g.,
 `{ "dataSchema": { "$ref": "#/definitions/dataSchema" }}`).
 
-Servo will resolve references in files and will remove the key `definitions` (if any) before serving them. Keep in mind
-that Servo **will throw** if some references cannot be resolved.
+Middleware will resolve references in files and will remove the key `definitions` (if any) before serving them. Keep in mind
+that Middleware **will throw** if some references cannot be resolved.
 
 #### Example
 
-Let's consider the following configuration file served under `GET - /servo/config.json`.
+Let's consider the following configuration file served under `GET - /middleware/config.json`.
 
 ```json
 {
@@ -196,7 +196,7 @@ Let's consider the following configuration file served under `GET - /servo/confi
 The response of the following request
 
 ```shell
-curl 'https://*********/servo/config.json'
+curl 'https://*********/middleware/config.json'
 ```
 
 will be
@@ -239,14 +239,14 @@ You can install the SDK from NPM
 <TabItem value="npm" label="npm" default>
 ```
 ```shell
-npm install @micro-lc/servo/sdk
+npm install @micro-lc/middleware/sdk
 ```
 ```mdx-code-block
 </TabItem>
 <TabItem value="yarn" label="yarn">
 ```
 ```shell
-yarn add @micro-lc/servo/sdk
+yarn add @micro-lc/middleware/sdk
 ```
 ```mdx-code-block
 </TabItem>
@@ -260,14 +260,14 @@ and import it in your files
 <TabItem value="common-js" label="CommonJS" default>
 ```
 ```javascript
-const servoSdk = require('@micro-lc/servo/sdk')
+const middlewareSdk = require('@micro-lc/middleware/sdk')
 ```
 ```mdx-code-block
 </TabItem>
 <TabItem value="modules" label="ECMAScript modules">
 ```
 ```javascript
-import * as servoSdk from '@micro-lc/servo/sdk'
+import * as middlewareSdk from '@micro-lc/middleware/sdk'
 ```
 ```mdx-code-block
 </TabItem>

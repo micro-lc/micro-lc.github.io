@@ -39,7 +39,7 @@ Once the image has been updated, you need to adapt the configuration files to th
 for reference.
 
 :::tip
-We provide a [backend service](../add-ons/backend/servo.md) to serve configurations with ACL and references resolution
+We provide a [backend service](../add-ons/backend/middleware.md) to serve configurations with ACL and references resolution
 utilities.
 :::
 
@@ -114,14 +114,14 @@ The migration CLI can be used to automatically translate an application configur
 <TabItem value="npm" label="npm" default>
 ```
 ```shell
-npx @micro-lc/servo <args>
+npx @micro-lc/middleware <args>
 ```
 ```mdx-code-block
 </TabItem>
 <TabItem value="yarn" label="yarn 2+">
 ```
 ```shell
-yarn dlx @micro-lc/servo <args>
+yarn dlx @micro-lc/middleware <args>
 ```
 ```mdx-code-block
 </TabItem>
@@ -144,14 +144,14 @@ To invoke the CLI in this mode, it has to receive **exactly two args**, namely t
 <TabItem value="npm" label="npm" default>
 ```
 ```shell
-npx @micro-lc/servo --mode config <path_to_authentication.json_file> <configuration.json_file>
+npx @micro-lc/middleware --mode config <path_to_authentication.json_file> <configuration.json_file>
 ```
 ```mdx-code-block
 </TabItem>
 <TabItem value="yarn" label="yarn 2+">
 ```
 ```shell
-yarn dlx @micro-lc/servo --mode config <path_to_authentication.json_file> <configuration.json_file>
+yarn dlx @micro-lc/middleware --mode config <path_to_authentication.json_file> <configuration.json_file>
 ```
 ```mdx-code-block
 </TabItem>
@@ -205,14 +205,14 @@ and you want it to be transformed in a `compose` application, the cli invocation
 <TabItem value="npm" label="npm" default>
 ```
 ```shell
-npx @micro-lc/servo --m config -e "/element-composer/" <path_to_authentication.json_file> <configuration.json_file>
+npx @micro-lc/middleware --m config -e "/element-composer/" <path_to_authentication.json_file> <configuration.json_file>
 ```
 ```mdx-code-block
 </TabItem>
 <TabItem value="yarn" label="yarn 2+">
 ```
 ```shell
-yarn dlx @micro-lc/servo --m config -e "/element-composer/" <path_to_authentication.json_file> <configuration.json_file>
+yarn dlx @micro-lc/middleware --m config -e "/element-composer/" <path_to_authentication.json_file> <configuration.json_file>
 ```
 ```mdx-code-block
 </TabItem>
@@ -236,14 +236,14 @@ The CLI invoked in this mode can receive as many arguments as you want, each of 
 <TabItem value="npm" label="npm" default>
 ```
 ```shell
-npx @micro-lc/servo --mode compose <paths_to_files...>
+npx @micro-lc/middleware --mode compose <paths_to_files...>
 ```
 ```mdx-code-block
 </TabItem>
 <TabItem value="yarn" label="yarn 2+">
 ```
 ```shell
-yarn dlx @micro-lc/servo --mode compose <paths_to_files...>
+yarn dlx @micro-lc/middleware --mode compose <paths_to_files...>
 ```
 ```mdx-code-block
 </TabItem>
