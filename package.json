@@ -12,7 +12,8 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "serve": "docusaurus serve",
-    "check:types": "yarn tsc --noEmit && echo \"✓ check types\""
+    "check:types": "yarn tsc --noEmit && echo \"✓ check types\"",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@docusaurus/core": "^2.2.0",
