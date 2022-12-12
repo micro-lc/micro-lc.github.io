@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>micro-lc Blog</title>
-        <link>https://micro-lc.io/documentation/blog</link>
+        <link>https://micro-lc.io/blog</link>
         <description>micro-lc Blog</description>
         <lastBuildDate>Thu, 24 Nov 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -10,7 +10,7 @@
         <language>en</language>
         <item>
             <title><![CDATA[Welcome micro-lc v2]]></title>
-            <link>https://micro-lc.io/documentation/blog/welcome-micro-lc-v2</link>
+            <link>https://micro-lc.io/blog/welcome-micro-lc-v2</link>
             <guid>welcome-micro-lc-v2</guid>
             <pubDate>Thu, 24 Nov 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[micro-lc version 2 is out!]]></description>
