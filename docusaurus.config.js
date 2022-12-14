@@ -43,7 +43,7 @@ const themeConfig = {
       hideable: true,
     },
   },
-  image: 'img/favicon.png',
+  image: 'img/microlc-ogimage.jpg',
   navbar: {
     hideOnScroll: false,
     items: [
