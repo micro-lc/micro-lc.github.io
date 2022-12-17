@@ -47,7 +47,11 @@ const tsConfigs = {
   parser: '@typescript-eslint/parser',
 
   parserOptions: {
-    project: path.resolve(__dirname, './tsconfig.json'),
+    project: [
+      path.resolve(__dirname, './tsconfig.json'),
+      path.resolve(__dirname, './applications/react-browser-router/tsconfig.json'),
+      path.resolve(__dirname, './applications/react-hash-router/tsconfig.json'),
+    ],
   },
 
   plugins: ['@typescript-eslint', 'typescript-sort-keys'],

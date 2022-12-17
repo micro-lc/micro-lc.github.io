@@ -17,5 +17,11 @@
     "paths": {
       "@site/*": ["./*"]
     }
+  },
+  "exclude": ["applications"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
   }
 }

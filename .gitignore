@@ -12,3 +12,5 @@ dist/
 
 .docusaurus
 build
+
+static/applications
