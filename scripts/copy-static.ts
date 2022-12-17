@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 
-import { copy, statSync, mkdirSync } from 'fs-extra'
+import { copy, statSync, mkdirpSync } from 'fs-extra'
 import { sync } from 'glob'
 
 const APPLICATION_GLOB = 'applications/*'
@@ -14,7 +14,7 @@ async function copyStaticFiles(): Promise<void> {
     }))
     .filter(({ src }) => statSync(src).isDirectory())
 
-  mkdirSync(resolve(__dirname, '..', 'static/applications'))
+  mkdirpSync(resolve(__dirname, '..', 'static/applications'))
 
   const promises = subapplications.map(({ src, dest, name }) =>
     copy(src, dest, { overwrite: true, recursive: true }).then(() => { console.log(`[${name}]: static files copied`) })
