@@ -78,7 +78,7 @@ const themeConfig = {
       {
         'aria-label': 'GitHub repository',
         className: 'header-github-link',
-        href: 'https://github.com/micro-lc/micro-lc/tree/v2/main',
+        href: 'https://github.com/micro-lc/micro-lc/',
         position: 'right',
       },
     ],
