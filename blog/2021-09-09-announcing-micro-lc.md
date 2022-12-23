@@ -8,6 +8,14 @@ slug: micro-lc-the-new-open-source-micro-fronted-orchestrator
     <link rel="canonical" href="https://blog.mia-platform.eu/en/micro-lc-the-new-open-source-micro-fronted-orchestrator" />
 </head>
 
+_Post originally published on [Mia-Platform’s blog](https://blog.mia-platform.eu/en/micro-lc-the-new-open-source-micro-fronted-orchestrator)._
+
+:::info
+This blog post refers to [<micro-lc></micro-lc> v1.0.0](/1.0.0/docs/introduction) and some information are outdated.
+
+**<micro-lc></micro-lc> v2.0 is out now**: read the [updated documentation](/docs/) and the [presentation blog post](/blog/welcome-micro-lc-v2).
+:::
+
 We are happy to announce the release of <micro-lc></micro-lc>, the new **micro frontend orchestrator** developed by [Mia‑Platform](https://mia-platform.eu).
 
 This project stems from our experience of recent years with micro frontend development. We know the challenges and needs of those who work with micro frontends and we want to give a concrete contribution to the developers who use them. For this reason, we have released the project in **open‑source** mode: it is already available on [GitHub](https://github.com/micro-lc/micro-lc) and all the community can freely contribute.
