@@ -20,7 +20,7 @@ Create a blank `index.html` file and paste the following snippet:
   <link rel="icon" href="https://avatars.githubusercontent.com/u/92730708?s=200&v=4" />
 
   <!-- 👇 CDN link to download micro-lc -->
-  <script async type="module" src="https://unpkg.com/@micro-lc/orchestrator@latest/dist/micro-lc.development.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@micro-lc/orchestrator@latest/dist/micro-lc.production.js"></script>
   <!-- 👇 some optional style to fill the page -->
   <style>
     html, body {
@@ -61,7 +61,6 @@ production). A YAML to JSON converter is available in the <a href="../playground
 
 ```json title="config.json"
 {
-  "$schema": "https://raw.githubusercontent.com/micro-lc/micro-lc/main/packages/interfaces/schemas/v2/config.schema.json#"
   "version": 2,
   "applications": {
     "home": {
