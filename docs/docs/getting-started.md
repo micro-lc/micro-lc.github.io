@@ -20,24 +20,23 @@ Create a blank `index.html` file and paste the following snippet:
   <link rel="icon" href="https://avatars.githubusercontent.com/u/92730708?s=200&v=4" />
 
   <!-- 👇 CDN link to download micro-lc -->
-  <script async type="module" src="https://unpkg.com/@micro-lc/orchestrator@latest/dist/micro-lc.production.js"></script>
+  <script async type="module" src="https://unpkg.com/@micro-lc/orchestrator@latest/dist/micro-lc.development.js"></script>
+  <!-- 👇 some optional style to fill the page -->
+  <style>
+    html, body {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+  </style>
+
 </head>
 <body>
   <!-- 👇 micro-lc tag with config reference -->
-  <micro-lc config-src="./config.yaml"></micro-lc>
+  <micro-lc config-src="./config.json"></micro-lc>
 </body>
 </html>
-```
-
-Let's start with adjusting the page style. We recommend you add some style in the `head` of the Document:
-
-```css
-html, body {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-}
 ```
 
 :::tip
@@ -60,19 +59,18 @@ either on your web server response header (e.g. [nginx](https://content-security
 to write our first configuration file. You can choose either JSON or YAML (we suggest YAML for development, and JSON for
 production). A YAML to JSON converter is available in the <a href="../playground" target="_blank">Playground section</a>.
 
-```yaml title="config.yaml"
-# 👇 Configuration writing process gets easier if your file is validated against the schema below
-$schema: https://cdn.jsdelivr.net/npm/@micro-lc/interfaces@latest/schemas/v2/config.schema.json
-
-# 👇 Version of micro-lc
-version: 2
-
-# 👇 Lets start with a simple iFrame application
-applications:
-  home:
-    integrationMode: iframe
-    src: https://wikipedia.org
-    route: ./
+```json title="config.json"
+{
+  "$schema": "https://raw.githubusercontent.com/micro-lc/micro-lc/main/packages/interfaces/schemas/v2/config.schema.json#"
+  "version": 2,
+  "applications": {
+    "home": {
+      "integrationMode": "iframe",
+      "src": "https://wikipedia.org",
+      "route": "./"
+    }
+  }
+}
 ```
 
 You can now serve the application with your static server of choice, like 
