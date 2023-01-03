@@ -29,12 +29,15 @@ On top of those, Middleware accepts the following environment variables:
 |            Name            |   Type   | Required | Description                                                                                 |
 |:--------------------------:|:--------:|:--------:|---------------------------------------------------------------------------------------------|
 | `RESOURCES_DIRECTORY_PATH` | `string` |    ✔     | Absolute path of the [directory](#serve-from-file-system) containing resources to be served |
+| `CONTENT_TYPE_MAP`         | `string` |          | Stringified JSON object representing a key/value directory to map extensions to `Content-Type` headers |
 
 ### Serving from file system
 
-Configuration files are loaded from file system. In particular, Middleware searches in the directory specified with the
-`RESOURCES_DIRECTORY_PATH` [environment variable](#environment-variables) for JSON (`.json`) and YAML (`.yaml` or `.yml`)
-files (even in subdirectories) and exposes a route for each of them.
+Configuration files and regular files are loaded from file system.
+In particular, Middleware searches in the directory specified with the
+`RESOURCES_DIRECTORY_PATH` [environment variable](#environment-variables) for any file description not being a folder and, amongst those, also
+for JSON (`.json`) and YAML (`.yaml` or `.yml`)
+files, (even in subdirectories) and exposes a route for each of them.
 
 :::caution
 Since routes are created at service startup, adding or removing files will **not change the exposes routes** until the
@@ -49,6 +52,8 @@ For example, given a directory with the following structure:
 ```text
 ├── config.json
 ├── orders-config.yaml
+├── lib
+    └── index.js
 └── user-pages
     ├── customers-config.yml
     └── admin-config.json
@@ -59,16 +64,46 @@ Middleware will expose the following routes:
 ```text
 GET - /config.json
 GET - /orders-config.yaml
+GET - /lib/index.js
 GET - /user-pages/customers-config.yml
 GET - /user-pages/admin-config.json
 ```
 
-JSON files will be returned with `Content-Type` header set to `application/json`, while YAML files will have
-`Content-Type` header set to `text/yaml`.
+## Content Type
 
-## Configurations parsing
+By default, Middleware returns a file with the following content types (depending on the file extension)
 
-Before returning a request file, Middleware applies some parsing logics to its content.
+|       Extension            |   Content-Type header   |
+|:--------------------------:|:-----------------------:|
+| .cjs | application/javascript |
+|  .css| text/css|
+|  .html| text/html|
+|  .js| application/javascript|
+|  .json| application/json; charset=utf-8|
+|  .mjs| application/javascript|
+|  .yaml| text/yaml; charset=utf-8|
+|  .yml| text/yaml; charset=utf-8|
+
+Any extension not listed will trigger a default `Content-Type` equal to `text/plain`.
+These settings can be overridden by using the `CONTENT_TYPE_MAP` container variable as described
+by the following examples
+
+```text
+CONTENT_TYPE_MAP='{".mjs,.js": "text/javascript", ".xml": "application/xml"}'
+```
+
+which will force Middleware to return on `.mjs` and `.js` the equivalen `text/javascript` Content-Type header and
+`application/xml` on XML's files. Keys must be either a single extension or a comma separated list of extensions and values must be strings.
+
+:::caution
+Any extension listed in the `CONTENT_TYPE_MAP` will override its previous default value allowing even to change
+`Content-Type` for JSON and YAML files which might create problems on `micro-lc` web component configuration dump.
+:::
+
+## JSON/YAML manipulation
+
+If the required file ends with `.json`, `.yaml` or `.yml`,
+before returning the file, Middleware applies some parsing logics to its content.
 
 ### ACL application
 
