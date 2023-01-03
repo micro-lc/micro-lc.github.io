@@ -53,7 +53,7 @@ For example, given a directory with the following structure:
 ├── config.json
 ├── orders-config.yaml
 ├── lib
-    └── index.js
+|   └── index.js
 └── user-pages
     ├── customers-config.yml
     └── admin-config.json
