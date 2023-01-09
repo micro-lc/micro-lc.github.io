@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem'
 ```
 
 **Middleware** is a backend middleware responsible for serving <micro-lc></micro-lc> configuration files, applying
-some useful [parsing logic](#configurations-parsing) before returning their content. This logic is also distributed
+some useful [parsing logic](#jsonyaml-manipulation) before returning their content. This logic is also distributed
 through an [SDK](#sdk) to ease the process of building custom configurations serves.
 
 ## Usage
@@ -26,10 +26,10 @@ needs the environment variables outlined in the
 
 On top of those, Middleware accepts the following environment variables:
 
-|            Name            |   Type   | Required | Description                                                                                 |
-|:--------------------------:|:--------:|:--------:|---------------------------------------------------------------------------------------------|
-| `RESOURCES_DIRECTORY_PATH` | `string` |    ✔     | Absolute path of the [directory](#serve-from-file-system) containing resources to be served |
-| `CONTENT_TYPE_MAP`         | `string` |          | Stringified JSON object representing a key/value directory to map extensions to `Content-Type` headers |
+|            Name            |   Type   | Required | Description                                                                                            |
+|:--------------------------:|:--------:|:--------:|--------------------------------------------------------------------------------------------------------|
+| `RESOURCES_DIRECTORY_PATH` | `string` |    ✔     | Absolute path of the [directory](#serving-from-file-system) containing resources to be served          |
+|     `CONTENT_TYPE_MAP`     | `string` |          | Stringified JSON object representing a key/value directory to map extensions to `Content-Type` headers |
 
 ### Serving from file system
 
@@ -73,16 +73,16 @@ GET - /user-pages/admin-config.json
 
 By default, Middleware returns a file with the following content types (depending on the file extension)
 
-|       Extension            |   Content-Type header   |
-|:--------------------------:|:-----------------------:|
-| .cjs | application/javascript |
-|  .css| text/css|
-|  .html| text/html|
-|  .js| application/javascript|
-|  .json| application/json; charset=utf-8|
-|  .mjs| application/javascript|
-|  .yaml| text/yaml; charset=utf-8|
-|  .yml| text/yaml; charset=utf-8|
+| Extension |       Content-Type header       |
+|:---------:|:-------------------------------:|
+|   .cjs    |     application/javascript      |
+|   .css    |            text/css             |
+|   .html   |            text/html            |
+|    .js    |     application/javascript      |
+|   .json   | application/json; charset=utf-8 |
+|   .mjs    |     application/javascript      |
+|   .yaml   |    text/yaml; charset=utf-8     |
+|   .yml    |    text/yaml; charset=utf-8     |
 
 Any extension not listed will trigger a default `Content-Type` equal to `text/plain`.
 These settings can be overridden by using the `CONTENT_TYPE_MAP` container variable as described
@@ -92,7 +92,7 @@ by the following examples
 CONTENT_TYPE_MAP='{".mjs,.js": "text/javascript", ".xml": "application/xml"}'
 ```
 
-which will force Middleware to return on `.mjs` and `.js` the equivalen `text/javascript` Content-Type header and
+which will force Middleware to return on `.mjs` and `.js` the equivalent `text/javascript` Content-Type header and
 `application/xml` on XML's files. Keys must be either a single extension or a comma separated list of extensions and values must be strings.
 
 :::caution
