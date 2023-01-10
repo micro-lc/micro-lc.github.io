@@ -3048,7 +3048,7 @@ __metadata:
     "@types/react-dom": ^18.0.10
     react: ^18.2.0
     react-dom: ^18.2.0
-    react-router-dom: ^6.6.1
+    react-router-dom: ^6.6.2
     react-scripts: ^5.0.1
     typescript: ^4.9.4
   languageName: unknown
@@ -3064,7 +3064,7 @@ __metadata:
     "@types/react-dom": ^18.0.10
     react: ^18.2.0
     react-dom: ^18.2.0
-    react-router-dom: ^6.6.1
+    react-router-dom: ^6.6.2
     react-scripts: ^5.0.1
     typescript: ^4.9.4
   languageName: unknown
@@ -15594,7 +15594,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^6.6.1":
+"react-router-dom@npm:^6.6.2":
   version: 6.6.2
   resolution: "react-router-dom@npm:6.6.2"
   dependencies:
