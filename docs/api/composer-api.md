@@ -28,7 +28,11 @@ dynamically configured HTML DOM as subtree of the root.
 ```typescript
 interface ComposerApi {
   // ... rest of the API
-  premount: (config: PluginConfiguration, proxyWindow?: ImportShimContext, reporter?: (err: unknown) => void) => Promise<ResolvedConfig>
+  premount: (
+    config: PluginConfiguration,
+    proxyWindow?: ImportShimContext,
+    reporter?: (err: unknown) => void
+  ) => Promise<ResolvedConfig>
 }
 ```
 
