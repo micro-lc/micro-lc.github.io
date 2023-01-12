@@ -28,7 +28,7 @@ dynamically configured HTML DOM as subtree of the root.
 ```typescript
 interface ComposerApi {
   // ... rest of the API
-  premount: (config: PluginConfiguration, proxyWindow?: ImportShimContext) => Promise<ResolvedConfig>
+  premount: (config: PluginConfiguration, proxyWindow?: ImportShimContext, reporter?: (err: unknown) => void) => Promise<ResolvedConfig>
 }
 ```
 
@@ -60,6 +60,7 @@ interface ImportShimContext {
 
 After being called, `premount` ensures all import maps declared are available and `uris` sources have been fetched and
 their code run. If there is no `sources` in the `PluginConfiguration`, `premount` is a no-operation.
+Moreover an error reporter can be injected since `premount` will not throw on errors.
 
 ### `createComposerContext`
 
