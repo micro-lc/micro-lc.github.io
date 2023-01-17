@@ -13,4 +13,4 @@ updates:
       - dependency-name: "react"
         versions: ["17.x"]
       - dependency-name: "@mdx-js/react"
-        versions: ["1.x"]
+        update-types: ["version-update:semver-major"]
