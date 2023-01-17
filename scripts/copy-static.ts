@@ -17,7 +17,7 @@ async function copyStaticFiles(): Promise<void> {
   mkdirpSync(resolve(__dirname, '..', 'static/applications'))
 
   const promises = subapplications.map(({ src, dest, name }) =>
-    copy(src, dest, { overwrite: true, recursive: true }).then(() => { console.log(`[${name}]: static files copied`) })
+    copy(src, dest, { overwrite: true }).then(() => { console.log(`[${name}]: static files copied`) })
   )
 
   return Promise.all(promises).then(() => { /* noop */ })
