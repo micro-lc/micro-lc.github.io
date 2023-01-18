@@ -39,7 +39,7 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@cspell/cspell-types": "^6.18.1",
+    "@cspell/cspell-types": "^6.19.2",
     "@docusaurus/module-type-aliases": "^2.2.0",
     "@tsconfig/docusaurus": "^1.0.6",
     "@types/eslint": "^8.4.10",
