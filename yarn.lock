@@ -3839,7 +3839,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/glob@npm:*, @types/glob@npm:^8.0.0":
+"@types/glob@npm:*":
   version: 8.0.0
   resolution: "@types/glob@npm:8.0.0"
   dependencies:
@@ -3856,6 +3856,16 @@ __metadata:
     "@types/minimatch": "*"
     "@types/node": "*"
   checksum: 6ae717fedfdfdad25f3d5a568323926c64f52ef35897bcac8aca8e19bc50c0bd84630bbd063e5d52078b2137d8e7d3c26eabebd1a2f03ff350fff8a91e79fc19
+  languageName: node
+  linkType: hard
+
+"@types/glob@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "@types/glob@npm:8.0.1"
+  dependencies:
+    "@types/minimatch": ^5.1.2
+    "@types/node": "*"
+  checksum: 98f3d0403c09638348a2f3b30aac2a3d6bdc306bce3ceb868f4794fef4f02727ccdf0dab0c7b7d65fd38a1afa1e48f02de56d29d2babe94ee9b204ca54acb31f
   languageName: node
   linkType: hard
 
@@ -3973,7 +3983,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/minimatch@npm:*":
+"@types/minimatch@npm:*, @types/minimatch@npm:^5.1.2":
   version: 5.1.2
   resolution: "@types/minimatch@npm:5.1.2"
   checksum: 0391a282860c7cb6fe262c12b99564732401bdaa5e395bee9ca323c312c1a0f45efbf34dce974682036e857db59a5c9b1da522f3d6055aeead7097264c8705a8
@@ -7513,7 +7523,7 @@ __metadata:
     "@tsconfig/docusaurus": ^1.0.6
     "@types/eslint": ^8.4.10
     "@types/fs-extra": ^11.0.1
-    "@types/glob": ^8.0.0
+    "@types/glob": ^8.0.1
     "@types/node": ^18.11.18
     "@types/react": ^18.0.26
     "@types/react-dom": ^18.0.10
