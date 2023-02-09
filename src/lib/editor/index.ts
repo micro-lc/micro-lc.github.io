@@ -1,8 +1,7 @@
 import type { Config } from '@micro-lc/interfaces/schemas/v2'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { ReplaySubject } from 'rxjs'
-import { of, BehaviorSubject, bufferTime, filter, fromEvent, NEVER, Subject, Subscription, tap } from 'rxjs'
+import { ReplaySubject, startWith, BehaviorSubject, bufferTime, filter, fromEvent, NEVER, Subscription, tap } from 'rxjs'
 
 import type { Render } from '../iframe'
 
@@ -62,34 +61,6 @@ const addCtrlSpaceSupport = (triggerer: Element | null, monaco: Monaco, editor: 
   editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Space, () => {
     triggerer?.ownerDocument.defaultView?.dispatchEvent(new KeyboardEvent('keydown', { ctrlKey: true, key: ' ' }))
   })
-}
-
-const getLocalStorageKey = (window: Window & typeof globalThis) => `${window.location.href}-advancedConfig`
-
-const addSessionStorageSupport = (
-  window: Window & typeof globalThis,
-  editor: Editor.IStandaloneCodeEditor,
-  getJsonValueCallback: (editor: Editor.IStandaloneCodeEditor) => ValidationError | undefined
-): () => void => {
-  const subject = new Subject<string>()
-  const disposable = editor.onDidChangeModelContent(() => {
-    const result = getJsonValueCallback(editor)
-    if (result && !result.error) {
-      subject.next(result.value)
-    }
-  })
-  const sub = subject.pipe(bufferTime(BUFFER_TIME)).subscribe((value) => {
-    if (value.length > 0) {
-      window.sessionStorage.setItem(
-        getLocalStorageKey(window),
-        value.pop() as string
-      )
-    }
-  })
-  return () => {
-    sub.unsubscribe()
-    disposable.dispose()
-  }
 }
 
 export function useMonaco() {
@@ -216,9 +187,9 @@ const setValue = (
 
 const MLC_SESSION_CONTENT_KEY = '@microlc:_content'
 
-const getStoredContent = (self: Window): string => self.sessionStorage.getItem(MLC_SESSION_CONTENT_KEY) ?? JSON.stringify(defaultConfiguration)
+const getStoredContent = (self: Window): string => self.localStorage.getItem(MLC_SESSION_CONTENT_KEY) ?? JSON.stringify(defaultConfiguration)
 
-const setStoredContent = (self: Window, content: string): void => self.sessionStorage.setItem(MLC_SESSION_CONTENT_KEY, content)
+const setStoredContent = (self: Window, content: string): void => self.localStorage.setItem(MLC_SESSION_CONTENT_KEY, content)
 
 function useEditor(
   render: ReplaySubject<Render>,
@@ -266,20 +237,13 @@ function useEditor(
     addCtrlEnterSupport(ref.parentElement, monaco, currentEditor)
     addCtrlSpaceSupport(ref.parentElement, monaco, currentEditor)
 
-    let disposeSessionStorageSupport = noop
-    const { ownerDocument: { defaultView: window } } = ref
-    if (window) {
-      disposeSessionStorageSupport = addSessionStorageSupport(window, currentEditor, getJsonValueCallback)
-    }
-
     overrideOpenExternal(currentEditor)
 
     setEditor(currentEditor)
-
-    return () => disposeSessionStorageSupport()
   }, [monaco, editorRef])
 
   const [dispatchSubmit, setDispatchSubmit] = useState<() => void>(noop)
+  const [dispatchReset, setDispatchReset] = useState<() => void>(noop)
   useEffect(() => {
     const { current } = editorRef
     if (!(monaco && editor && current)) {
@@ -287,36 +251,51 @@ function useEditor(
     }
 
     const subscription = new Subscription()
+    const reset = new ReplaySubject<string>(1)
 
     let editCleanup: (() => void) | undefined
     const getEditCleanup = () => ({ dispose: editCleanup })
 
     // read one of
-    of(getStoredContent(window)).subscribe((config) => {
-      lock()
+    reset
+      .pipe(
+        startWith(getStoredContent(window))
+      )
+      .subscribe((config) => {
+        lock()
 
-      const result = dump(JSON.parse(config)).to(initialModelType)
-      if (result.error) {
+        const result = dump(JSON.parse(config)).to(initialModelType)
+        if (result.error) {
         // an error here means that either backend is corrupted or
         // for some reason the config was stored but it is not compliant
-        dispatchers.errorMessage(result)
-        return release()
-      }
+          dispatchers.errorMessage(result)
+          return release()
+        }
 
-      setValue(monaco, editor, models, initialModelType, result.value)
-        .finally(() => {
-          render.next({ configuration: JSON.parse(config) as Config, contexts: new Map(), tags: [] })
-          release()
-        })
-    })
+        setValue(monaco, editor, models, initialModelType, result.value)
+          .finally(() => {
+            render.next({ configuration: JSON.parse(config) as Config, contexts: new Map(), tags: [] })
+            release()
+          })
+      })
 
     // writing
     const ctrlEnter$ = current.parentElement ? fromEvent<KeyboardEvent>(current.parentElement, 'keypress') : NEVER
-    const submitValidConfig = (): Config | undefined => {
-      const result = getJsonValueCallback(editor)
-      if (!result || result.error) {
-        result && dispatchers.errorMessage({ ...result, messages: ['components.editor.error'] })
-        return
+    const submitValidConfig = (override?: string): Config | undefined => {
+      let result: ValidationError | undefined
+      if (override) {
+        reset.next(override)
+        result = {
+          error: false,
+          messages: [],
+          value: override,
+        }
+      } else {
+        result = getJsonValueCallback(editor)
+        if (!result || result.error) {
+          result && dispatchers.errorMessage({ ...result, messages: ['components.editor.error'] })
+          return
+        }
       }
 
       setStoredContent(window, result.value)
@@ -336,6 +315,7 @@ function useEditor(
     )
 
     setDispatchSubmit(() => submitValidConfig)
+    setDispatchReset(() => () => submitValidConfig(JSON.stringify(defaultConfiguration)))
 
     return () => {
       getEditCleanup().dispose?.()
@@ -374,7 +354,7 @@ function useEditor(
     })
   }, [monaco, editor])
 
-  return { dispatchSubmit, editorRef, handleChangeModel }
+  return { dispatchReset, dispatchSubmit, editorRef, handleChangeModel }
 }
 
 export {

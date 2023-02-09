@@ -28,7 +28,7 @@ const Configurator: React.FC<ConfiguratorProps> = () => {
         render={render}
         style={{ minWidth: '400px', width: '40%' }}
       />
-      <div style={{ flexGrow: 1 }}>
+      <div style={{ display: 'flex', flexGrow: 1 }}>
         <iframe
           onLoad={onLoad}
           src={PREVIEW_IFRAME_URL.href}
