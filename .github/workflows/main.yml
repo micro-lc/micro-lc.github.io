@@ -14,24 +14,23 @@ jobs:
   checks:
     uses: micro-lc/documentation/.github/workflows/checks.yml@main
 
+  build:
+    uses: micro-lc/documentation/.github/workflows/build.yml@main
+
   deploy-pages:
     needs:
       - checks
+      - build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use ${{ env.node-version }}
-        uses: actions/setup-node@v3
+      - name: Cache Build Artifact
+        id: build-cache
+        uses: actions/cache@v3
         with:
-          node-version: ${{ env.node-version }}
-          cache: yarn
-
-      - name: Install
-        run: yarn install --immutable
-
-      - name: Build
-        run: yarn build
+          path: ./build
+          key: ${{ runner.os }}-${{ GITHUB_REF_NAME }}-build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

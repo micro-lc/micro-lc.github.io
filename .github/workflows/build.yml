@@ -1,0 +1,35 @@
+name: Build
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        default: 16.x
+        required: false
+        type: string
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ inputs.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: yarn
+      
+      - name: Cache Build Artifact
+        id: build-cache
+        uses: actions/cache@v3
+        with:
+          path: ./build
+          key: ${{ runner.os }}-${{ GITHUB_REF_NAME }}-build
+
+      - name: Install
+        run: yarn install --immutable
+
+      - name: Linting
+        run: yarn build

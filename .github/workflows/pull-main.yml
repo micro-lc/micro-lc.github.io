@@ -13,3 +13,6 @@ on:
 jobs:
   checks:
     uses: micro-lc/documentation/.github/workflows/checks.yml@main
+
+  build:
+    uses: micro-lc/documentation/.github/workflows/build.yml@main
