@@ -31,5 +31,5 @@ jobs:
       - name: Install
         run: yarn install --immutable
 
-      - name: Linting
+      - name: Build
         run: yarn build
