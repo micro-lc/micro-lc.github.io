@@ -39,5 +39,5 @@ jobs:
         uses: actions/cache/save@v3
         with:
           path: ./build
-          key: ${{ runner.os }}-${{ github.ref_name }}-build
+          key: ${{ runner.os }}-${{ github.sha }}-build
 
