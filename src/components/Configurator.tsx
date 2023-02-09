@@ -2,14 +2,12 @@ import React, { useMemo } from 'react'
 import { ReplaySubject } from 'rxjs'
 
 import type { Render } from '../lib/iframe'
-import { onLoadFactory } from '../lib/iframe'
+import { PREVIEW_IFRAME_URL, onLoadFactory } from '../lib/iframe'
 
 import Editor from './Editor'
 import Resize from './Resize'
 
 type ConfiguratorProps = Record<string, never>
-
-const PREVIEW_IFRAME_URL = new URL('https://unpkg.com/@micro-lc/preview@latest/website/index.html')
 
 const Configurator: React.FC<ConfiguratorProps> = () => {
   const render = useMemo(() => new ReplaySubject<Render>(1), [])

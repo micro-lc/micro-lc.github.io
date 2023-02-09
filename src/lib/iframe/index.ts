@@ -87,3 +87,4 @@ const onLoadFactory = (_: Window, origin: string, render: RenderChannel) =>
 
 export type { Render }
 export { onLoadFactory }
+export { PREVIEW_IFRAME_URL } from './adapter'

@@ -1,5 +1,7 @@
 import type { Message, OptionMessage, OutgoingNewConfigurationMessage } from './messages'
 
+const PREVIEW_IFRAME_URL = new URL('https://unpkg.com/@micro-lc/preview@latest/website/index.html')
+
 const fromConfigToPluginConfiguration = (input: Message): OptionMessage | OutgoingNewConfigurationMessage => {
   if (input.type !== 'new-configuration') {
     return input
@@ -17,7 +19,7 @@ const fromConfigToPluginConfiguration = (input: Message): OptionMessage | Outgoi
           content: [
             {
               attributes: {
-                matcher: 'https://unpkg.com',
+                matcher: PREVIEW_IFRAME_URL.origin,
                 origin: 'https://my-domain',
                 style: `
                   position: sticky;
@@ -65,4 +67,4 @@ const fromConfigToPluginConfiguration = (input: Message): OptionMessage | Outgoi
   }
 }
 
-export { fromConfigToPluginConfiguration }
+export { fromConfigToPluginConfiguration, PREVIEW_IFRAME_URL }
