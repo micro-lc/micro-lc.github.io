@@ -23,7 +23,7 @@ jobs:
       
       - name: Cache Build Artifact
         id: build-cache
-        uses: actions/cache@v3
+        uses: actions/cache/save@v3
         with:
           path: ./build
           key: ${{ runner.os }}-${{ github.ref_name }}-build
