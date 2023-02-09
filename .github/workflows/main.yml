@@ -30,7 +30,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./build
-          key: ${{ runner.os }}-${GITHUB_REF_NAME}-build
+          key: ${{ runner.os }}-${{ github.ref_name }}-build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
