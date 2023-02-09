@@ -7976,6 +7976,7 @@ __metadata:
     confusing-browser-globals: ^1.0.11
     copy-webpack-plugin: ^11.0.0
     cspell: ^6.22.0
+    docusaurus2-dotenv: ^1.4.0
     eslint: ^8.33.0
     eslint-config-esnext: ^4.1.0
     eslint-plugin-import: ^2.27.5
@@ -8007,6 +8008,15 @@ __metadata:
     typescript: ^4.9.5
   languageName: unknown
   linkType: soft
+
+"docusaurus2-dotenv@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "docusaurus2-dotenv@npm:1.4.0"
+  dependencies:
+    dotenv-webpack: 1.7.0
+  checksum: 5589ab71fe4de7bf53ebca47b6763d4dc37708df8171dd515a0464c4509f0bcc78d0cc823a31f32bcd0ba28873d7f4c946a47e61f9ad26104a2eac57f9f29224
+  languageName: node
+  linkType: hard
 
 "dom-converter@npm:^0.2.0":
   version: 0.2.0
@@ -8160,6 +8170,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv-defaults@npm:^1.0.2":
+  version: 1.1.1
+  resolution: "dotenv-defaults@npm:1.1.1"
+  dependencies:
+    dotenv: ^6.2.0
+  checksum: 623749be33fc30b686ff910522e4c222a08aa4d0011ff40b4354baee5db796f00eb42e818425667db2ffe9d8d2ae5f597a5e5b066b797f7aab9e06e515088fd6
+  languageName: node
+  linkType: hard
+
 "dotenv-expand@npm:^5.1.0":
   version: 5.1.0
   resolution: "dotenv-expand@npm:5.1.0"
@@ -8167,10 +8186,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv-webpack@npm:1.7.0":
+  version: 1.7.0
+  resolution: "dotenv-webpack@npm:1.7.0"
+  dependencies:
+    dotenv-defaults: ^1.0.2
+  peerDependencies:
+    webpack: ^1 || ^2 || ^3 || ^4
+  checksum: b5039955cff5961dae690bc779b928ac3ec637ba4223032c62c7bb4d034756d8074aaf4990c2199b87806ce51bf73019349c9930dd8872062427dcd492b37bb3
+  languageName: node
+  linkType: hard
+
 "dotenv@npm:^10.0.0":
   version: 10.0.0
   resolution: "dotenv@npm:10.0.0"
   checksum: f412c5fe8c24fbe313d302d2500e247ba8a1946492db405a4de4d30dd0eb186a88a43f13c958c5a7de303938949c4231c56994f97d05c4bc1f22478d631b4005
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "dotenv@npm:6.2.0"
+  checksum: d4aa189741ff45553038b0436dfdb79143c29760d3481b4b19d9f1c59fb8cc69190ab83674e07b32b3dd2ae477579619cde9f7586ea82086151dbbac5626c54c
   languageName: node
   linkType: hard
 
