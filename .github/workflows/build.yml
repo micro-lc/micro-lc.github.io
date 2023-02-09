@@ -20,6 +20,13 @@ jobs:
         with:
           node-version: ${{ inputs.node-version }}
           cache: yarn
+
+      - name: Restore Build Cache
+        id: restore-build-cache
+        uses: actions/cache/restore@v3
+        with:
+          path: ./build
+          key: ${{ runner.os }}-${{ github.ref_name }}-build
       
       - name: Install
         run: yarn install --immutable
@@ -27,8 +34,8 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Cache Build Artifact
-        id: build-cache
+      - name: Save Build Cache
+        id: save-build-cache
         uses: actions/cache/save@v3
         with:
           path: ./build

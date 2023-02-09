@@ -25,8 +25,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Cache Build Artifact
-        id: build-cache
+      - name: Restore Build Cache
+        id: restore-build-cache
         uses: actions/cache/restore@v3
         with:
           path: ./build
@@ -51,8 +51,8 @@ jobs:
           node-version: ${{ env.node-version }}
           cache: yarn
 
-      - name: Cache Build Artifact
-        id: build-cache
+      - name: Restore Build Cache
+        id: restore-build-cache
         uses: actions/cache/restore@v3
         with:
           path: ./build
