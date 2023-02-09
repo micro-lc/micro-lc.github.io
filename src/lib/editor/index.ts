@@ -264,7 +264,14 @@ function useEditor(
       .subscribe((config) => {
         lock()
 
-        const result = dump(JSON.parse(config)).to(initialModelType)
+        let content = defaultConfiguration
+        try {
+          content = JSON.parse(config) as Config
+        } catch {
+          console.error('local storage was corrupted')
+        }
+
+        const result = dump(content).to(initialModelType)
         if (result.error) {
         // an error here means that either backend is corrupted or
         // for some reason the config was stored but it is not compliant
@@ -283,7 +290,7 @@ function useEditor(
     const ctrlEnter$ = current.parentElement ? fromEvent<KeyboardEvent>(current.parentElement, 'keypress') : NEVER
     const submitValidConfig = (override?: string): Config | undefined => {
       let result: ValidationError | undefined
-      if (override) {
+      if (override !== undefined) {
         reset.next(override)
         result = {
           error: false,
@@ -292,6 +299,7 @@ function useEditor(
         }
       } else {
         result = getJsonValueCallback(editor)
+        console.log('res', result)
         if (!result || result.error) {
           result && dispatchers.errorMessage({ ...result, messages: ['components.editor.error'] })
           return
@@ -314,7 +322,7 @@ function useEditor(
       .subscribe(() => submitValidConfig())
     )
 
-    setDispatchSubmit(() => submitValidConfig)
+    setDispatchSubmit(() => () => submitValidConfig())
     setDispatchReset(() => () => submitValidConfig(JSON.stringify(defaultConfiguration)))
 
     return () => {
