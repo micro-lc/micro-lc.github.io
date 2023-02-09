@@ -23,11 +23,12 @@ Web component to display a loading animation until one of its children has finis
 The web component works by hiding its children with a spinning animation until one of them declares its readiness.
 
 Practically speaking, the component injects a method called `onload` into each one of its children while hiding them setting
-their display style to `none`. When the `onload` method of one of these children is invoked, the component resets the
+their display style to `none`. When each child invoked the `onload` method, the component resets the
 original display style of the children and hides itself.
 
 In most use cases, this component is used as a wrapper of <micro-lc></micro-lc> itself, which will call `onload` when its update 
-lifecycle has ended upon connection and first render.
+lifecycle has ended upon connection and first render. It could also be useful when used as wrapper of <micro-lc></micro-lc>
+and some `script` tags they must be loaded before to view the page content.
 
 ## Usage
 
