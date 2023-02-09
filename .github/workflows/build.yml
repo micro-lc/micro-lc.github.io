@@ -21,6 +21,12 @@ jobs:
           node-version: ${{ inputs.node-version }}
           cache: yarn
       
+      - name: Install
+        run: yarn install --immutable
+
+      - name: Build
+        run: yarn build
+
       - name: Cache Build Artifact
         id: build-cache
         uses: actions/cache/save@v3
@@ -28,8 +34,3 @@ jobs:
           path: ./build
           key: ${{ runner.os }}-${{ github.ref_name }}-build
 
-      - name: Install
-        run: yarn install --immutable
-
-      - name: Build
-        run: yarn build
