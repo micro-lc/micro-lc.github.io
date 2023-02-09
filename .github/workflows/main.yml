@@ -17,6 +17,21 @@ jobs:
   build:
     uses: micro-lc/documentation/.github/workflows/build.yml@main
 
+  file-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      test-files: ${{ steps.filter.outputs.test-files }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            test-files:
+              - 'tests/**'
+              - 'src/**'
+              - 'applications/**'
+
   deploy-pages:
     needs:
       - checks
@@ -41,6 +56,8 @@ jobs:
   e2e-tests:
     needs:
       - build
+      - file-changes
+    if: needs.file-changes.outputs.test-files == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
