@@ -30,7 +30,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: ./build
-          key: ${{ runner.os }}-${{ github.ref_name }}-build
+          key: ${{ runner.os }}-${{ github.sha }}-build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -56,7 +56,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: ./build
-          key: ${{ runner.os }}-${{ github.ref_name }}-build
+          key: ${{ runner.os }}-${{ github.sha }}-build
 
       - name: Install
         run: yarn install --immutable
