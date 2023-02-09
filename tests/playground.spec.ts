@@ -30,6 +30,25 @@ test(`
 
 test(`
   [playground]
+  should render a playground with the default
+  micro-lc configuration and then attempt to
+  navigate using the sidebar menu and the back arrow
+  inside the preview frame
+`, async ({ page }) => {
+  await page.goto(playground)
+
+  const preview = page.frameLocator('iframe[title=preview]')
+  await preview.getByRole('menuitem', { name: 'About' }).click()
+
+  await expect(preview.getByText('About 📯')).toBeVisible()
+  await expect(preview.getByText('Check out what we do at Mia-Platform!')).toBeVisible()
+
+  await preview.getByRole('button').click()
+  await expect(preview.getByRole('textbox')).toHaveJSProperty('value', 'https://my-domain/home')
+})
+
+test(`
+  [playground]
   should change model type to YAML
   and persist it across reloads
 `, async ({ page }) => {
