@@ -1,0 +1,24 @@
+:root {
+  --playground-color-grey: #f0f2f5;
+  --playground-color-red: red;
+  --playground-color-orange: orange;
+}
+
+.playground.container {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.playground.container::backdrop {
+  background-color: var(--playground-color-grey);
+}
+
+.playground.container > * {
+  display: flex;
+  height: inherit;
+}
+
+.playground.grow-first {
+  flex-grow: 1;
+}

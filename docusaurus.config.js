@@ -106,6 +106,7 @@ const config = {
     ['@docusaurus/plugin-content-docs', pluginContentDocsConfig],
     ['@docusaurus/plugin-content-blog', pluginContentBlogConfig],
     '@docusaurus/plugin-content-pages',
+    'docusaurus2-dotenv',
   ],
   projectName: 'documentation',
   tagline: 'micro-lc & add-ons documentation',

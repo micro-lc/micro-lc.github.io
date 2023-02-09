@@ -1,6 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "target": "ES2015",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "allowJs": true,
     "esModuleInterop": true,
     "jsx": "react",
@@ -12,7 +15,7 @@
       "@docusaurus/theme-classic"
     ],
     "baseUrl": ".",
-    "strictNullChecks": true,
+    "strict": true,
     "skipLibCheck": true,
     "paths": {
       "@site/*": ["./*"]
