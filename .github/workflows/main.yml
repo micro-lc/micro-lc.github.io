@@ -49,6 +49,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node-version }}
+          cache: yarn
 
       - name: Cache Build Artifact
         id: build-cache
@@ -57,10 +58,15 @@ jobs:
           path: ./build
           key: ${{ runner.os }}-${{ github.ref_name }}-build
 
+      - name: Install
+        run: yarn install --immutable
+
       - name: Install Playwright
-        run: npx playwright install --with-deps
+        run: yarn dlx playwright install
+
       - name: Run your tests
-        run: npx playwright test
+        run: yarn test:e2e
+
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v3
