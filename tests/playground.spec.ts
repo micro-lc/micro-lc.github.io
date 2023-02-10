@@ -73,17 +73,17 @@ const getModifier = (browserName: Helpers['browserName']) => {
 }
 
 
-const writeToEditor = async ({ page, browserName }: Helpers, config: Config) => {
+const writeToEditor = async ({ page, browserName }: Helpers, config: Config | string, opts?: {delay: number}) => {
   await page.getByRole('code').click()
 
   await page.waitForTimeout(1000)
 
   await page.keyboard.press(`${getModifier(browserName)}+KeyA`)
   await page.keyboard.press('Backspace')
-  const lines = JSON.stringify(config).split('\n')
+  const lines = (typeof config === 'string' ? config : JSON.stringify(config)).split('\n')
   await Promise.all(lines.map((text) => page.keyboard.type(text)))
 
-  await page.getByRole('button', { name: 'Apply' }).click()
+  await page.getByRole('button', { name: 'Apply' }).click(opts)
 }
 
 test(`
@@ -115,6 +115,23 @@ test(`
 
   await page.getByRole('button', { name: 'Reset' }).click()
   await expect(preview.getByText('welcome to the micro-lc playground')).toBeVisible()
+})
+
+test(`
+  [playground]
+  on wrong JSON config (Syntax Error)
+  it should be impossible to switch
+  to YAML
+`, async ({ page, browserName }) => {
+  await page.goto(playground)
+
+  await writeToEditor({ browserName, page }, '{ "version": ', { delay: 500 })
+  await expect(page.getByText('Error while applying changes')).toBeVisible()
+
+  await page.getByRole('button', { name: 'JSON' }).click()
+  await page.getByRole('option', { name: 'YAML' }).click()
+
+  await expect(page.getByRole('button', { name: 'JSON' })).toBeVisible()
 })
 
 test.describe('tests with smaller viewport', () => {

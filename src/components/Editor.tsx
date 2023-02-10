@@ -73,6 +73,7 @@ const theme = createTheme({
 
 const Editor: React.FC<EditorProps> = ({ style, render, ...props }) => {
   const initialModelType = useMemo(() => getStoredModelType(window), [])
+  const [modelType, setModelType] = useState(initialModelType)
   const [loading, setLoading] = useState(true)
   const [errorMessage, setErrorMessage] = useState<ValidationError | string | undefined>('')
 
@@ -113,13 +114,15 @@ const Editor: React.FC<EditorProps> = ({ style, render, ...props }) => {
         ></div>
         <div style={{ alignItems: 'baseline', display: 'flex', gap: '16px', padding: '16px 24px', textAlign: 'center' }}>
           <ModelTypeSelect
-            defaultValue={initialModelType}
             onChange={({ target: { value } }) => {
               const nextModel = value as ModelType
-              handleChangeModel(nextModel)
-              setStoredModelType(window, nextModel)
+              if (handleChangeModel(nextModel)) {
+                setStoredModelType(window, nextModel)
+                setModelType(nextModel)
+              }
             }}
             size='small'
+            value={modelType}
           >
             <MenuItem value={'json'}>JSON</MenuItem>
             <MenuItem value={'yaml'}>YAML</MenuItem>

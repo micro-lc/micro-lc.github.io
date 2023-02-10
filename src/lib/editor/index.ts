@@ -332,34 +332,39 @@ function useEditor(
   }, [editorRef, monaco, editor])
 
 
-  const handleChangeModel = useCallback((nextModel: ModelType): void => {
+  const handleChangeModel = useCallback((nextModel: ModelType): boolean => {
     lock()
 
     if (!(editor && monaco)) {
-      return release()
+      release()
+      return false
     }
 
     const jsonTextResults = getJsonValueCallback(editor)
     if (!jsonTextResults) {
-      return release()
+      release()
+      return false
     }
 
     const { error: conversionToJsonError, value: jsonText } = jsonTextResults
     if (conversionToJsonError) {
       dispatchers.errorMessage({ error: true, messages: ['components.editor.error.conversion'], value: undefined })
-      return release()
+      release()
+      return false
     }
 
     const { error, value, messages } = translate(jsonText).from('json').to(nextModel)
     if (error) {
       dispatchers.errorMessage({ error, messages: ['components.editor.error.conversion'], value })
-      return release()
+      release()
+      return false
     }
 
     setValue(monaco, editor, models, nextModel, value).finally(() => {
       dispatchers.errorMessage(messages.length === 0 ? '' : { error, messages: ['components.editor.warning'], value })
       release()
     })
+    return true
   }, [monaco, editor])
 
   return { dispatchReset, dispatchSubmit, editorRef, handleChangeModel }
