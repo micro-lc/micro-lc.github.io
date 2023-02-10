@@ -116,3 +116,20 @@ test(`
   await page.getByRole('button', { name: 'Reset' }).click()
   await expect(preview.getByText('welcome to the micro-lc playground')).toBeVisible()
 })
+
+test.describe('tests with smaller viewport', () => {
+  test.use({ viewport: { height: 700, width: 400 } })
+
+  test.skip(`
+  [playground]
+  should overflow on x-axis on viewports
+  smaller than 800px
+`, async ({ page }) => {
+    await page.goto(playground)
+
+    const preview = page.frameLocator('iframe[title=preview]')
+    await expect(preview.getByText('welcome to the micro-lc playground')).toBeVisible()
+
+    await page.mouse.wheel(400, 0)
+  })
+})

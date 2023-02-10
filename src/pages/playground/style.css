@@ -21,4 +21,6 @@
 
 .playground.grow-first {
   flex-grow: 1;
+  min-width: 800px;
+  overflow-x: auto;
 }
