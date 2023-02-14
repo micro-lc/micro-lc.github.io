@@ -1674,10 +1674,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/cspell-types@npm:^6.22.0":
-  version: 6.22.0
-  resolution: "@cspell/cspell-types@npm:6.22.0"
-  checksum: 579cbc3f6a076a00f4c27e758dd70d2173d6843db5f42fed084d28df64d46b0bdde7fb7b1f316e918cd93b8c53ab1aa3064c558a282ab89a352f2f37e8bd9092
+"@cspell/cspell-types@npm:^6.24.0":
+  version: 6.24.0
+  resolution: "@cspell/cspell-types@npm:6.24.0"
+  checksum: 3921e9865da7ba30d051370edd3c996bc2f18c5499b7d9d89fe09066e1494d69b4d0b6f10f9f319779d4bc6c84db346f25b77d0b6e52afe1e6599383f4964c6b
   languageName: node
   linkType: hard
 
@@ -7953,7 +7953,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "documentation@workspace:."
   dependencies:
-    "@cspell/cspell-types": ^6.22.0
+    "@cspell/cspell-types": ^6.24.0
     "@docusaurus/core": ^2.3.1
     "@docusaurus/module-type-aliases": ^2.3.1
     "@docusaurus/plugin-content-blog": ^2.3.1
