@@ -4134,13 +4134,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:*, @types/eslint@npm:^7.29.0 || ^8.4.1, @types/eslint@npm:^8.21.0":
+"@types/eslint@npm:*, @types/eslint@npm:^7.29.0 || ^8.4.1":
   version: 8.21.0
   resolution: "@types/eslint@npm:8.21.0"
   dependencies:
     "@types/estree": "*"
     "@types/json-schema": "*"
   checksum: 48823b13e1ffbc6fe22c96d99f691a17507ef5a498c4aed95e3a9076ec6d44ff48ce8a632928b6f82bea92701ac8967bba0d78a5c9de4dfa3f2e12d26dae7da4
+  languageName: node
+  linkType: hard
+
+"@types/eslint@npm:^8.21.1":
+  version: 8.21.1
+  resolution: "@types/eslint@npm:8.21.1"
+  dependencies:
+    "@types/estree": "*"
+    "@types/json-schema": "*"
+  checksum: 584068441e4000c7b41c8928274fdcc737bc62f564928c30eb64ec41bbdbac31612f9fedaf490bceab31ec8305e99615166428188ea345d58878394683086fae
   languageName: node
   linkType: hard
 
@@ -7961,7 +7971,7 @@ __metadata:
     "@mui/material": ^5.11.8
     "@playwright/test": ^1.30.0
     "@tsconfig/docusaurus": ^1.0.6
-    "@types/eslint": ^8.21.0
+    "@types/eslint": ^8.21.1
     "@types/fs-extra": ^11.0.1
     "@types/glob": ^8.0.1
     "@types/js-yaml": ^4.0.5
