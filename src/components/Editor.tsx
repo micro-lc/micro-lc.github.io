@@ -77,10 +77,14 @@ const Editor: React.FC<EditorProps> = ({ style, render, ...props }) => {
   const [loading, setLoading] = useState(true)
   const [errorMessage, setErrorMessage] = useState<ValidationError | string | undefined>('')
 
+  const dispatchers = useMemo(() => (
+    { errorMessage: setErrorMessage, loading: setLoading }
+  ), [])
+
   const { editorRef, dispatchSubmit, dispatchReset, handleChangeModel } = useEditor(
     render,
     initialModelType,
-    { errorMessage: setErrorMessage, loading: setLoading },
+    dispatchers
   )
 
   return (
@@ -107,8 +111,8 @@ const Editor: React.FC<EditorProps> = ({ style, render, ...props }) => {
           ref={(innerRef) => { editorRef.current = innerRef }}
           style={{
             boxShadow: '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)',
-            display: loading ? 'none' : '',
-            flexGrow: 1,
+            display: loading ? 'none' : 'flex',
+            height: '100%',
             width: '100%',
           }}
         ></div>

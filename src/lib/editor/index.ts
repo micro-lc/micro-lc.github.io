@@ -1,20 +1,18 @@
 import type { Config } from '@micro-lc/interfaces/schemas/v2'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ReplaySubject, startWith, BehaviorSubject, bufferTime, filter, fromEvent, NEVER, Subscription, tap } from 'rxjs'
+import { ReplaySubject, startWith, BehaviorSubject, filter, fromEvent, NEVER, Subscription, tap } from 'rxjs'
 
 import type { Render } from '../iframe'
 
 import { defaultConfiguration } from './default'
-import type { CancellationToken, Editor, Monaco, Uri, UriComponents } from './monaco'
-import { getWorker } from './monaco'
+import type { CancellationToken, Editor, Uri, UriComponents } from './monaco'
+import * as monaco from './monaco'
 import { createFileNameFromSchemaKey, JSON_EXTENSION, YAML_EXTENSION } from './schemas'
 import type { ModelType, ValidationError } from './translations'
 import { dump, translate } from './translations'
 
 const INIT_MODEL_DELAY = 500
-
-const BUFFER_TIME = 1000
 
 const globalMonacoOptions: Editor.IStandaloneEditorConstructionOptions = {
   automaticLayout: true,
@@ -51,33 +49,19 @@ const overrideOpenExternal = (editor: Editor.IStandaloneCodeEditor): void => {
   }
 }
 
-const addCtrlEnterSupport = (triggerer: Element | null, monaco: Monaco, editor: Editor.IStandaloneCodeEditor): void => {
+const addCtrlEnterSupport = (triggerer: Element | null, editor: Editor.IStandaloneCodeEditor): void => {
   editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
     triggerer?.dispatchEvent(new KeyboardEvent('keypress', { ctrlKey: true, key: 'Enter' }))
   })
 }
 
-const addCtrlSpaceSupport = (triggerer: Element | null, monaco: Monaco, editor: Editor.IStandaloneCodeEditor): void => {
+const addCtrlSpaceSupport = (triggerer: Element | null, editor: Editor.IStandaloneCodeEditor): void => {
   editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Space, () => {
     triggerer?.ownerDocument.defaultView?.dispatchEvent(new KeyboardEvent('keydown', { ctrlKey: true, key: ' ' }))
   })
 }
 
-export function useMonaco() {
-  const [monaco, setMonaco] = useState<Monaco>()
-
-  useEffect(() => {
-    import('./monaco').then(setMonaco).catch(noop)
-  }, [])
-
-  return monaco
-}
-
-export function getJsonValue(monaco: Monaco | undefined, currentEditor: Editor.IStandaloneCodeEditor, { lintErrorIsError }: {lintErrorIsError?: boolean} = {}): ValidationError | undefined {
-  if (!(monaco)) {
-    return
-  }
-
+export function getJsonValue(currentEditor: Editor.IStandaloneCodeEditor, { lintErrorIsError }: {lintErrorIsError?: boolean} = {}): ValidationError | undefined {
   const currentModel = currentEditor.getModel()
   if (currentModel === null) {
     return
@@ -124,7 +108,7 @@ export function getJsonValue(monaco: Monaco | undefined, currentEditor: Editor.I
 }
 
 const format = async (editor: Editor.IStandaloneCodeEditor, modelType: ModelType, value: string) =>
-  getWorker(modelType)
+  monaco.getWorker(modelType)
     .then(
       (worker) => {
         let resolveWorker: ((worker: Worker | void) => void) | undefined
@@ -157,7 +141,6 @@ const format = async (editor: Editor.IStandaloneCodeEditor, modelType: ModelType
     .catch(noop)
 
 const setValue = (
-  monaco: Monaco,
   editor: Editor.IStandaloneCodeEditor,
   models: Record<ModelType, Uri | undefined>,
   modelType: ModelType,
@@ -191,34 +174,31 @@ const getStoredContent = (self: Window): string => self.localStorage.getItem(MLC
 
 const setStoredContent = (self: Window, content: string): void => self.localStorage.setItem(MLC_SESSION_CONTENT_KEY, content)
 
+const getJsonValueCallback = (currentEditor: Editor.IStandaloneCodeEditor): ValidationError | undefined =>
+  getJsonValue(currentEditor)
+
 function useEditor(
   render: ReplaySubject<Render>,
   initialModelType: ModelType,
   dispatchers: {errorMessage: (value: ValidationError | string | undefined) => void; loading: (value: boolean) => void}
 ) {
   const editorRef = useRef<HTMLDivElement | null>()
-  const queue = useMemo(() => new BehaviorSubject<boolean>(true), [])
-  const { lock, release } = useMemo(() => {
-    queue.pipe(
-      bufferTime(BUFFER_TIME)
-    ).subscribe((evts) => {
-      evts.length > 0 && dispatchers.loading((evts[evts.length - 1]))
-    })
-    return { lock: () => dispatchers.loading(true), release: () => queue.next(false) }
-  }, [])
 
-  const monaco = useMonaco()
+  // loading
+  const queue = useMemo(() => new BehaviorSubject<boolean>(true), [])
+  const lock = useCallback(() => queue.next(true), [queue])
+  const release = useCallback(() => queue.next(false), [queue])
+  useEffect(() => {
+    const subscription = queue.subscribe((loading) => dispatchers.loading(loading))
+    return () => subscription.unsubscribe()
+  }, [queue, dispatchers])
+
   const models = useMemo<Record<ModelType, Uri | undefined>>(() => {
     return {
-      json: monaco?.Uri.parse(createFileNameFromSchemaKey(undefined, '*.config', JSON_EXTENSION)),
-      yaml: monaco?.Uri.parse(createFileNameFromSchemaKey(undefined, '*.config', YAML_EXTENSION)),
+      json: monaco.Uri.parse(createFileNameFromSchemaKey(undefined, '*.config', JSON_EXTENSION)),
+      yaml: monaco.Uri.parse(createFileNameFromSchemaKey(undefined, '*.config', YAML_EXTENSION)),
     }
-  }, [monaco])
-
-  const getJsonValueCallback = useCallback(
-    (currentEditor: Editor.IStandaloneCodeEditor): ValidationError | undefined => getJsonValue(monaco, currentEditor),
-    [monaco]
-  )
+  }, [])
 
   //
   // initialize editor
@@ -227,26 +207,55 @@ function useEditor(
   useEffect(() => {
     // skip when no reference is available
     const { current: ref } = editorRef
-    if (!(monaco && ref)) {
+    if (!ref) {
       return
     }
 
     const { editor: me } = monaco
     const currentEditor = me.create(ref, globalMonacoOptions)
 
-    addCtrlEnterSupport(ref.parentElement, monaco, currentEditor)
-    addCtrlSpaceSupport(ref.parentElement, monaco, currentEditor)
+    let observerCleanup: (() => void) | undefined
+    if (ref.parentElement !== null) {
+      // initial height
+      let initialTotal = 0
+      ref.parentElement.childNodes.forEach((item) => {
+        if (item !== ref && 'clientHeight' in item && typeof item.clientHeight === 'number') {
+          initialTotal += item.clientHeight
+        }
+      })
+      currentEditor.layout({ height: ref.parentElement.clientHeight - initialTotal, width: ref.parentElement.clientWidth })
+      // listen to resize
+      const { parentElement } = ref
+      const observer = new ResizeObserver(([{ contentRect }]) => {
+        let total = 0
+        parentElement.childNodes.forEach((item) => {
+          if (item !== ref && 'clientHeight' in item && typeof item.clientHeight === 'number') {
+            total += item.clientHeight
+          }
+        })
+
+        currentEditor.layout({ height: contentRect.height - total, width: contentRect.width })
+      })
+
+      observer.observe(parentElement)
+      observerCleanup = () => observer.disconnect()
+    }
+
+    addCtrlEnterSupport(ref.parentElement, currentEditor)
+    addCtrlSpaceSupport(ref.parentElement, currentEditor)
 
     overrideOpenExternal(currentEditor)
 
     setEditor(currentEditor)
-  }, [monaco, editorRef])
+
+    return () => observerCleanup?.()
+  }, [editorRef])
 
   const [dispatchSubmit, setDispatchSubmit] = useState<() => void>(noop)
   const [dispatchReset, setDispatchReset] = useState<() => void>(noop)
   useEffect(() => {
     const { current } = editorRef
-    if (!(monaco && editor && current)) {
+    if (!(editor && current)) {
       return
     }
 
@@ -279,7 +288,7 @@ function useEditor(
           return release()
         }
 
-        setValue(monaco, editor, models, initialModelType, result.value)
+        setValue(editor, models, initialModelType, result.value)
           .finally(() => {
             render.next({ configuration: JSON.parse(config) as Config, contexts: new Map(), tags: [] })
             release()
@@ -329,13 +338,13 @@ function useEditor(
       getEditCleanup().dispose?.()
       subscription.unsubscribe()
     }
-  }, [editorRef, monaco, editor])
+  }, [editorRef, editor, lock, release, dispatchers, render])
 
 
   const handleChangeModel = useCallback((nextModel: ModelType): boolean => {
     lock()
 
-    if (!(editor && monaco)) {
+    if (!(editor)) {
       release()
       return false
     }
@@ -360,12 +369,12 @@ function useEditor(
       return false
     }
 
-    setValue(monaco, editor, models, nextModel, value).finally(() => {
+    setValue(editor, models, nextModel, value).finally(() => {
       dispatchers.errorMessage(messages.length === 0 ? '' : { error, messages: ['components.editor.warning'], value })
       release()
     })
     return true
-  }, [monaco, editor])
+  }, [editor, lock, release, dispatchers])
 
   return { dispatchReset, dispatchSubmit, editorRef, handleChangeModel }
 }
