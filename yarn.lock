@@ -8003,7 +8003,7 @@ __metadata:
     stylelint: ^14.16.1
     stylelint-config-rational-order: ^0.1.2
     stylelint-config-standard: ^30.0.1
-    stylelint-declaration-block-no-ignored-properties: ^2.6.0
+    stylelint-declaration-block-no-ignored-properties: ^2.7.0
     ts-node: ^10.9.1
     typescript: ^4.9.5
   languageName: unknown
@@ -18097,12 +18097,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-declaration-block-no-ignored-properties@npm:^2.6.0":
-  version: 2.6.0
-  resolution: "stylelint-declaration-block-no-ignored-properties@npm:2.6.0"
+"stylelint-declaration-block-no-ignored-properties@npm:^2.7.0":
+  version: 2.7.0
+  resolution: "stylelint-declaration-block-no-ignored-properties@npm:2.7.0"
   peerDependencies:
-    stylelint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0
-  checksum: 6fc38ec4bd471443c486f647a82cc001c455eb5654cbcb1e631f2d5fe920586775c0bc90a6d9ad8be254e37ba5f67584d0baa1409fc8a8d18dae74f558292190
+    stylelint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
+  checksum: 63111d69cb02025b0cd7e8b3436f22c4632b8697e97396b43b448a185d826a14ed3b0a0fb0f2b9d0815bcb7d161a0dfb3c6f58d01d85346c86f9ce7a1151d049
   languageName: node
   linkType: hard
 
