@@ -55,16 +55,16 @@ interface Config {
 
 By default, Middleware returns a file with the following content types (depending on the file extension).
 
-| Extension |       Content-Type header       |
-| :-------: | :-----------------------------: |
-|   .cjs    |     application/javascript      |
-|   .css    |            text/css             |
-|   .html   |            text/html            |
-|    .js    |     application/javascript      |
-|   .json   | application/json; charset=utf-8 |
-|   .mjs    |     application/javascript      |
-|   .yaml   |    text/yaml; charset=utf-8     |
-|   .yml    |    text/yaml; charset=utf-8     |
+| Extension |  Content-Type header   |
+| :-------: | :--------------------: |
+|   .cjs    | application/javascript |
+|   .css    |        text/css        |
+|   .html   |       text/html        |
+|    .js    | application/javascript |
+|   .json   |    application/json    |
+|   .mjs    | application/javascript |
+|   .yaml   |       text/yaml        |
+|   .yml    |        text/yam        |
 
 Any extension not listed will trigger a default `Content-Type` equal to `text/plain`.
 
@@ -98,6 +98,11 @@ The property should be a map linking file pathnames to headers definitions. Keys
 (e.g., `/public/index.html`), while values must be maps linking [HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
 names to valid values. Values can be directly a _string_, an _array of string_ (which will be joined with a comma), or
 an _array of arrays of string_ (which will be joined with a semicolon at inner lever and with a comma at external level).
+
+:::tip
+`Content-Type` headers specified here will win over the ones defined in
+[`contentTypeMap`](#content-type) configuration.
+:::
 
 :::tip
 Middleware applies [nonce injection](#nonce-injection) on additional headers.
