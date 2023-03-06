@@ -1,12 +1,12 @@
 import { resolve } from 'path'
 
 import { copy, statSync, mkdirpSync } from 'fs-extra'
-import { sync } from 'glob'
+import { globSync } from 'glob'
 
 const APPLICATION_GLOB = 'applications/*'
 
 async function copyStaticFiles(): Promise<void> {
-  const subapplications = sync(APPLICATION_GLOB)
+  const subapplications = globSync(APPLICATION_GLOB)
     .map((path) => ({
       dest: resolve(__dirname, '..', 'static', path),
       name: path.replace('applications/', ''),

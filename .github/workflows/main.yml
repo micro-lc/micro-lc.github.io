@@ -28,6 +28,9 @@ jobs:
         with:
           filters: |
             test-files:
+              - 'yarn.lock'
+              - package.json
+              - '.github/workflows/**'
               - 'tests/**'
               - 'src/**'
               - 'applications/**'
