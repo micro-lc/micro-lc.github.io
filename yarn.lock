@@ -8049,7 +8049,7 @@ __metadata:
     husky: ^8.0.3
     js-yaml: ^4.1.0
     monaco-editor: ^0.36.1
-    monaco-yaml: ^4.0.3
+    monaco-yaml: ^4.0.4
     npm-run-all: ^4.1.5
     prism-react-renderer: ^1.3.5
     react: ^17.0.2
@@ -13481,9 +13481,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"monaco-yaml@npm:^4.0.3":
-  version: 4.0.3
-  resolution: "monaco-yaml@npm:4.0.3"
+"monaco-yaml@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "monaco-yaml@npm:4.0.4"
   dependencies:
     "@types/json-schema": ^7.0.0
     jsonc-parser: ^3.0.0
@@ -13496,8 +13496,8 @@ __metadata:
     vscode-uri: ^3.0.0
     yaml: ^2.0.0
   peerDependencies:
-    monaco-editor: ">=0.34"
-  checksum: d84b29d4a1bc618a626e2421e14b9513a673986dff216498d464ab4a059755679038167d2880023a03bd171e8c1a2f4c68a6f6835717c3853e1e42c520365ef0
+    monaco-editor: ">=0.30"
+  checksum: c9961a506d248a56bf327f62565a551c04320992f1894ccd2f9da2db138096b073c26db0fc1deddf020139ec819931023e5545fcd0d8b05f23b9400e6c0e34e7
   languageName: node
   linkType: hard
 
