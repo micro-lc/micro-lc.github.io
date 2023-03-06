@@ -9241,7 +9241,7 @@ var __webpack_exports__ = {};
 (() => {
 "use strict";
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/errors.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/errors.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -9393,7 +9393,7 @@ class BugIndicatingError extends Error {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/functional.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/functional.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -9412,7 +9412,7 @@ function once(fn) {
     };
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/iterator.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/iterator.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -9542,7 +9542,7 @@ var Iterable;
     Iterable.consume = consume;
 })(Iterable || (Iterable = {}));
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/lifecycle.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/lifecycle.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -9924,7 +9924,7 @@ class DisposableMap {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/linkedList.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/linkedList.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -10050,7 +10050,7 @@ class linkedList_LinkedList {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/nls.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/nls.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -10228,7 +10228,7 @@ function load(name, req, load, config) {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/platform.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/platform.js
 var _a;
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -10332,8 +10332,8 @@ const isIOS = (/* unused pure expression or super */ null && (_isIOS));
 const isMobile = (/* unused pure expression or super */ null && (_isMobile));
 const userAgent = _userAgent;
 /**
- * The language used for the user interface. The format of
- * the string is all lower case (e.g. zh-tw for Traditional
+ * The language used for the user interface. or the locale specified by --locale
+ * The format of the string is all lower case (e.g. zh-tw for Traditional
  * Chinese)
  */
 const language = (/* unused pure expression or super */ null && (_language));
@@ -10391,7 +10391,7 @@ const isSafari = !!(!isChrome && (userAgent && userAgent.indexOf('Safari') >= 0)
 const isEdge = !!(userAgent && userAgent.indexOf('Edg/') >= 0);
 const isAndroid = !!(userAgent && userAgent.indexOf('Android') >= 0);
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/stopwatch.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/stopwatch.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -10421,7 +10421,7 @@ class StopWatch {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/event.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/event.js
 
 
 
@@ -10471,7 +10471,7 @@ var Event;
      * @param disposable A disposable store to add the new EventEmitter to.
      */
     function defer(event, disposable) {
-        return debounce(event, () => void 0, 0, undefined, undefined, disposable);
+        return debounce(event, () => void 0, 0, undefined, true, undefined, disposable);
     }
     Event.defer = defer;
     /**
@@ -10573,11 +10573,12 @@ var Event;
         disposable === null || disposable === void 0 ? void 0 : disposable.add(emitter);
         return emitter.event;
     }
-    function debounce(event, merge, delay = 100, leading = false, leakWarningThreshold, disposable) {
+    function debounce(event, merge, delay = 100, leading = false, flushOnListenerRemove = false, leakWarningThreshold, disposable) {
         let subscription;
         let output = undefined;
         let handle = undefined;
         let numDebouncedCalls = 0;
+        let doFire;
         const options = {
             leakWarningThreshold,
             onWillAddFirstListener() {
@@ -10588,7 +10589,7 @@ var Event;
                         emitter.fire(output);
                         output = undefined;
                     }
-                    const doFire = () => {
+                    doFire = () => {
                         const _output = output;
                         output = undefined;
                         handle = undefined;
@@ -10609,7 +10610,13 @@ var Event;
                     }
                 });
             },
+            onWillRemoveListener() {
+                if (flushOnListenerRemove && numDebouncedCalls > 0) {
+                    doFire === null || doFire === void 0 ? void 0 : doFire();
+                }
+            },
             onDidRemoveLastListener() {
+                doFire = undefined;
                 subscription.dispose();
             }
         };
@@ -10635,7 +10642,7 @@ var Event;
             }
             last.push(e);
             return last;
-        }, delay, undefined, undefined, disposable);
+        }, delay, undefined, true, undefined, disposable);
     }
     Event.accumulate = accumulate;
     /**
@@ -10743,8 +10750,8 @@ var Event;
         latch() {
             return new ChainableEvent(latch(this.event, undefined, this.disposables));
         }
-        debounce(merge, delay = 100, leading = false, leakWarningThreshold) {
-            return new ChainableEvent(debounce(this.event, merge, delay, leading, leakWarningThreshold, this.disposables));
+        debounce(merge, delay = 100, leading = false, flushOnListenerRemove = false, leakWarningThreshold) {
+            return new ChainableEvent(debounce(this.event, merge, delay, leading, flushOnListenerRemove, leakWarningThreshold, this.disposables));
         }
         on(listener, thisArgs, disposables) {
             return this.event(listener, thisArgs, disposables);
@@ -11037,8 +11044,10 @@ class Emitter {
                     this._options.onDidAddListener(this, callback, thisArgs);
                 }
                 const result = listener.subscription.set(() => {
+                    var _a, _b;
                     removeMonitor === null || removeMonitor === void 0 ? void 0 : removeMonitor();
                     if (!this._disposed) {
+                        (_b = (_a = this._options) === null || _a === void 0 ? void 0 : _a.onWillRemoveListener) === null || _b === void 0 ? void 0 : _b.call(_a, this);
                         removeListener();
                         if (this._options && this._options.onDidRemoveLastListener) {
                             const hasListeners = (this._listeners && !this._listeners.isEmpty());
@@ -11352,7 +11361,7 @@ class Relay {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/objects.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/objects.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -11534,7 +11543,7 @@ function createProxyObject(methodNames, invoke) {
     return result;
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/cache.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/cache.js
 /**
  * Uses a LRU cache to make a given parametrized function cached.
  * Caches just the last value.
@@ -11576,7 +11585,7 @@ class CachedFunction {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/lazy.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/lazy.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -11615,7 +11624,7 @@ class Lazy {
     get rawValue() { return this._value; }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/strings.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/strings.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -12441,7 +12450,7 @@ class InvisibleCharacters {
 InvisibleCharacters._data = undefined;
 
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/worker/simpleWorker.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/worker/simpleWorker.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -12882,7 +12891,7 @@ function simpleWorker_create(postMessage) {
     return new SimpleWorkerServer(postMessage, null);
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/diff/diffChange.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/diff/diffChange.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -12916,7 +12925,7 @@ class DiffChange {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/hash.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/hash.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13177,7 +13186,7 @@ class StringSHA1 {
 StringSHA1._bigBlock32 = new DataView(new ArrayBuffer(320)); // 80 * 4 = 320
 
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/diff/diff.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/diff/diff.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -14078,7 +14087,7 @@ class LcsDiff {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/process.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/process.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -14135,7 +14144,7 @@ const env = safeProcess.env;
  */
 const platform = safeProcess.platform;
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/path.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/path.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -15530,7 +15539,7 @@ const basename = (platformIsWin32 ? win32.basename : posix.basename);
 const extname = (platformIsWin32 ? win32.extname : posix.extname);
 const sep = (platformIsWin32 ? win32.sep : posix.sep);
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/uri.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/uri.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -16124,7 +16133,7 @@ function percentDecode(str) {
     return str.replace(_rEncodedAsHex, (match) => decodeURIComponentGraceful(match));
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/core/position.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/core/position.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -16260,7 +16269,7 @@ class position_Position {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/core/range.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/core/range.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -16662,7 +16671,7 @@ class range_Range {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/arrays.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/arrays.js
 /**
  * Returns the last element of an array.
  * @param array The array.
@@ -17153,7 +17162,7 @@ class CallbackIterable {
 CallbackIterable.empty = new CallbackIterable(_callback => { });
 
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/uint.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/uint.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -17177,7 +17186,7 @@ function toUint32(v) {
     return v | 0;
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/model/prefixSumComputer.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/model/prefixSumComputer.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -17402,7 +17411,7 @@ class PrefixSumIndexOfResult {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/model/mirrorTextModel.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/model/mirrorTextModel.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -17518,7 +17527,7 @@ class MirrorTextModel {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/core/wordHelper.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/core/wordHelper.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -17642,7 +17651,7 @@ function _findRegexMatchEnclosingPosition(wordDefinition, text, pos, stopPos) {
     return null;
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/core/characterClassifier.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/core/characterClassifier.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -17700,7 +17709,7 @@ class CharacterSet {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/languages/linkComputer.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/languages/linkComputer.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -17792,11 +17801,11 @@ function getClassifier() {
     if (_classifier === null) {
         _classifier = new CharacterClassifier(0 /* CharacterClass.None */);
         // allow-any-unicode-next-line
-        const FORCE_TERMINATION_CHARACTERS = ', \t<>\'\"、。｡､，．：；‘〈「『〔（［｛｢｣｝］）〕』」〉’｀～…';
+        const FORCE_TERMINATION_CHARACTERS = ' \t<>\'\"、。｡､，．：；‘〈「『〔（［｛｢｣｝］）〕』」〉’｀～…';
         for (let i = 0; i < FORCE_TERMINATION_CHARACTERS.length; i++) {
             _classifier.set(FORCE_TERMINATION_CHARACTERS.charCodeAt(i), 1 /* CharacterClass.ForceTermination */);
         }
-        const CANNOT_END_WITH_CHARACTERS = '.;:';
+        const CANNOT_END_WITH_CHARACTERS = '.,;:';
         for (let i = 0; i < CANNOT_END_WITH_CHARACTERS.length; i++) {
             _classifier.set(CANNOT_END_WITH_CHARACTERS.charCodeAt(i), 2 /* CharacterClass.CannotEndIn */);
         }
@@ -17972,7 +17981,7 @@ function computeLinks(model) {
     return LinkComputer.computeLinks(model);
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/languages/supports/inplaceReplaceSupport.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/languages/supports/inplaceReplaceSupport.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -18060,7 +18069,7 @@ class BasicInplaceReplace {
 BasicInplaceReplace.INSTANCE = new BasicInplaceReplace();
 
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/cancellation.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/cancellation.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -18171,7 +18180,7 @@ class CancellationTokenSource {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/keyCodes.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/keyCodes.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -18545,7 +18554,7 @@ function KeyChord(firstPart, secondPart) {
     return (firstPart | chordPart) >>> 0;
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/core/selection.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/core/selection.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -18689,7 +18698,7 @@ class Selection extends range_Range {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/types.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/types.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -18816,7 +18825,7 @@ function withNullAsUndefined(x) {
     return x === null ? undefined : x;
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/codicons.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/codicons.js
 
 const _codiconFontCharacters = Object.create(null);
 function register(id, fontCharacter) {
@@ -19383,7 +19392,7 @@ const Codicon = {
     quickInputBack: register('quick-input-back', 'arrow-left')
 };
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/tokenizationRegistry.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/tokenizationRegistry.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -19521,7 +19530,7 @@ class TokenizationSupportFactoryData extends lifecycle_Disposable {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/languages.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/languages.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -19532,10 +19541,10 @@ class TokenizationSupportFactoryData extends lifecycle_Disposable {
 
 class Token {
     constructor(offset, type, language) {
-        this._tokenBrand = undefined;
         this.offset = offset;
         this.type = type;
         this.language = language;
+        this._tokenBrand = undefined;
     }
     toString() {
         return '(' + this.offset + ', ' + this.type + ')';
@@ -19546,19 +19555,26 @@ class Token {
  */
 class TokenizationResult {
     constructor(tokens, endState) {
-        this._tokenizationResultBrand = undefined;
         this.tokens = tokens;
         this.endState = endState;
+        this._tokenizationResultBrand = undefined;
     }
 }
 /**
  * @internal
  */
 class EncodedTokenizationResult {
-    constructor(tokens, endState) {
-        this._encodedTokenizationResultBrand = undefined;
+    constructor(
+    /**
+     * The tokens in binary format. Each token occupies two array indices. For token i:
+     *  - at offset 2*i => startIndex
+     *  - at offset 2*i + 1 => metadata
+     *
+     */
+    tokens, endState) {
         this.tokens = tokens;
         this.endState = endState;
+        this._encodedTokenizationResultBrand = undefined;
     }
 }
 /**
@@ -19747,6 +19763,19 @@ var SymbolKinds;
 })(SymbolKinds || (SymbolKinds = {}));
 class FoldingRangeKind {
     /**
+     * Returns a {@link FoldingRangeKind} for the given value.
+     *
+     * @param value of the kind.
+     */
+    static fromValue(value) {
+        switch (value) {
+            case 'comment': return FoldingRangeKind.Comment;
+            case 'imports': return FoldingRangeKind.Imports;
+            case 'region': return FoldingRangeKind.Region;
+        }
+        return new FoldingRangeKind(value);
+    }
+    /**
      * Creates a new {@link FoldingRangeKind}.
      *
      * @param value of the kind.
@@ -19796,7 +19825,7 @@ var InlayHintKind;
  */
 const languages_TokenizationRegistry = new TokenizationRegistry();
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/standalone/standaloneEnums.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/standalone/standaloneEnums.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -20703,7 +20732,7 @@ var WrappingIndent;
     WrappingIndent[WrappingIndent["DeepIndent"] = 3] = "DeepIndent";
 })(WrappingIndent || (WrappingIndent = {}));
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/services/editorBaseApi.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/services/editorBaseApi.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -20746,7 +20775,7 @@ function createMonacoBaseAPI() {
     };
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/core/wordCharacterClassifier.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/core/wordCharacterClassifier.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -20773,7 +20802,7 @@ function wordCharacterClassifier_once(computeFn) {
 }
 const wordCharacterClassifier_getMapForWordSeparators = wordCharacterClassifier_once((input) => new WordCharacterClassifier(input));
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/model.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/model.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -20907,7 +20936,7 @@ function shouldSynchronizeModel(model) {
     return (!model.isTooLargeForSyncing() && !model.isForSimpleWidget);
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/model/textModelSearch.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/model/textModelSearch.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -21361,7 +21390,7 @@ class Searcher {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/base/common/assert.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/base/common/assert.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -21414,7 +21443,7 @@ function checkAdjacentItems(items, predicate) {
     return true;
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/services/unicodeTextModelHighlighter.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/services/unicodeTextModelHighlighter.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -21601,7 +21630,7 @@ function isAllowedInvisibleCharacter(character) {
     return character === ' ' || character === '\n' || character === '\t';
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/linesDiffComputer.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/linesDiffComputer.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -21668,7 +21697,7 @@ class LineRange {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/smartLinesDiffComputer.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/smartLinesDiffComputer.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22137,7 +22166,7 @@ function createContinueProcessingPredicate(maximumRuntime) {
     };
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/algorithms/diffAlgorithm.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/algorithms/diffAlgorithm.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22179,7 +22208,7 @@ class OffsetRange {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/algorithms/utils.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/algorithms/utils.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22199,7 +22228,7 @@ class Array2D {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/algorithms/dynamicProgrammingDiffing.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/algorithms/dynamicProgrammingDiffing.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22292,7 +22321,7 @@ class DynamicProgrammingDiffing {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/algorithms/joinSequenceDiffs.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/algorithms/joinSequenceDiffs.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22432,7 +22461,7 @@ function shiftDiffToBetterPosition(diff, sequence1, sequence2, seq2NextStart, se
     return diff;
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/algorithms/myersDiffAlgorithm.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/algorithms/myersDiffAlgorithm.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22577,7 +22606,7 @@ class FastArrayNegativeIndices {
     }
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/standardLinesDiffComputer.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/standardLinesDiffComputer.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22841,7 +22870,7 @@ function isSpace(charCode) {
     return charCode === 32 /* CharCode.Space */ || charCode === 9 /* CharCode.Tab */;
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/linesDiffComputers.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/diff/linesDiffComputers.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22853,7 +22882,7 @@ const linesDiffComputers = {
     experimental: new StandardLinesDiffComputer(),
 };
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/common/services/editorSimpleWorker.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/common/services/editorSimpleWorker.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -23356,7 +23385,7 @@ if (typeof importScripts === 'function') {
     platform_globals.monaco = createMonacoBaseAPI();
 }
 
-;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.35.0-f4a2faf37d-ff86d99add.zip/node_modules/monaco-editor/esm/vs/editor/editor.worker.js
+;// CONCATENATED MODULE: ./.yarn/cache/monaco-editor-npm-0.36.1-d2cfa44f8c-75e7cfbe03.zip/node_modules/monaco-editor/esm/vs/editor/editor.worker.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
