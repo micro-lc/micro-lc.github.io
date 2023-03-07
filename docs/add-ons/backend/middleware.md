@@ -38,7 +38,7 @@ On top of those, Middleware accepts the following environment variables:
 
 ## Service configuration
 
-The service accepts a JSON configuration file containing containing information on the [content types](#content-type) 
+The service accepts a JSON configuration file containing information on the [content types](#content-type) 
 and on the [headers](#headers) to apply to file responses.
 
 The service will use the `SERVICE_CONFIG_PATH` [environment variable](#environment-variables) to locate the configuration
