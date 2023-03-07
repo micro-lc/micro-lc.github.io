@@ -10,9 +10,13 @@ import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 ```
 
-**Middleware** is a backend middleware responsible for serving <micro-lc></micro-lc> configuration files, applying
-some useful [parsing logic](#jsonyaml-manipulation) before returning their content. This logic is also distributed
-through an [SDK](#sdk) to ease the process of building custom configurations serves.
+:::caution
+The following documentation refers to **version 3.x.x** of the service.
+:::
+
+**Middleware** is a backend service responsible for [serving](#serving-from-file-system) <micro-lc></micro-lc> static and
+configuration files, while applying some useful manipulation logic before returning their content. This logic is also
+distributed through an [SDK](#sdk) to ease the process of building custom configurations servers.
 
 ## Usage
 
@@ -26,86 +30,196 @@ needs the environment variables outlined in the
 
 On top of those, Middleware accepts the following environment variables:
 
-|            Name            |   Type   | Required | Description                                                                                            |
-|:--------------------------:|:--------:|:--------:|--------------------------------------------------------------------------------------------------------|
-| `RESOURCES_DIRECTORY_PATH` | `string` |    ✔     | Absolute path of the [directory](#serving-from-file-system) containing resources to be served          |
-|     `CONTENT_TYPE_MAP`     | `string` |          | Stringified JSON object representing a key/value directory to map extensions to `Content-Type` headers |
+|            Name            |   Type   |              Default              | Description                                                                                                 |
+| :------------------------: | :------: | :-------------------------------: | ----------------------------------------------------------------------------------------------------------- |
+|  `PUBLIC_DIRECTORY_PATH`   | `string` |   `/usr/static/configurations`    | Absolute path of the [directory](#serving-from-file-system) containing static files to be served            |
+| `RESOURCES_DIRECTORY_PATH` | `string` |       `/usr/static/public`        | Absolute path of the [directory](#serving-from-file-system) containing configuration resources to be served |
+|   `SERVICE_CONFIG_PATH`    | `string` | `/usr/src/app/config/config.json` | Absolute path of the [service configuration](#service-configuration) file                                   |
 
-### Serving from file system
+## Service configuration
 
-Configuration files and regular files are loaded from file system.
-In particular, Middleware searches in the directory specified with the
-`RESOURCES_DIRECTORY_PATH` [environment variable](#environment-variables) for any file description not being a folder and, amongst those, also
-for JSON (`.json`) and YAML (`.yaml` or `.yml`)
-files, (even in subdirectories) and exposes a route for each of them.
+The service accepts a JSON configuration file containing information on the [content types](#content-type) 
+and on the [headers](#headers) to apply to file responses.
+
+The service will use the `SERVICE_CONFIG_PATH` [environment variable](#environment-variables) to locate the configuration
+file, which should contain an object with the following structure:
+
+```typescript
+interface Config {
+  contentTypeMap?: Record<string, string | string[]>
+  publicHeadersMap?: Record<string, Record<string, string | (string | string[])[]>>
+}
+```
+
+### Content Type
+
+By default, Middleware returns a file with the following content types (depending on the file extension).
+
+| Extension |  Content-Type header   |
+| :-------: | :--------------------: |
+|   .cjs    | application/javascript |
+|   .css    |        text/css        |
+|   .html   |       text/html        |
+|    .js    | application/javascript |
+|   .json   |    application/json    |
+|   .mjs    | application/javascript |
+|   .yaml   |       text/yaml        |
+|   .yml    |        text/yam        |
+
+Any extension not listed will trigger a default `Content-Type` equal to `text/plain`.
+
+These settings can be overridden using with the `contentTypeMap` property of the service configuration, which should be
+a map linking extensions to Content-Type header signatures. Keys must be either a single extension or a comma separated
+list of extensions while values must be strings or array of strings which will be joint with a semicolon as separator.
+
+For example, the following `contentTypeMap`
+
+```json
+{
+  ".mjs,.js": ["text/javascript", "charset=utf8"],
+  ".xml": "application/xml"
+}
+```
+
+which will force Middleware to return on `.mjs` and `.js` the equivalent `text/javascript; charset=utf8` Content-Type header and
+`application/xml` on XML files.
 
 :::caution
-Since routes are created at service startup, adding or removing files will **not change the exposes routes** until the
-service is restarted.
-
-However, since Middleware reloads a file each time its corresponding route is called, any change to the content of a file 
-**will be immediately reflected** without need of restarting the service.
+Any extension listed in the `CONTENT_TYPE_MAP` will override its previous default value allowing even to change
+`Content-Type` for JSON and YAML files which might create problems on <micro-lc></micro-lc> web component configuration dump.
 :::
 
-For example, given a directory with the following structure:
+### Headers
+
+The `publicHeadersMap` property of the configuration allows you to specify additional headers to include in
+[static files](#serving-from-file-system) responses (i.e., files exposed under `/public`).
+
+The property should be a map linking file pathnames to headers definitions. Keys must be valid pathname strings
+(e.g., `/public/index.html`), while values must be maps linking [HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
+names to valid values. Values can be directly a _string_, an _array of string_ (which will be joined with a comma), or
+an _array of arrays of string_ (which will be joined with a semicolon at inner lever and with a comma at external level).
+
+:::tip
+`Content-Type` headers specified here will win over the ones defined in
+[`contentTypeMap`](#content-type) configuration.
+:::
+
+:::tip
+Middleware applies [nonce injection](#nonce-injection) on additional headers.
+:::
+
+For example, the following `publicHeadersMap`
+
+```json
+{
+  "/public/index.html": {
+    "content-security-policy": [
+      [
+        "script-src 'nonce-**CSP_NONCE**'",
+        "style-src 'self'"
+      ]
+    ],
+    "link": "</micro-lc-configurations/config.json>; rel=preload; as=fetch"
+  }
+}
+```
+
+causes a request to `/public/index.html` to have the following headers:
+
+```txt
+content-security-policy: script-src 'nonce-KMxEW8oQKCm12+XocTYib9u6++'; style-src 'self'
+link: </micro-lc-configurations/config.json>; rel=preload; as=fetch
+```
+
+## Serving from file system
+
+Configuration files and regular files served by Middleware are loaded from file system.
+
+**Static files** are sourced from the directory specified with the `PUBLIC_DIRECTORY_PATH` 
+[environment variable](#environment-variables) and are exposed under `/public` prefix. **Configuration files** are
+searched in the directory specified with the `RESOURCES_DIRECTORY_PATH` [environment variable](#environment-variables)
+and are exposed under `/configurations` prefix.
+
+:::tip
+Calling `/public`, `/public/` or a non-existing file under public (e.g., `/public/unknown-file.js`) will result in
+Middleware responding with the root `index.html` file, if existing.
+:::
+
+For example, given a file system with the following structure:
 
 ```text
-├── config.json
-├── orders-config.yaml
-├── lib
-|   └── index.js
-└── user-pages
-    ├── customers-config.yml
-    └── admin-config.json
+├── public
+|   └── index.html
+|   └── assets
+|       └── style.css
+|
+├── configurations
+    └── config.json
+    └── lib
+        └── index.js
 ```
 
 Middleware will expose the following routes:
 
 ```text
-GET - /config.json
-GET - /orders-config.yaml
-GET - /lib/index.js
-GET - /user-pages/customers-config.yml
-GET - /user-pages/admin-config.json
+GET - /public (redirecting to /public/index.html)
+GET - /public/ (redirecting to /public/index.html)
+GET - /public/index.html
+GET - /public/assets/style.css
+
+GET - /configurations/config.json
+GET - /configurations/lib/index.js
 ```
 
-## Content Type
+### Static files manipulation
 
-By default, Middleware returns a file with the following content types (depending on the file extension)
+If a required **static** file is an HTML resource (i.e., a file exposed under `/public` ending with `.html`), before
+returning the file, Middleware applies some parsing logics to its content.
 
-| Extension |       Content-Type header       |
-|:---------:|:-------------------------------:|
-|   .cjs    |     application/javascript      |
-|   .css    |            text/css             |
-|   .html   |            text/html            |
-|    .js    |     application/javascript      |
-|   .json   | application/json; charset=utf-8 |
-|   .mjs    |     application/javascript      |
-|   .yaml   |    text/yaml; charset=utf-8     |
-|   .yml    |    text/yaml; charset=utf-8     |
+#### Nonce injection
 
-Any extension not listed will trigger a default `Content-Type` equal to `text/plain`.
-These settings can be overridden by using the `CONTENT_TYPE_MAP` container variable as described
-by the following examples
+Middleware allows you to inject a server-generated [nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)
+in HTML files. In particular, it will find any occurrence of the of the expression `**CSP_NONCE**` and replace it with
+the actual value.
 
-```text
-CONTENT_TYPE_MAP='{".mjs,.js": "text/javascript", ".xml": "application/xml"}'
+For example, the following HTML file
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link 
+    rel="stylesheet"
+    nonce="**CSP_NONCE**"
+    href="./assets/style.css" />
+</head>
+
+</html>
 ```
 
-which will force Middleware to return on `.mjs` and `.js` the equivalent `text/javascript` Content-Type header and
-`application/xml` on XML's files. Keys must be either a single extension or a comma separated list of extensions and values must be strings.
+will be serve as
 
-:::caution
-Any extension listed in the `CONTENT_TYPE_MAP` will override its previous default value allowing even to change
-`Content-Type` for JSON and YAML files which might create problems on `micro-lc` web component configuration dump.
-:::
+```html
+<!DOCTYPE html>
+<html lang="en">
 
-## JSON/YAML manipulation
+<head>
+  <link 
+    rel="stylesheet"
+    nonce="KMxEW8oQKCm12+XocTYib9u6++"
+    href="./assets/style.css" />
+</head>
 
-If the required file ends with `.json`, `.yaml` or `.yml`,
-before returning the file, Middleware applies some parsing logics to its content.
+</html>
+```
 
-### ACL application
+### Configuration files manipulation
+
+If a required **configuration** file is a JSON or YAML resource (i.e., a file exposed under `/configurations` ending with
+`.json`, `.yaml` or `.yml`), before returning the file, Middleware applies some parsing logics to its content.
+
+#### ACL application
 
 Middleware allows you to implement **access control limit** on served files, removing sections of configurations based on
 certain properties of the caller. Namely, Middleware considers caller's **groups** and **permissions**.
@@ -138,7 +252,7 @@ Middleware evaluates each ACL expression against caller's properties and, if the
 removes from the configuration the **whole object** which the expression is a property of. It then proceeds to remove
 any `aclExpression` key left over to not leak server-side logic into the client.
 
-#### Example
+##### Example
 
 Let's consider the following configuration file served under `GET - /middleware/config.json`.
 
@@ -185,7 +299,7 @@ will be
 }
 ```
 
-### References resolution
+#### References resolution
 
 In order to avoid writing repeating values multiple times in your configurations, Middleware supports references resolutions
 following [JSON schema specification](https://json-schema.org/understanding-json-schema/structuring.html#ref). In
@@ -196,7 +310,7 @@ the dedicated top-level key `definitions`, and then **references it** wherever y
 Middleware will resolve references in files and will remove the key `definitions` (if any) before serving them. Keep in mind
 that Middleware **will throw** if some references cannot be resolved.
 
-#### Example
+##### Example
 
 Let's consider the following configuration file served under `GET - /middleware/config.json`.
 
