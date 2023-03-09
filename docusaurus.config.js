@@ -107,6 +107,23 @@ const config = {
     ['@docusaurus/plugin-content-blog', pluginContentBlogConfig],
     '@docusaurus/plugin-content-pages',
     'docusaurus2-dotenv',
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        documents: ['CHANGELOG.md'],
+        modifyContent(filename, content) {
+          if (filename.includes('CHANGELOG.md')) {
+            return {
+              content: content.replace('## Unreleased', ''),
+            }
+          }
+          return undefined
+        },
+        name: 'changelog',
+        outDir: 'docs/docs',
+        sourceBaseUrl: 'https://raw.githubusercontent.com/micro-lc/micro-lc/main/packages/orchestrator/',
+      },
+    ],
   ],
   projectName: 'documentation',
   tagline: 'micro-lc & add-ons documentation',
