@@ -48,7 +48,7 @@
     "strip-json-comments": "^5.0.0"
   },
   "devDependencies": {
-    "@cspell/cspell-types": "^6.28.0",
+    "@cspell/cspell-types": "^6.30.0",
     "@docusaurus/module-type-aliases": "^2.3.1",
     "@micro-lc/interfaces": "^1.0.2",
     "@playwright/test": "^1.31.2",
