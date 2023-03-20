@@ -388,14 +388,14 @@ You can install the SDK from NPM
 <TabItem value="npm" label="npm" default>
 ```
 ```shell
-npm install @micro-lc/middleware/sdk
+npm install @micro-lc/middleware
 ```
 ```mdx-code-block
 </TabItem>
 <TabItem value="yarn" label="yarn">
 ```
 ```shell
-yarn add @micro-lc/middleware/sdk
+yarn add @micro-lc/middleware
 ```
 ```mdx-code-block
 </TabItem>
