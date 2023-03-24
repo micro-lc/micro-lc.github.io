@@ -50,6 +50,12 @@ are rendered in the default DOM.
       height: inherit;
       overflow: hidden
     }
+
+    div#__micro_lc > :first-child > div.composer-body {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }    
   </style>
       
   <div id="__micro_lc">
