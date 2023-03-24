@@ -50,6 +50,12 @@ are rendered in the default DOM.
       height: inherit;
       overflow: hidden
     }
+
+    div#__micro_lc > :first-child > div.composer-body {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }    
   </style>
       
   <div id="__micro_lc">
@@ -68,8 +74,14 @@ are rendered in the default DOM.
       width: 100%;
       height: 100%;
     }
-
+    
     div#__micro_lc > :first-child {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }
+
+    div#__micro_lc > :first-child > div.composer-body {
       width: inherit;
       height: inherit;
       overflow: hidden
@@ -89,6 +101,17 @@ are rendered in the default DOM.
 The `<div>` **is always rendered**, since <micro-lc></micro-lc> needs it to ensure content is correctly mounted. However,
 the `<div>` id [can be changed](../../api/micro-lc-web-component.md#properties--attributes), and the preset style 
 [can be disabled](../../api/micro-lc-web-component.md#properties--attributes).
+
+Any application or page mounted here is recommended to have its highest HTML element equipped with a css that
+allows its own internal scrolling. A good fit could be, for [parcel applications](./applications/parcels.md),
+
+```css
+.micro-lc-parcel-body {
+  height: inherit;
+  width: inherit;
+  overflow: auto;
+}
+```
 
 ### Composition
 
@@ -172,6 +195,12 @@ layout:
       height: inherit;
       overflow: hidden
     }
+
+    div#__micro_lc > :first-child > div.composer-body {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }    
   </style>
       
   <div id="__micro_lc">
@@ -227,6 +256,12 @@ settings:
       height: inherit;
       overflow: hidden
     }
+
+    div#__micro_lc > :first-child > div.composer-body {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }    
   </style>
 
   <div id="__micro_lc">
@@ -333,6 +368,12 @@ layout:
       height: inherit;
       overflow: hidden
     }
+
+    div#__micro_lc > :first-child > div.composer-body {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }    
   </style>
       
   <div id="__micro_lc">
@@ -426,6 +467,12 @@ layout:
       height: inherit;
       overflow: hidden
     }
+
+    div#__micro_lc > :first-child > div.composer-body {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }    
   </slot>
       
   <div id="__micro_lc">
