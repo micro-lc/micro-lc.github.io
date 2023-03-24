@@ -102,6 +102,17 @@ The `<div>` **is always rendered**, since <micro-lc></micro-lc> needs it to ensu
 the `<div>` id [can be changed](../../api/micro-lc-web-component.md#properties--attributes), and the preset style 
 [can be disabled](../../api/micro-lc-web-component.md#properties--attributes).
 
+Any application or page mounted here is recommended to have its highest HTML element equipped with a css that
+allows its own internal scrolling. A good fit could be, for [parcel applications](./applications/parcels.md),
+
+```css
+.micro-lc-parcel-body {
+  height: inherit;
+  width: inherit;
+  overflow: auto;
+}
+```
+
 ### Composition
 
 <micro-lc></micro-lc> mount point can be personalized with the
@@ -184,6 +195,12 @@ layout:
       height: inherit;
       overflow: hidden
     }
+
+    div#__micro_lc > :first-child > div.composer-body {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }    
   </style>
       
   <div id="__micro_lc">
@@ -239,6 +256,12 @@ settings:
       height: inherit;
       overflow: hidden
     }
+
+    div#__micro_lc > :first-child > div.composer-body {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }    
   </style>
 
   <div id="__micro_lc">
@@ -345,6 +368,12 @@ layout:
       height: inherit;
       overflow: hidden
     }
+
+    div#__micro_lc > :first-child > div.composer-body {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }    
   </style>
       
   <div id="__micro_lc">
@@ -438,6 +467,12 @@ layout:
       height: inherit;
       overflow: hidden
     }
+
+    div#__micro_lc > :first-child > div.composer-body {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }    
   </slot>
       
   <div id="__micro_lc">
