@@ -74,8 +74,14 @@ are rendered in the default DOM.
       width: 100%;
       height: 100%;
     }
-
+    
     div#__micro_lc > :first-child {
+      width: inherit;
+      height: inherit;
+      overflow: hidden
+    }
+
+    div#__micro_lc > :first-child > div.composer-body {
       width: inherit;
       height: inherit;
       overflow: hidden
