@@ -3280,7 +3280,7 @@ __metadata:
   resolution: "@micro-lc/react-browser-router@workspace:applications/react-browser-router"
   dependencies:
     "@craco/craco": ^7.1.0
-    "@types/node": ^18.15.7
+    "@types/node": ^18.15.10
     "@types/react": ^18.0.28
     "@types/react-dom": ^18.0.11
     react: ^18.2.0
@@ -3296,7 +3296,7 @@ __metadata:
   resolution: "@micro-lc/react-hash-router@workspace:applications/react-hash-router"
   dependencies:
     "@craco/craco": ^7.1.0
-    "@types/node": ^18.15.7
+    "@types/node": ^18.15.10
     "@types/react": ^18.0.28
     "@types/react-dom": ^18.0.11
     react: ^18.2.0
@@ -4429,10 +4429,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.15.7":
-  version: 18.15.7
-  resolution: "@types/node@npm:18.15.7"
-  checksum: 08d1dd1898be10cd274955ed7f491bcab5b7e70ce66b6a1e996a582d5467f7517046b0d9c5f4e15871df94dd72d1ad9e7be236d2cff1a1450ec906d7fa3062d2
+"@types/node@npm:^18.15.10":
+  version: 18.15.10
+  resolution: "@types/node@npm:18.15.10"
+  checksum: 9aeae0b683eda82892def5315812bdee3f1a28c4898b7e70f8e2514564538b16c4dccbe8339c1266f8fc1d707a48f152689264a854f5ebc2eba5011e793612d9
   languageName: node
   linkType: hard
 
@@ -8134,7 +8134,7 @@ __metadata:
     "@types/glob": ^8.1.0
     "@types/js-yaml": ^4.0.5
     "@types/json-schema": ^7.0.11
-    "@types/node": ^18.15.7
+    "@types/node": ^18.15.10
     "@types/react": ^18.0.28
     "@types/react-dom": ^18.0.11
     "@typescript-eslint/eslint-plugin": ^5.56.0
