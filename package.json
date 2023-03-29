@@ -51,7 +51,7 @@
     "@cspell/cspell-types": "^6.31.1",
     "@docusaurus/module-type-aliases": "^2.4.0",
     "@micro-lc/interfaces": "^1.0.2",
-    "@playwright/test": "^1.32.0",
+    "@playwright/test": "^1.32.1",
     "@tsconfig/docusaurus": "^1.0.7",
     "@types/eslint": "^8.21.3",
     "@types/fs-extra": "^11.0.1",
