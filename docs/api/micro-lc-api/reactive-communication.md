@@ -8,6 +8,21 @@ sidebar_position: 20
 <micro-lc></micro-lc> holds a state object which can be updated key-be-key at first level only. This means that clients
 of this API are responsible for merging anything that goes beyond the first level.
 
+:::caution
+<micro-lc></micro-lc> uses `rxjs@^7` to dispatch reactive changes. In case of interoperability issues with
+other reactive libraries like [Bacon.js](https://github.com/baconjs/bacon.js),
+[Callbags](https://github.com/callbag/callbag),
+[Kefir](https://github.com/kefirjs/kefir), [xstream](https://github.com/staltz/xstream), or rxjs lower versions like `^6`,
+we recommend to polyfill `Symbol.observable` as reported [here](https://ncjamieson.com/how-to-use-interop-observables/).
+
+A polyfill is provided by <micro-lc></micro-lc> itself since `v2.0.9` available by including in your `index.html`
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@micro-lc/orchestrator@^2/dist/polyfills/symbol-observable.js"></script>
+```
+
+:::
+
 State object can be updated with [`set`](#set) method and consumed with [`subscribe`](#subscribe) method.
 
 ```typescript
