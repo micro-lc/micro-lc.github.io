@@ -8,6 +8,7 @@ sidebar_position: 10
 ```mdx-code-block
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
+import CodeBlock from '@theme-original/CodeBlock'
 ```
 
 :::caution
@@ -17,6 +18,158 @@ The following documentation refers to **version 3.x.x** of the service.
 **Middleware** is a backend service responsible for [serving](#serving-from-file-system) <micro-lc></micro-lc> static and
 configuration files, while applying some useful manipulation logic before returning their content. This logic is also
 distributed through an [SDK](#sdk) to ease the process of building custom configurations servers.
+
+## Getting started
+
+An easy way to deploy locally Middleware is using [Docker Compose](https://docs.docker.com/compose/) to spin up a full-stack
+application which serves <micro-lc></micro-lc> through a [reverse proxy](https://www.nginx.com/).
+
+To set thing up just copy the following files, all in the same directory taking care to keep the same naming you see
+below.
+
+```mdx-code-block
+<details>
+<summary>Middleware application setup</summary>
+<div>
+<Tabs groupId="files">
+<TabItem value="0" label="docker-compose.yml" default>
+```
+```yml
+version: '3'
+
+services:
+  reverse-proxy:
+    depends_on:
+      middleware:
+        condition: service_started
+    image: nginx:${NGINX_VERSION:-1.24.0}-alpine
+    networks:
+      - internal
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 8080:8080
+  
+  middleware:
+    image: microlc/middleware:${MIDDLEWARE_VERSION:-latest}
+    environment:
+      - LOG_LEVEL=debug
+      - HTTP_PORT=3000
+      - MICROSERVICE_GATEWAY_SERVICE_NAME=microservice-gateway
+      - USERID_HEADER_KEY=miauserid
+      - GROUPS_HEADER_KEY=miausergroups
+      - CLIENTTYPE_HEADER_KEY=client-type
+      - BACKOFFICE_HEADER_KEY=isbackoffice
+      - USER_PROPERTIES_HEADER_KEY=miauserproperties
+    volumes:
+      - ./index.html:/usr/static/public/index.html
+      - ./config.json:/usr/static/configurations/config.json
+    networks:
+      - internal
+
+networks:
+  internal:
+```
+```mdx-code-block
+</TabItem>
+<TabItem value="2" label="index.html">
+```
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="/" target="_blank" />
+
+  <title>micro-lc</title>
+
+  <link rel="icon" type="image/png" href="https://www.micro-lc.io/img/favicon.png" />
+  
+  <style>
+    html,
+    body {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+  </style>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@micro-lc/layout@latest/dist/mlc-loading-animation.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@micro-lc/orchestrator@latest/dist/micro-lc.production.js"></script>
+</head>
+
+<body>
+  <bk-loading-animation primary-color="#1890ff">
+    <micro-lc config-src="/configurations/config.json"></micro-lc>
+  </bk-loading-animation>
+</body>
+
+</html>
+
+```
+```mdx-code-block
+</TabItem>
+<TabItem value="3" label="config.json">
+```
+```json
+{
+  "version": 2,
+  "applications": {
+    "home": {
+      "integrationMode": "iframe",
+      "src": "https://example.com",
+      "route": "./"
+    }
+  }
+}
+
+```
+```mdx-code-block
+</TabItem>
+<TabItem value="4" label="nginx.conf">
+```
+```nginx
+worker_processes                1;
+
+error_log                       /var/log/nginx/error.log warn;
+pid                             /tmp/nginx.pid;
+worker_rlimit_nofile            8192;
+
+events {
+  worker_connections            1024;
+}
+
+http {
+  include                       /etc/nginx/mime.types;
+  index                         index.html;
+
+  server {
+    listen                      8080;
+    
+    location /configurations {
+      proxy_pass                http://middleware:3000;
+    }
+
+    location / {
+      proxy_pass                http://middleware:3000;
+      rewrite                   /(.*) /public/$1 break;
+    }
+  }
+}
+```
+```mdx-code-block
+</TabItem>
+</Tabs>
+</div>
+</details>
+```
+
+Now run `docker compose up -d` inside the directory, and you will have <micro-lc></micro-lc> hosted on 
+[http://localhost:8080/](http://localhost:8080). To drop the environment, run `docker compose down` in the same directory.
+
 
 ## Usage
 

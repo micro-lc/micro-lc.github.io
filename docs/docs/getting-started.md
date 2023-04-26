@@ -82,6 +82,47 @@ python -m http.server 8000
 Read the documentation to know more about what <micro-lc></micro-lc> can do, and use the live <a href="../playground" target="_blank">Playground section</a> 
 to test your configurations.
 
+## Deploy with Docker Compose
+
+A sample <micro-lc></micro-lc> application can be deployed using [Docker Compose](https://docs.docker.com/compose/).
+It requires a instance of [microlc/micro-lc](#deploy-docker-container) container where the configuration is linked via
+volume.
+
+First things first, copy the following content in a `docker-compose.yml` file.
+
+```yml title=docker-compose.yml
+version: '3'
+
+services:
+  micro-lc:
+    image: microlc/micro-lc:${MICRO_LC_VERSION:-latest}
+    ports:
+      - 8080:8080
+    volumes:
+      - ./config.json:/usr/static/config.json
+```
+
+Now you need to create the configuration file: copy the following snippet in a `config.json` file located in the same
+directory of the previously created `.yml`.
+
+```json title=config.json
+{
+  "version": 2,
+  "applications": {
+    "home": {
+      "integrationMode": "iframe",
+      "src": "https://example.com",
+      "route": "./"
+    }
+  }
+}
+```
+
+Run `docker compose up -d` inside the directory, and you will have <micro-lc></micro-lc> hosted on 
+[http://localhost:8080/](http://localhost:8080). To drop the environment, run `docker compose down` in the same directory.
+
+To spin up an environment which uses a backend to serve the application, follow [this guide](../add-ons/backend/middleware.md#getting-started)
+
 ## Deploy Docker container
 
 <micro-lc></micro-lc> static assets are also embedded in a pre-built Docker container available on 
