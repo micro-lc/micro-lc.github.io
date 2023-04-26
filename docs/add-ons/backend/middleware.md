@@ -27,6 +27,7 @@ application which serves <micro-lc></micro-lc> through a [reverse proxy](https:/
 To set thing up just copy the following files, all in the same directory taking care to keep the same naming you see
 below.
 
+<!--- cspell:disable -->
 ```mdx-code-block
 <details>
 <summary>Middleware application setup</summary>
@@ -166,6 +167,7 @@ http {
 </div>
 </details>
 ```
+<!--- cspell:enable -->
 
 Now run `docker compose up -d` inside the directory, and you will have <micro-lc></micro-lc> hosted on 
 [http://localhost:8080/](http://localhost:8080). To drop the environment, run `docker compose down` in the same directory.

@@ -15,3 +15,5 @@ dist/
 build
 
 static/applications
+
+docs/docs/CHANGELOG.md
