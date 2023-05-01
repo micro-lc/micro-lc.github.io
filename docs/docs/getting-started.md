@@ -73,10 +73,11 @@ production). A YAML to JSON converter is available in the <a href="../playground
 ```
 
 You can now serve the application with your static server of choice, like 
-[Python http.server](https://docs.python.org/3/library/http.server.html) by running:
+Node.js [node-static](https://github.com/cloudhead/node-static) by running:
 
 ```shell
-python -m http.server 8000
+npm install -g node-static
+static -p 8000
 ```
 
 Read the documentation to know more about what <micro-lc></micro-lc> can do, and use the live <a href="../playground" target="_blank">Playground section</a> 
