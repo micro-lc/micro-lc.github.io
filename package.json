@@ -36,7 +36,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.8",
     "@mdx-js/react": "1.6.22",
-    "@mui/material": "^5.12.1",
+    "@mui/material": "^5.12.2",
     "clsx": "^1.2.1",
     "js-yaml": "^4.1.0",
     "monaco-editor": "^0.37.1",
