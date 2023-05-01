@@ -43,10 +43,11 @@ Anyway if unused, the declaration of `src` and `srcdoc` in `attributes` is valid
 ```mdx-code-block
 <></>
 <example-frame
-  base="../../../frames/guides/applications/iframes/standard"
+  base="/frames/guides/applications/iframes/standard"
   height="550px"
   sourceTabs={[
     { filePath: "/index.html" },
+    { filePath: "/config.json" },
     { filePath: "/config.yaml", isDefault: true }
   ]}
   src={"/"}
@@ -61,10 +62,11 @@ In case of unknown embedding website, `srcdoc` can be useful to inline your appl
 ```mdx-code-block
 <></>
 <example-frame
-  base="../../../frames/guides/applications/iframes/inline"
+  base="/frames/guides/applications/iframes/inline"
   height="550px"
   sourceTabs={[
     { filePath: "/index.html" },
+    { filePath: "/config.json" },
     { filePath: "/config.yaml", isDefault: true }
   ]}
   src={"/"}

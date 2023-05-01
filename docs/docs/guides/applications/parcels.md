@@ -62,10 +62,11 @@ interface ParcelApplication {
 ```mdx-code-block
 <></>
 <example-frame
-  base="../../../frames/guides/applications/parcels"
+  base="/frames/guides/applications/parcels"
   height="550px"
   sourceTabs={[
     { filePath: "/index.html" },
+    { filePath: "/config.json" },
     { filePath: "/config.yaml", isDefault: true }
   ]}
   src={"/"}
@@ -232,10 +233,11 @@ The correct usage of `injectBase` enables both of them to work correctly (and to
 ```mdx-code-block
 <></>
 <example-frame
-  base="../../../frames/guides/applications/parcels/inject-base"
+  base="/frames/guides/applications/parcels/inject-base"
   height="550px"
   sourceTabs={[
-    { filePath: "/config.yaml" },
+    { filePath: "/config.json" },
+    { filePath: "/config.yaml", isDefault: true },
     { filePath: "/browser-parcel.jsx" },
     { filePath: "/hash-parcel.jsx" }
   ]}

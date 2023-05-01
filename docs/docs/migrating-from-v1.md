@@ -15,7 +15,7 @@ to make this as easy as possible, and provide a migration CLI.
 
 ## Main differences
 
-<<micro-lc></micro-lc> 1 was a React application built as a **vertical micro-frontend orchestrator** (i.e., each 
+<micro-lc></micro-lc> 1 was a React application built as a **vertical micro-frontend orchestrator** (i.e., each 
 micro-frontend corresponded to a specific route), which leverages another React application (the 
 [element composer](https://github.com/micro-lc/micro-lc-element-composer)) to implement **horizontal micro-frontend 
 orchestration** (i.e., page composition). Moreover, <micro-lc></micro-lc> 1 enforced a pre-defined and ever-present
