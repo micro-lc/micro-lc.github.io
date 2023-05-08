@@ -16,9 +16,20 @@ layout:
             id: react
             label: React parcel
             type: application
+          - icon:
+              library: '@ant-design/icons-svg'
+              selector: MessageOutlined
+            id: angular12
+            label: Angular12 parcel
+            type: application
 
 applications:
   react:
     integrationMode: parcel
     route: ./
     entry: /applications/react-hash-router/
+  angular12:
+    integrationMode: parcel
+    route: ./angular12/
+    injectBase: true
+    entry: /applications/angular12/
