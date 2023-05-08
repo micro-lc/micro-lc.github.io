@@ -31,6 +31,10 @@ jobs:
       - name: Install
         run: yarn install --immutable
 
+      - name: Build Angular12
+        working-directory: applications/angular12
+        run: yarn build
+
       - name: Build
         run: yarn build
 
