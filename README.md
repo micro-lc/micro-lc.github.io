@@ -13,11 +13,13 @@ Documentation site for [micro-lc](https://github.com/micro-lc/micro-lc) and rela
 
 ```shell
 yarn install
+(cd applications/angular12 && yarn install)
 ```
 
 then build the subpackages and copy their static files into docusaurus `static` folder by running
 
 ```shell
+(cd applications/angular12 && yarn build)
 yarn prepare
 ```
 

@@ -26,7 +26,7 @@ Up to now, only JavaScript **UMD scripts** can be used as parcel application ass
 
 We provide an extensive list of templates to build your own parcel application using your favourite framework:
 * [React](https://github.com/micro-lc/react-template),
-* Angular [12](https://github.com/micro-lc/angular12-template), [13](https://github.com/micro-lc/angular13-template), and [14](https://github.com/micro-lc/angular14-template),
+* Angular [12](https://github.com/micro-lc/angular12-template) <!--, [13](https://github.com/micro-lc/angular13-template), and [14](https://github.com/micro-lc/angular14-template), -->
 * more are coming soon...
 
 ## Usage
