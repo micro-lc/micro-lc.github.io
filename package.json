@@ -15,7 +15,7 @@
     "lint:code": "eslint . --ext .mjs,.js,.jsx,.ts,.tsx --resolve-plugins-relative-to .",
     "lint:style": "stylelint \"**/*.{css}\" --allow-empty-input",
     "lint": "NODE_OPTIONS=--max-old-space-size=10000 yarn run-p lint:code lint:style",
-    "build-applications": "yarn workspaces foreach --parallel --from '@micro-lc/*' run build",
+    "build-applications": "yarn workspaces foreach --parallel --from '@micro-lc/react-*' run build",
     "build-docusaurus": "docusaurus build",
     "copy-static": "ts-node scripts/copy-static.ts",
     "prepare": "run-s build-applications copy-static",

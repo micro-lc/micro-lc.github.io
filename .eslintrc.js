@@ -49,6 +49,7 @@ const tsConfigs = {
   parserOptions: {
     project: [
       path.resolve(__dirname, './tsconfig.json'),
+      path.resolve(__dirname, './applications/angular12/tsconfig.json'),
       path.resolve(__dirname, './applications/react-browser-router/tsconfig.json'),
       path.resolve(__dirname, './applications/react-hash-router/tsconfig.json'),
     ],
