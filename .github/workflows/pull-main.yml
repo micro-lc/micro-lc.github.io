@@ -12,7 +12,7 @@ on:
 
 jobs:
   checks:
-    uses: micro-lc/documentation/.github/workflows/checks.yml
+    uses: micro-lc/documentation/.github/workflows/checks.yml@feat/angular12-template
 
   build:
-    uses: micro-lc/documentation/.github/workflows/build.yml
+    uses: micro-lc/documentation/.github/workflows/build.yml@feat/angular12-template
