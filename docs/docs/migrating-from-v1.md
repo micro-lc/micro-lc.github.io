@@ -50,7 +50,7 @@ composer for dynamic page composition.
 #### `authentication.json`
 
 This file contained instructions on how to retrieve current user information and handle logout operations. This file
-is not needed in <micro-lc></micro-lc> 1 as its content can be moved in 
+is not needed in <micro-lc></micro-lc> 2 as its content can be moved in 
 [`userMenu`](../add-ons/components/mlc-layout.md#usermenu) key of default layout configuration.
 
 #### `configuration.json`
