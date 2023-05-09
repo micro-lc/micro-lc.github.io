@@ -4283,7 +4283,7 @@ __metadata:
     "@angular/platform-browser-dynamic": ^12.2.0
     "@angular/router": ^12.2.0
     "@types/jasmine": ~3.10.3
-    "@types/node": ^17.0.8
+    "@types/node": ^20.1.1
     "@typescript-eslint/eslint-plugin": 4.33.0
     "@typescript-eslint/parser": 4.33.0
     eslint: ^7.26.0
@@ -4311,7 +4311,7 @@ __metadata:
   resolution: "@micro-lc/react-browser-router@workspace:applications/react-browser-router"
   dependencies:
     "@craco/craco": ^7.1.0
-    "@types/node": ^18.16.3
+    "@types/node": ^20.1.1
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     react: ^18.2.0
@@ -4327,7 +4327,7 @@ __metadata:
   resolution: "@micro-lc/react-hash-router@workspace:applications/react-hash-router"
   dependencies:
     "@craco/craco": ^7.1.0
-    "@types/node": ^18.16.3
+    "@types/node": ^20.1.1
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     react: ^18.2.0
@@ -5613,17 +5613,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^17.0.8":
-  version: 17.0.45
-  resolution: "@types/node@npm:17.0.45"
-  checksum: aa04366b9103b7d6cfd6b2ef64182e0eaa7d4462c3f817618486ea0422984c51fc69fd0d436eae6c9e696ddfdbec9ccaa27a917f7c2e8c75c5d57827fe3d95e8
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^18.16.3":
-  version: 18.16.3
-  resolution: "@types/node@npm:18.16.3"
-  checksum: 816b39d45b05ebdc6f362b630970df3f6d82f71d418a2555353522f4eeeb078fa201de5299f02c09a09faa975e43b2745fe19c263d44069f87ddf37d6c37b717
+"@types/node@npm:^20.1.1":
+  version: 20.1.1
+  resolution: "@types/node@npm:20.1.1"
+  checksum: 47961ee23f873c14c3f6045422ff3059f3bfb10231ef3080a7a72d7215cc8c2623fa8cedb7b246305962fa9c1e0c9e381e04b12eb3e9ec5d076025c6231ac8da
   languageName: node
   linkType: hard
 
@@ -10229,7 +10222,7 @@ __metadata:
     "@types/glob": ^8.1.0
     "@types/js-yaml": ^4.0.5
     "@types/json-schema": ^7.0.11
-    "@types/node": ^18.16.3
+    "@types/node": ^20.1.1
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     "@typescript-eslint/eslint-plugin": ^5.59.2
