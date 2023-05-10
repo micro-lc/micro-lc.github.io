@@ -18,7 +18,7 @@
                 "selector": "GlobalOutlined"
               },
               "id": "react",
-              "label": "React parcel",
+              "label": "React",
               "type": "application"
             },
             {
@@ -27,7 +27,16 @@
                 "selector": "MessageOutlined"
               },
               "id": "angular12",
-              "label": "Angular12 parcel",
+              "label": "Angular12",
+              "type": "application"
+            },
+            {
+              "icon": {
+                "library": "@ant-design/icons-svg",
+                "selector": "FunnelPlotOutlined"
+              },
+              "id": "angular13",
+              "label": "Angular13",
               "type": "application"
             }
           ]
@@ -46,6 +55,12 @@
       "route": "./angular12/",
       "injectBase": true,
       "entry": "/applications/angular12/"
+    },
+    "angular13": {
+      "integrationMode": "parcel",
+      "route": "./angular13/",
+      "injectBase": true,
+      "entry": "/applications/angular13/"
     }
   }
 }

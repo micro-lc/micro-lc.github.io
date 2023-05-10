@@ -35,8 +35,16 @@ jobs:
         working-directory: applications/angular12
         run: yarn install --immutable
 
+      - name: Install Angular13
+        working-directory: applications/angular13
+        run: yarn install --immutable
+
       - name: Build Angular12
         working-directory: applications/angular12
+        run: yarn build
+
+      - name: Build Angular13
+        working-directory: applications/angular13
         run: yarn build
 
       - name: Build
