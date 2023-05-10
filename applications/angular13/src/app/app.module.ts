@@ -1,24 +1,25 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { AssetUrlPipe } from './assetUrl.pipe';
+import { AboutComponent } from './about/about.component'
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { AssetUrlPipe } from './assetUrl.pipe'
+import { HomeComponent } from './home/home.component'
 
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    AssetUrlPipe
+    AssetUrlPipe,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
 })
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class AppModule { }

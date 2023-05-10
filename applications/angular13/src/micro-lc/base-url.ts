@@ -5,11 +5,11 @@
 export function baseUrl() {
   const href = document.querySelector<HTMLBaseElement>('qiankun-head base')?.getAttribute('href')
 
-  if(!href) {
+  if (!href) {
     return '/'
   }
 
-  if(href !== '/') {
+  if (href !== '/') {
     return href.replace(/\/?$/, '')
   }
 

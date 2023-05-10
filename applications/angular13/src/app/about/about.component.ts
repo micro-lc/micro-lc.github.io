@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
+  styleUrls: ['./about.component.css'],
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css']
 })
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class AboutComponent {}
