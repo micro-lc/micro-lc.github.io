@@ -28,6 +28,10 @@ jobs:
         working-directory: applications/angular12
         run: yarn install --immutable
 
+      - name: Install Angular13
+        working-directory: applications/angular13
+        run: yarn install --immutable
+
       - name: Linting
         run: yarn lint
 
