@@ -6,16 +6,13 @@
     "mia_template_service_name_placeholder": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "css"
-        },
         "@schematics/angular:application": {
           "strict": true
         }
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "app2",
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
@@ -25,7 +22,6 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "css",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -36,10 +32,9 @@
             "scripts": [],
             "customWebpackConfig": {
               "path": "extra-webpack.config.js",
-              "libraryName": "angular12",
+              "libraryName": "angular13",
               "libraryTarget": "umd"
-            },
-            "deployUrl": "./"
+            }
           },
           "configurations": {
             "production": {
@@ -61,7 +56,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "none"
+              "outputHashing": "all"
             },
             "development": {
               "buildOptimizer": false,
@@ -69,17 +64,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
-              "outputHashing": "none"
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
-          "options": {
-            "deployUrl": "/"
-          },
           "configurations": {
             "production": {
               "browserTarget": "mia_template_service_name_placeholder:build:production"
@@ -103,7 +94,6 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "css",
             "assets": [
               "src/favicon.ico",
               "src/assets"
