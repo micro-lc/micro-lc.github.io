@@ -845,31 +845,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/router@npm:^12.2.0":
-  version: 12.2.17
-  resolution: "@angular/router@npm:12.2.17"
-  dependencies:
-    tslib: ^2.2.0
-  peerDependencies:
-    "@angular/common": 12.2.17
-    "@angular/core": 12.2.17
-    "@angular/platform-browser": 12.2.17
-    rxjs: ^6.5.3 || ^7.0.0
-  checksum: e5389c95a05ca08817b91fc366363f70d56f0f76865bae4058d059c350ac6d4a4a508f220770196510dc2003ada96f6ae88ee1de13f2a9e289c5e03a91e26efd
-  languageName: node
-  linkType: hard
-
-"@angular/router@npm:^13.3.0":
-  version: 13.4.0
-  resolution: "@angular/router@npm:13.4.0"
+"@angular/router@npm:^16.0.0":
+  version: 16.0.0
+  resolution: "@angular/router@npm:16.0.0"
   dependencies:
     tslib: ^2.3.0
   peerDependencies:
-    "@angular/common": 13.4.0
-    "@angular/core": 13.4.0
-    "@angular/platform-browser": 13.4.0
+    "@angular/common": 16.0.0
+    "@angular/core": 16.0.0
+    "@angular/platform-browser": 16.0.0
     rxjs: ^6.5.3 || ^7.4.0
-  checksum: fcb10b96fcec58c208fa58458d21ff6e1999b1afa873321037c8aaf8762588483d824a6fa121a92a716689aad87a89e07eb5f3da05c83ba2e8f95cae9deb218e
+  checksum: 64e9d04f4b69d7bd7faf3a0a307c38909e5c28b2290ccf3d40846dcb975867c6ba5b705b822a0deca3723391e6444a5d6b0d094f474efe922990f494e57280a2
   languageName: node
   linkType: hard
 
@@ -4623,7 +4609,7 @@ __metadata:
     "@angular/forms": ^12.2.0
     "@angular/platform-browser": ^12.2.0
     "@angular/platform-browser-dynamic": ^12.2.0
-    "@angular/router": ^12.2.0
+    "@angular/router": ^16.0.0
     "@types/jasmine": ~3.10.3
     "@types/node": ^17.0.8
     "@typescript-eslint/eslint-plugin": 4.33.0
@@ -4659,7 +4645,7 @@ __metadata:
     "@angular/forms": ^13.3.0
     "@angular/platform-browser": ^13.3.0
     "@angular/platform-browser-dynamic": ^13.3.0
-    "@angular/router": ^13.3.0
+    "@angular/router": ^16.0.0
     "@types/jasmine": ~3.10.0
     "@types/node": ^12.11.1
     "@typescript-eslint/eslint-plugin": ^5.0.0
