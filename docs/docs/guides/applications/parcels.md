@@ -26,8 +26,44 @@ Up to now, only JavaScript **UMD scripts** can be used as parcel application ass
 
 We provide an extensive list of templates to build your own parcel application using your favourite framework:
 * [React](https://github.com/micro-lc/react-template),
-* Angular [12](https://github.com/micro-lc/angular12-template), [13](https://github.com/micro-lc/angular13-template) <!--, and [14](https://github.com/micro-lc/angular14-template), -->
+* Angular [12](https://github.com/micro-lc/angular12-template), [13](https://github.com/micro-lc/angular13-template), and [14](https://github.com/micro-lc/angular14-template),
 * more are coming soon...
+
+:::caution
+If you are using **Angular** parcels, remember that the framework needs 
+[zone.js](https://github.com/angular/angular/tree/main/packages/zone.js) to work, which is not bundled in <micro-lc></micro-lc>.
+
+Therefore, you need to import it as a `<script>` in you micro-lc entrypoint before any micro-lc related module. For
+example:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  [...]
+
+  <!-- highlight-next-line -->
+  <script
+    <!-- highlight-next-line -->
+    type="module"
+    <!-- highlight-next-line -->
+    src="https://cdn.jsdelivr.net/npm/zone.js@0.13.0/dist/zone.min.js"
+    <!-- highlight-next-line -->
+  ></script>
+
+  <script 
+    type="module" 
+    src="https://cdn.jsdelivr.net/npm/@micro-lc/orchestrator@latest/dist/micro-lc.production.js"
+  ></script>
+</head>
+
+[...]
+
+</html>
+```
+:::
 
 ## Usage
 
