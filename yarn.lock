@@ -813,35 +813,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/platform-browser@npm:^12.2.0":
-  version: 12.2.17
-  resolution: "@angular/platform-browser@npm:12.2.17"
-  dependencies:
-    tslib: ^2.2.0
-  peerDependencies:
-    "@angular/animations": 12.2.17
-    "@angular/common": 12.2.17
-    "@angular/core": 12.2.17
-  peerDependenciesMeta:
-    "@angular/animations":
-      optional: true
-  checksum: fdc2aaade5c323b570aa8095f24db696c2948982ecfd184af6f409507c3574190fde25ed2ed4435cb459564e4d888aa37841d5be858f246e42852ab1d9d617c6
-  languageName: node
-  linkType: hard
-
-"@angular/platform-browser@npm:^13.3.0":
-  version: 13.4.0
-  resolution: "@angular/platform-browser@npm:13.4.0"
+"@angular/platform-browser@npm:^16.0.1":
+  version: 16.0.1
+  resolution: "@angular/platform-browser@npm:16.0.1"
   dependencies:
     tslib: ^2.3.0
   peerDependencies:
-    "@angular/animations": 13.4.0
-    "@angular/common": 13.4.0
-    "@angular/core": 13.4.0
+    "@angular/animations": 16.0.1
+    "@angular/common": 16.0.1
+    "@angular/core": 16.0.1
   peerDependenciesMeta:
     "@angular/animations":
       optional: true
-  checksum: c71980d2bce66fb58e46b3fba9ca6bf7ee4c048857401df08b67d27a85997cf4a94cc0c5116a617452c59deb2800e31102de6906b8d03049e92a9e15e1be5019
+  checksum: 0de71e07961ff6fbe846963fa3ec034347e502717982f2c99404d12b7c81ff0328f48a89cb36c41ee7606f93dc8c928088dfa4ce63a826bfec8d707a947a5325
   languageName: node
   linkType: hard
 
@@ -4699,7 +4683,7 @@ __metadata:
     "@angular/compiler-cli": ^12.0.0
     "@angular/core": ^12.2.0
     "@angular/forms": ^12.2.0
-    "@angular/platform-browser": ^12.2.0
+    "@angular/platform-browser": ^16.0.1
     "@angular/platform-browser-dynamic": ^12.2.0
     "@angular/router": ^12.2.0
     "@types/jasmine": ~3.10.3
@@ -4735,7 +4719,7 @@ __metadata:
     "@angular/compiler-cli": ^13.3.0
     "@angular/core": ^13.3.0
     "@angular/forms": ^13.3.0
-    "@angular/platform-browser": ^13.3.0
+    "@angular/platform-browser": ^16.0.1
     "@angular/platform-browser-dynamic": ^13.3.0
     "@angular/router": ^13.3.0
     "@types/jasmine": ~3.10.0
