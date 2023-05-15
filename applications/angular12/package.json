@@ -9,7 +9,7 @@
     "lint": "ng lint"
   },
   "dependencies": {
-    "@angular/animations": "^12.2.0",
+    "@angular/animations": "^16.0.1",
     "@angular/common": "^12.2.0",
     "@angular/compiler": "^12.2.0",
     "@angular/core": "^12.2.0",
