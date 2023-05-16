@@ -785,31 +785,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/platform-browser-dynamic@npm:^12.2.0":
-  version: 12.2.17
-  resolution: "@angular/platform-browser-dynamic@npm:12.2.17"
-  dependencies:
-    tslib: ^2.2.0
-  peerDependencies:
-    "@angular/common": 12.2.17
-    "@angular/compiler": 12.2.17
-    "@angular/core": 12.2.17
-    "@angular/platform-browser": 12.2.17
-  checksum: 91fe1152a0e92f79110588d37b7108ca2df7aad396fc8de5e7dc347c09901ced760778f918b220372738f2a77a2dfa1c305e60ca1c2d787db8c5b90ed0288685
-  languageName: node
-  linkType: hard
-
-"@angular/platform-browser-dynamic@npm:^13.3.0":
-  version: 13.4.0
-  resolution: "@angular/platform-browser-dynamic@npm:13.4.0"
+"@angular/platform-browser-dynamic@npm:^16.0.1":
+  version: 16.0.1
+  resolution: "@angular/platform-browser-dynamic@npm:16.0.1"
   dependencies:
     tslib: ^2.3.0
   peerDependencies:
-    "@angular/common": 13.4.0
-    "@angular/compiler": 13.4.0
-    "@angular/core": 13.4.0
-    "@angular/platform-browser": 13.4.0
-  checksum: 14ad72f9cc27a620a6969f9fa02fbe940c57255cb4bffdeb4ca128151e13441c07d9207ab0ff2e6099a934b7d4005442f6e623cefbbe799434932316872e83ce
+    "@angular/common": 16.0.1
+    "@angular/compiler": 16.0.1
+    "@angular/core": 16.0.1
+    "@angular/platform-browser": 16.0.1
+  checksum: 1c6cc78f14f548772377a15421e84b81b2d971b9368e94cdd0a4ba04832e1c4cfb8cf909ca4974c7fbf878ebdec5c0a8b783c47a6b3f43ee1ed8b608ebf10abd
   languageName: node
   linkType: hard
 
@@ -4672,7 +4658,7 @@ __metadata:
     "@angular/core": ^12.2.0
     "@angular/forms": ^12.2.0
     "@angular/platform-browser": ^12.2.0
-    "@angular/platform-browser-dynamic": ^12.2.0
+    "@angular/platform-browser-dynamic": ^16.0.1
     "@angular/router": ^12.2.0
     "@types/jasmine": ~3.10.3
     "@types/node": ^17.0.8
@@ -4708,7 +4694,7 @@ __metadata:
     "@angular/core": ^13.3.0
     "@angular/forms": ^13.3.0
     "@angular/platform-browser": ^13.3.0
-    "@angular/platform-browser-dynamic": ^13.3.0
+    "@angular/platform-browser-dynamic": ^16.0.1
     "@angular/router": ^13.3.0
     "@types/jasmine": ~3.10.0
     "@types/node": ^12.11.1
