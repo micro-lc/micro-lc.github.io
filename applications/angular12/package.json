@@ -15,7 +15,7 @@
     "@angular/core": "^12.2.0",
     "@angular/forms": "^12.2.0",
     "@angular/platform-browser": "^12.2.0",
-    "@angular/platform-browser-dynamic": "^12.2.0",
+    "@angular/platform-browser-dynamic": "^15.2.9",
     "@angular/router": "^12.2.0",
     "rxjs": "~6.6.0",
     "single-spa": ">=4.0.0",
