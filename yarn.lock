@@ -660,39 +660,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/compiler-cli@npm:^12.0.0":
-  version: 12.2.17
-  resolution: "@angular/compiler-cli@npm:12.2.17"
-  dependencies:
-    "@babel/core": ^7.8.6
-    "@babel/types": ^7.8.6
-    canonical-path: 1.0.0
-    chokidar: ^3.0.0
-    convert-source-map: ^1.5.1
-    dependency-graph: ^0.11.0
-    magic-string: ^0.25.0
-    minimist: ^1.2.0
-    reflect-metadata: ^0.1.2
-    semver: ^7.0.0
-    source-map: ^0.6.1
-    sourcemap-codec: ^1.4.8
-    tslib: ^2.2.0
-    yargs: ^17.0.0
-  peerDependencies:
-    "@angular/compiler": 12.2.17
-    typescript: ">=4.2.3 <4.4"
-  bin:
-    ivy-ngcc: ngcc/main-ivy-ngcc.js
-    ng-xi18n: src/extract_i18n.js
-    ngc: src/main.js
-    ngcc: ngcc/main-ngcc.js
-  checksum: e7593a7a724bcccf0a41556b140e5d753c4c9c9eec0c7b5bcab1963fe39b54e3a0a30fe8217bb8022e3a0c113ec39236315c05753ea4568819a86ef04e4e547b
-  languageName: node
-  linkType: hard
-
-"@angular/compiler-cli@npm:^13.3.0":
-  version: 13.4.0
-  resolution: "@angular/compiler-cli@npm:13.4.0"
+"@angular/compiler-cli@npm:^14.3.0":
+  version: 14.3.0
+  resolution: "@angular/compiler-cli@npm:14.3.0"
   dependencies:
     "@babel/core": ^7.17.2
     chokidar: ^3.0.0
@@ -705,13 +675,13 @@ __metadata:
     tslib: ^2.3.0
     yargs: ^17.2.1
   peerDependencies:
-    "@angular/compiler": 13.4.0
-    typescript: ">=4.4.2 <4.7"
+    "@angular/compiler": 14.3.0
+    typescript: ">=4.6.2 <4.9"
   bin:
     ng-xi18n: bundles/src/bin/ng_xi18n.js
     ngc: bundles/src/bin/ngc.js
     ngcc: bundles/ngcc/main-ngcc.js
-  checksum: 1881cbed251941167fce7fb5dc2a08a1706c3fe69590033ae9fbb91f1d113106b04798ba8b3847db12b45925fdbe2972d89bbfe64236c1db84d2a30e02aedd63
+  checksum: 4c67467680856b8a3fed3105ef178b851435fadb265e83cdc54374d0beda3d5cd4020179b9d2450dbf707f3b72d0e331d2f5a5045641b49d58c269b95c1acb58
   languageName: node
   linkType: hard
 
@@ -988,7 +958,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:>=7.2.2, @babel/core@npm:^7.1.0, @babel/core@npm:^7.11.1, @babel/core@npm:^7.12.3, @babel/core@npm:^7.16.0, @babel/core@npm:^7.17.2, @babel/core@npm:^7.18.6, @babel/core@npm:^7.19.6, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5, @babel/core@npm:^7.8.0, @babel/core@npm:^7.8.6":
+"@babel/core@npm:>=7.2.2, @babel/core@npm:^7.1.0, @babel/core@npm:^7.11.1, @babel/core@npm:^7.12.3, @babel/core@npm:^7.16.0, @babel/core@npm:^7.17.2, @babel/core@npm:^7.18.6, @babel/core@npm:^7.19.6, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5, @babel/core@npm:^7.8.0":
   version: 7.21.8
   resolution: "@babel/core@npm:7.21.8"
   dependencies:
@@ -2825,7 +2795,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.0.0, @babel/types@npm:^7.12.6, @babel/types@npm:^7.12.7, @babel/types@npm:^7.14.5, @babel/types@npm:^7.14.8, @babel/types@npm:^7.16.7, @babel/types@npm:^7.16.8, @babel/types@npm:^7.18.6, @babel/types@npm:^7.18.9, @babel/types@npm:^7.20.0, @babel/types@npm:^7.20.2, @babel/types@npm:^7.20.5, @babel/types@npm:^7.20.7, @babel/types@npm:^7.21.0, @babel/types@npm:^7.21.4, @babel/types@npm:^7.21.5, @babel/types@npm:^7.3.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4, @babel/types@npm:^7.7.0, @babel/types@npm:^7.8.3, @babel/types@npm:^7.8.6":
+"@babel/types@npm:^7.0.0, @babel/types@npm:^7.12.6, @babel/types@npm:^7.12.7, @babel/types@npm:^7.14.5, @babel/types@npm:^7.14.8, @babel/types@npm:^7.16.7, @babel/types@npm:^7.16.8, @babel/types@npm:^7.18.6, @babel/types@npm:^7.18.9, @babel/types@npm:^7.20.0, @babel/types@npm:^7.20.2, @babel/types@npm:^7.20.5, @babel/types@npm:^7.20.7, @babel/types@npm:^7.21.0, @babel/types@npm:^7.21.4, @babel/types@npm:^7.21.5, @babel/types@npm:^7.3.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4, @babel/types@npm:^7.7.0, @babel/types@npm:^7.8.3":
   version: 7.21.5
   resolution: "@babel/types@npm:7.21.5"
   dependencies:
@@ -4668,7 +4638,7 @@ __metadata:
     "@angular/cli": ^12.0.0
     "@angular/common": ^12.2.0
     "@angular/compiler": ^12.2.0
-    "@angular/compiler-cli": ^12.0.0
+    "@angular/compiler-cli": ^14.3.0
     "@angular/core": ^12.2.0
     "@angular/forms": ^12.2.0
     "@angular/platform-browser": ^12.2.0
@@ -4704,7 +4674,7 @@ __metadata:
     "@angular/cli": ^13.3.11
     "@angular/common": ^13.3.0
     "@angular/compiler": ^13.3.0
-    "@angular/compiler-cli": ^13.3.0
+    "@angular/compiler-cli": ^14.3.0
     "@angular/core": ^13.3.0
     "@angular/forms": ^13.3.0
     "@angular/platform-browser": ^13.3.0
@@ -8783,13 +8753,6 @@ __metadata:
   version: 1.0.30001486
   resolution: "caniuse-lite@npm:1.0.30001486"
   checksum: 5e8c2ba2679e4ad17dea6d2761a6449b814441bfeac81af6cc9d58af187df6af4b79b27befcbfc4a557e720b21c0399a7d1911c8705922e38938dcc0f40b5d4b
-  languageName: node
-  linkType: hard
-
-"canonical-path@npm:1.0.0":
-  version: 1.0.0
-  resolution: "canonical-path@npm:1.0.0"
-  checksum: ed0fa05c2b63ffcda14b63def5ea3c323a6a17282560f02b9cb8c9154fb1fcd3c20dd836deea64382e81088f4f74476022cbd24e422fa1e99e63863e06836f8c
   languageName: node
   linkType: hard
 
@@ -26764,7 +26727,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:^17.0.0, yargs@npm:^17.2.1, yargs@npm:^17.6.2":
+"yargs@npm:^17.2.1, yargs@npm:^17.6.2":
   version: 17.7.2
   resolution: "yargs@npm:17.7.2"
   dependencies:
