@@ -556,18 +556,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/animations@npm:^12.2.0":
-  version: 12.2.17
-  resolution: "@angular/animations@npm:12.2.17"
-  dependencies:
-    tslib: ^2.2.0
-  peerDependencies:
-    "@angular/core": 12.2.17
-  checksum: 7c4f6bd01a857cbda70edd61c59692fc8f2ba97f05f0921dc0767231605c773c0462ab1e21c58c13d128b60fe4b65a7aad5556981df6c721a0093f46f306619a
-  languageName: node
-  linkType: hard
-
-"@angular/animations@npm:^13.3.0":
+"@angular/animations@npm:^13.4.0":
   version: 13.4.0
   resolution: "@angular/animations@npm:13.4.0"
   dependencies:
@@ -4614,7 +4603,7 @@ __metadata:
     "@angular-eslint/eslint-plugin-template": ^12.0.0
     "@angular-eslint/schematics": ^12.0.0
     "@angular-eslint/template-parser": ^12.0.0
-    "@angular/animations": ^12.2.0
+    "@angular/animations": ^13.4.0
     "@angular/cli": ^12.0.0
     "@angular/common": ^12.2.0
     "@angular/compiler": ^12.2.0
@@ -4650,7 +4639,7 @@ __metadata:
     "@angular-eslint/eslint-plugin-template": ^13.0.0
     "@angular-eslint/schematics": ^13.0.0
     "@angular-eslint/template-parser": ^13.0.0
-    "@angular/animations": ^13.3.0
+    "@angular/animations": ^13.4.0
     "@angular/cli": ^13.3.11
     "@angular/common": ^13.3.0
     "@angular/compiler": ^13.3.0
