@@ -35,7 +35,7 @@
     "@angular/compiler-cli": "^13.3.0",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.26.0",
     "single-spa": ">=4.0.0",
