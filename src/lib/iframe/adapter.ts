@@ -1,6 +1,8 @@
 import type { Message, OptionMessage, OutgoingNewConfigurationMessage } from './messages'
 
-const PREVIEW_IFRAME_URL = new URL('https://unpkg.com/@micro-lc/preview@0.4.1/website/index.html')
+const PREVIEW_IFRAME_URL = new URL(
+  `https://unpkg.com/@micro-lc/preview@${process.env.MICRO_LC_PREVIEW_VERSION}/website/index.html`
+)
 
 const fromConfigToPluginConfiguration = (input: Message): OptionMessage | OutgoingNewConfigurationMessage => {
   if (input.type !== 'new-configuration') {

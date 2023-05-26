@@ -5,6 +5,7 @@ declare global {
     interface ProcessEnv {
       MICRO_LC_LAYOUT_VERSION: string
       MICRO_LC_ORCHESTRATOR_VERSION: string
+      MICRO_LC_PREVIEW_VERSION: string
     }
   }
 

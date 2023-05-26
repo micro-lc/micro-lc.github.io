@@ -92,7 +92,7 @@ export const defaultConfiguration: Config = {
         tag: 'mlc-layout',
       },
     ],
-    sources: 'https://cdn.jsdelivr.net/npm/@micro-lc/layout@latest/dist/mlc-layout.js',
+    sources: 'https://cdn.jsdelivr.net/npm/@micro-lc/layout@~2.0/dist/mlc-layout.js',
   },
   settings: {
     defaultUrl: '/home',
