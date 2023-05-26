@@ -11,7 +11,7 @@ Logical web component that can be included in applications layout to inject an [
 compatible theme.
 
 :::caution
-It only works on components using [Ant Design Dynamic Theme](https://ant.design/docs/react/customize-theme-variable).
+It only works on components using [Ant Design Dynamic Theme](https://4x.ant.design/docs/react/customize-theme-variable).
 :::
 
 ```mdx-code-block
@@ -28,7 +28,7 @@ It only works on components using [Ant Design Dynamic Theme](https://ant.design/
 ## How it works
 
 The web component calculates the CSS variables needed by 
-[Ant Design Dynamic Theme](https://ant.design/docs/react/customize-theme-variable) from a set of base colors 
+[Ant Design Dynamic Theme](https://4x.ant.design/docs/react/customize-theme-variable) from a set of base colors 
 (namely, primary, info, success, processing, error, and warning colors). These variables are then injected globally
 through <micro-lc></micro-lc> API [setStyle method](../../api/micro-lc-api/extensions.md#csssetstyle). 
 
