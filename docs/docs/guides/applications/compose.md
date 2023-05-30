@@ -234,12 +234,12 @@ content:
 ```yaml
 layout:
   content: |
-    <div
+    <my-component
       .stringProp=${"foo"}
-      .numberProp=${4}
+      .numberProp=${3}
       .arrayProp=${["foo", "bar"]}
       .objectProp=${{"foo": "bar"}}
-    ></div>
+    ></my-component>
 
 # myComponent.stringProp 👉 Output: "foo"
 # myComponent.numberProp 👉 Output: 3
@@ -437,6 +437,8 @@ shared:
 layout:
   content:
     tag: my-component
+  attributes:
+    id: my-div
 
 # myComponent.foo 👉 Output: "bar"
 ```
@@ -451,7 +453,7 @@ shared:
 
 layout:
   content: |
-    <div id="my-div" .foo=${foo}></div>
+    <my-component id="my-div" .foo=${foo}></my-component>
 
 # myComponent.foo 👉 Output: "bar"
 ```
