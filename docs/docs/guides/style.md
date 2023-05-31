@@ -30,6 +30,15 @@ other node in a shadow root, even if it is placed in content –.
 On the other hand, if <micro-lc></micro-lc> Shadow DOM is disabled, both layout and content are placed in regular DOM
 and are always affected by the same styling rules.
 
+:::caution
+Although partially supported in [micro-lc v1](https://micro-lc.io/1.0.0/docs/introduction/#dark-mode),
+v2 does operate a complete [separation of concerns](../concepts/separation-of-concerns.md) between layout,
+routing, and UI components. `dark mode` features are completely delegated to layout and micro-lc API application
+interactions.
+
+Sample [micro-lc components](../../add-ons/components.md) do not support dark mode
+:::
+
 ### Style declarations
 
 #### `style` attribute
