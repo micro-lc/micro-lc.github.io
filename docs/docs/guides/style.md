@@ -36,7 +36,7 @@ v2 does operate a complete [separation of concerns](../concepts/separation-of-co
 routing, and UI components. `dark mode` features are completely delegated to layout and micro-lc API application
 interactions.
 
-Sample [micro-lc components](../../add-ons/components.md) do not support dark mode
+Sample [micro-lc components](../../add-ons/components/index.md) do not support dark mode
 :::
 
 ### Style declarations
