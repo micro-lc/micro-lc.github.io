@@ -1,4 +1,4 @@
-name: Main
+name: Pull Request
 
 env:
   context: './'
@@ -14,5 +14,30 @@ jobs:
   checks:
     uses: micro-lc/documentation/.github/workflows/checks.yml@main
 
+  file-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      test-files: ${{ steps.filter.outputs.test-files }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            test-files:
+              - 'yarn.lock'
+              - package.json
+              - '.github/workflows/**'
+              - 'tests/**'
+              - 'src/**'
+              - 'applications/**'
+
   build:
     uses: micro-lc/documentation/.github/workflows/build.yml@main
+
+  e2e-tests:
+    needs:
+      - build
+      - file-changes
+    if: needs.file-changes.outputs.test-files == 'true'
+    uses: micro-lc/documentation/.github/workflows/playwright-tests.yml@main

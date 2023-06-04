@@ -1,0 +1,44 @@
+name: Checks
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        default: 16.x
+        required: false
+        type: string
+
+jobs:
+  playwright-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Use Node.js ${{ inputs.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: yarn
+
+      - name: Restore Build Cache
+        id: restore-build-cache
+        uses: actions/cache/restore@v3
+        with:
+          path: ./build
+          key: ${{ runner.os }}-${{ github.sha }}-build
+
+      - name: Install
+        run: yarn install --immutable
+
+      - name: Install Playwright
+        run: yarn dlx playwright install --with-deps
+
+      - name: Run your tests
+        run: yarn test:e2e
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report
