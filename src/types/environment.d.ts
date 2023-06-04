@@ -13,5 +13,6 @@ declare global {
     MonacoEnvironment: {
       getWorker(_: unknown, label: string): Worker | Promise<Worker>
     }
+    __MICRO_LC_PREVIEW_LOG_LEVEL__?: 'debug'
   }
 }

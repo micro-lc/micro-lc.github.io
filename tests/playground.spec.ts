@@ -5,7 +5,7 @@ import test, { expect } from '@playwright/test'
 
 type Helpers = Pick<PlaywrightTestArgs, 'page'> & Pick<PlaywrightWorkerOptions, 'browserName'>
 
-const base = 'http://localhost:3000'
+const base = 'https://localhost:3000'
 const playground = `${base}/playground/`
 
 test(`

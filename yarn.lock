@@ -5394,6 +5394,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@micro-lc/post-channel@npm:^0.1.0-rc1":
+  version: 0.1.0-rc1
+  resolution: "@micro-lc/post-channel@npm:0.1.0-rc1"
+  peerDependencies:
+    rxjs: ^7
+  checksum: 3acdeebd1123fd47733aa04ffc24d361e5522acb2b722ecd53f0703d5f24fcac58ffc89cd79bba9016a06f715a1fa1e76a82f2c1bb1fa74cb7080f44d2f47d12
+  languageName: node
+  linkType: hard
+
 "@micro-lc/react-browser-router@workspace:applications/react-browser-router":
   version: 0.0.0-use.local
   resolution: "@micro-lc/react-browser-router@workspace:applications/react-browser-router"
@@ -6703,7 +6712,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express@npm:*, @types/express@npm:^4.17.13":
+"@types/express@npm:*, @types/express@npm:^4.17.13, @types/express@npm:^4.17.17":
   version: 4.17.17
   resolution: "@types/express@npm:4.17.17"
   dependencies:
@@ -12019,10 +12028,12 @@ __metadata:
     "@emotion/styled": ^11.11.0
     "@mdx-js/react": 1.6.22
     "@micro-lc/interfaces": ^1.0.2
+    "@micro-lc/post-channel": ^0.1.0-rc1
     "@mui/material": ^5.13.5
     "@playwright/test": ^1.35.0
     "@tsconfig/docusaurus": ^1.0.7
     "@types/eslint": ^8.37.0
+    "@types/express": ^4.17.17
     "@types/fs-extra": ^11.0.1
     "@types/glob": ^8.1.0
     "@types/js-yaml": ^4.0.5
@@ -12048,6 +12059,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: ^1.1.2
     eslint-plugin-typescript-sort-keys: ^2.3.0
     eslint-visitor-keys: ^3.4.0
+    express: ^4.18.2
     fs-extra: ^11.1.1
     glob: ^10.2.6
     husky: ^8.0.3
@@ -13870,7 +13882,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:^4.17.1, express@npm:^4.17.3":
+"express@npm:^4.17.1, express@npm:^4.17.3, express@npm:^4.18.2":
   version: 4.18.2
   resolution: "express@npm:4.18.2"
   dependencies:
