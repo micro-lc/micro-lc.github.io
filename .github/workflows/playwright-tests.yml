@@ -13,7 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
+      - name: TLS setup
+        run:
+          apt update
+          apt install -y libnss3-tools
+          mkdir -p $HOME/.pki/nssdb
+          certutil -d sql:$HOME/.pki/nssdb -N --empty-password
+
+          curl -JL "https://dl.filippo.io/mkcert/latest?for=linux/amd64" -o mkcert
+          chmod +x mkcert
+          cp ./mkcert /usr/local/bin/
+          mkcert -install
+
       - name: Use Node.js ${{ inputs.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -28,7 +40,9 @@ jobs:
           key: ${{ runner.os }}-${{ github.sha }}-build
 
       - name: Install
-        run: yarn install --immutable
+        run:
+          yarn install --immutable
+          yarn tls:config
 
       - name: Install Playwright
         run: yarn dlx playwright install --with-deps
