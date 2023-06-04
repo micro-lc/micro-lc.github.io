@@ -16,15 +16,15 @@ jobs:
 
       - name: TLS setup
         run: |
-          apt update
-          apt install -y libnss3-tools
+          sudo apt update
+          sudo apt install -y libnss3-tools
           mkdir -p $HOME/.pki/nssdb
           certutil -d sql:$HOME/.pki/nssdb -N --empty-password
 
           curl -JL "https://dl.filippo.io/mkcert/latest?for=linux/amd64" -o mkcert
           chmod +x mkcert
-          cp ./mkcert /usr/local/bin/
-          mkcert -install
+          sudo cp ./mkcert /usr/local/bin/
+          sudo mkcert -install
 
       - name: Use Node.js ${{ inputs.node-version }}
         uses: actions/setup-node@v3
