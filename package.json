@@ -22,6 +22,7 @@
     "start": "docusaurus start",
     "build": "run-s prepare build-docusaurus",
     "test:e2e": "playwright test",
+    "tls:config": "echo \"TODO\"",
     "serve": "docusaurus serve",
     "check:types": "yarn tsc --noEmit && echo \"✓ check types\"",
     "postinstall": "husky install"
