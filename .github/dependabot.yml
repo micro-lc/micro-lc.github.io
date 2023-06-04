@@ -14,3 +14,4 @@ updates:
         versions: ["17.x"]
       - dependency-name: "@mdx-js/react"
         update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular/*"
