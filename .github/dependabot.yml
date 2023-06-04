@@ -16,3 +16,4 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: "@angular/*"
       - dependency-name: "@angular-eslint/*"
+      - dependency-name: "@angular-devkit/*"
