@@ -4689,7 +4689,7 @@ __metadata:
   resolution: "@micro-lc/react-browser-router@workspace:applications/react-browser-router"
   dependencies:
     "@craco/craco": ^7.1.0
-    "@types/node": ^20.2.1
+    "@types/node": ^20.2.5
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     react: ^18.2.0
@@ -4705,7 +4705,7 @@ __metadata:
   resolution: "@micro-lc/react-hash-router@workspace:applications/react-hash-router"
   dependencies:
     "@craco/craco": ^7.1.0
-    "@types/node": ^20.2.1
+    "@types/node": ^20.2.5
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     react: ^18.2.0
@@ -6135,10 +6135,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.2.1":
-  version: 20.2.1
-  resolution: "@types/node@npm:20.2.1"
-  checksum: ed774afa6e9b4ad7868ed0182a8ca40ad0dd54815a70d3051b23fa850f3bca6bea4d0cb55e1fc769666786ac2cc4c1b37aeade313cb4c4634133f18ebcded496
+"@types/node@npm:*, @types/node@npm:^20.2.5":
+  version: 20.2.5
+  resolution: "@types/node@npm:20.2.5"
+  checksum: 38ce7c7e9d76880dc632f71d71e0d5914fcda9d5e9a7095d6c339abda55ca4affb0f2a882aeb29398f8e09d2c5151f0b6586c81c8ccdfe529c34b1ea3337425e
   languageName: node
   linkType: hard
 
@@ -10919,7 +10919,7 @@ __metadata:
     "@types/glob": ^8.1.0
     "@types/js-yaml": ^4.0.5
     "@types/json-schema": ^7.0.11
-    "@types/node": ^20.2.1
+    "@types/node": ^20.2.5
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     "@typescript-eslint/eslint-plugin": ^5.59.6
@@ -13567,22 +13567,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.2.5":
-  version: 10.2.5
-  resolution: "glob@npm:10.2.5"
-  dependencies:
-    foreground-child: ^3.1.0
-    jackspeak: ^2.0.3
-    minimatch: ^9.0.0
-    minipass: ^5.0.0 || ^6.0.2
-    path-scurry: ^1.7.0
-  bin:
-    glob: dist/cjs/src/bin.js
-  checksum: 54d2b629c467953317c175903a049819577bcce679d437ff1ad43bf654091d3564e796351d705463b26a0194234acdea7f4de64993b0544ea86275c000498026
-  languageName: node
-  linkType: hard
-
-"glob@npm:^10.2.6":
+"glob@npm:^10.2.5, glob@npm:^10.2.6":
   version: 10.2.6
   resolution: "glob@npm:10.2.6"
   dependencies:
@@ -17569,15 +17554,6 @@ __metadata:
   dependencies:
     brace-expansion: ^2.0.1
   checksum: 7564208ef81d7065a370f788d337cd80a689e981042cb9a1d0e6580b6c6a8c9279eba80010516e258835a988363f99f54a6f711a315089b8b42694f5da9d0d77
-  languageName: node
-  linkType: hard
-
-"minimatch@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "minimatch@npm:9.0.0"
-  dependencies:
-    brace-expansion: ^2.0.1
-  checksum: 7bd57899edd1d1b0560f50b5b2d1ea4ad2a366c5a2c8e0a943372cf2f200b64c256bae45a87a80915adbce27fa36526264296ace0da57b600481fe5ea3e372e5
   languageName: node
   linkType: hard
 
