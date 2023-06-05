@@ -282,3 +282,46 @@ all `<p>` elements in the same DOM of the call will be red.
 ```mdx-code-block
 </div>
 ```
+
+## Dark mode
+
+Reference this --> https://ionicframework.com/docs/theming/dark-mode
+
+### UA --> add a `<meta>` with `color-scheme` in `index.html` 
+
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#standard_metadata_names_defined_in_the_html_specification
+- https://caniuse.com/mdn-html_elements_meta_name_color-scheme
+
+### `prefers-color-scheme` as CSS media query to catch OS color preference
+
+Asset:
+
+```css
+@media (prefers-color-scheme: light) {
+  body {
+    --text-color: #eee;
+    --bkg-color: #121212;
+  }
+}
+```
+
+Component:
+
+```js
+console.log(window.matchMedia('(prefers-color-scheme: light)')) // --> works
+```
+
+The component sees the CSS variables correctly
+
+- https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
+- https://caniuse.com/prefers-color-scheme
+
+
+### Switching theme
+
+Set in micro-lc API
+
+Set in CSS as class of `<body>` or attribute of `html` --> CSS selectors in a component in shadow root depending on these
+values will not work
+
+OUR TAKE SHOULD BE TO ALWAYS USE CSS VARIABLES
