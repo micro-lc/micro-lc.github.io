@@ -5213,19 +5213,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.34.0":
-  version: 1.34.0
-  resolution: "@playwright/test@npm:1.34.0"
+"@playwright/test@npm:^1.34.3":
+  version: 1.34.3
+  resolution: "@playwright/test@npm:1.34.3"
   dependencies:
     "@types/node": "*"
     fsevents: 2.3.2
-    playwright-core: 1.34.0
+    playwright-core: 1.34.3
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: 269074a9b58370633575b99d95135edcd8b5351c19f82b88392f9fc6b0f2dc3687e631d59864aa0cffa382534dd83163069569e67972b4fc63d1bef3fb7372d8
+  checksum: b387d85f09d275ed49aac4f600c0657205b4c20979108a52e7072ef0c43ea9b2d3d6d7206869230634680ab1f8e7b03373c63555899da4293cae700320bd31e1
   languageName: node
   linkType: hard
 
@@ -10912,7 +10912,7 @@ __metadata:
     "@mdx-js/react": 1.6.22
     "@micro-lc/interfaces": ^1.0.2
     "@mui/material": ^5.12.3
-    "@playwright/test": ^1.34.0
+    "@playwright/test": ^1.34.3
     "@tsconfig/docusaurus": ^1.0.7
     "@types/eslint": ^8.37.0
     "@types/fs-extra": ^11.0.1
@@ -19338,10 +19338,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.34.0":
-  version: 1.34.0
-  resolution: "playwright-core@npm:1.34.0"
-  checksum: 1821ab254b3c756e52c144c26cae7250dd5a1c779277cdd583bd289501d45cceaea40a8185ebf7eaa56b8291e4a042e3eef65f511da2306349c275794c9a582d
+"playwright-core@npm:1.34.3":
+  version: 1.34.3
+  resolution: "playwright-core@npm:1.34.3"
+  bin:
+    playwright-core: cli.js
+  checksum: eaf9e9b2d77b9726867dcbc641a1c72b0e8f680cdd71ff904366deea1c96141ff7563f6c6fb29f9975309d1b87dead97ea93f6f44953b59946882fb785b34867
   languageName: node
   linkType: hard
 
