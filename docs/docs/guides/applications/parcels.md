@@ -245,20 +245,23 @@ and [composed](./compose.md) DOM nodes (the content of `shared.properties` will 
 
 ### `injectBase`
 
-:::danger
+:::caution
 If your application `index.html` already has a `base` tag, this property **will not** override it. <micro-lc></micro-lc>
 will consider this plugin to have been built with prior knowledge of its configuration and deploy route.
+
+From `micro-lc` version 2.1.0, the `injectBase` property accepts also the value `override` which discards
+incoming bundled `base` tags and injects its own according with the `parcel` route settings.
 :::
 
-* Type: `boolean`
+* Type: `boolean` | `'override'`
 * Default: `false`
 
 Instructs <micro-lc></micro-lc> on whether to inject a [base tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) to
 allow application internal routing to behave as if it was deployed on the bundle selected root, or any root that was
 selected at build time.
 
-This property should be set to `true` only on applications that **do not have a hash router**. On applications without 
-internal routing, this property does not do anything.
+This property is meaningful if set to `true` or `'override'` only on applications that **do not have a hash router**. On applications without 
+internal routing, this property does provide any feature.
 
 :::tip
 For better compatibility, we recommend to choose `./` as build time public URL.
