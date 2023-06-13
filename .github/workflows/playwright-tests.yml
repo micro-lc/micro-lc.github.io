@@ -45,7 +45,7 @@ jobs:
           yarn tls:config
 
       - name: Install Playwright
-        run: yarn dlx playwright install --with-deps
+        run: yarn playwright install --with-deps
 
       - name: Run your tests
         run: yarn test:e2e
