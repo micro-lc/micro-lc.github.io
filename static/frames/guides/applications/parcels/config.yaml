@@ -28,6 +28,12 @@ layout:
             id: angular13
             label: Angular13
             type: application
+          - icon:
+              library: "@ant-design/icons-svg"
+              selector: HomeOutlined
+            id: vue3
+            label: Vue 3
+            type: application
 
 applications:
   react:
@@ -44,3 +50,8 @@ applications:
     route: ./angular13/
     injectBase: true
     entry: /applications/angular13/
+  vue3:
+    integrationMode: parcel
+    route: ./vue3/
+    injectBase: true
+    entry: /applications/vue/

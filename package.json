@@ -11,6 +11,7 @@
     "cleanup": "rimraf build node_modules static/applications applications/react-browser-router/build applications/react-hash-router/build applications/react-browser-router/node_modules applications/react-hash-router/node_modules",
     "rbr": "yarn workspace @micro-lc/react-browser-router",
     "rhr": "yarn workspace @micro-lc/react-hash-router",
+    "vue": "yarn workspace @micro-lc/vue3",
     "cspell": "cspell \"./docs/**\"",
     "lint:code": "eslint . --ext .mjs,.js,.jsx,.ts,.tsx --resolve-plugins-relative-to .",
     "lint:style": "stylelint \"**/*.{css}\" --allow-empty-input",

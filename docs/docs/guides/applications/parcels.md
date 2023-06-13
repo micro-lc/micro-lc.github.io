@@ -25,9 +25,10 @@ Up to now, only JavaScript **UMD scripts** can be used as parcel application ass
 > — [single-spa documentation](https://single-spa.js.org/docs/parcels-overview/#parcel-lifecycles)
 
 We provide an extensive list of templates to build your own parcel application using your favourite framework:
+
 * [React](https://github.com/micro-lc/react-template),
 * Angular [12](https://github.com/micro-lc/angular12-template), [13](https://github.com/micro-lc/angular13-template), and [14](https://github.com/micro-lc/angular14-template),
-* more are coming soon...
+* [Vue](https://github.com/micro-lc/vue3-template)
 
 :::caution
 If you are using **Angular** parcels, remember that the framework needs 
