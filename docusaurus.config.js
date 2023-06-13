@@ -33,6 +33,13 @@ const themeClassicConfig = {
 }
 
 const themeConfig = {
+  algolia: {
+    apiKey: 'e399ef2da8f8765f5229cf2921e28de4',
+    appId: 'KL8HIE3TXW',
+    contextualSearch: true,
+    indexName: 'micro-lc',
+    placeholder: 'Search for terms, features and more...',
+  },
   colorMode: {
     defaultMode: 'light',
     disableSwitch: true,
@@ -120,7 +127,10 @@ const config = {
   projectName: 'documentation',
   tagline: 'micro-lc & add-ons documentation',
   themeConfig,
-  themes: [['@docusaurus/theme-classic', themeClassicConfig]],
+  themes: [
+    ['@docusaurus/theme-classic', themeClassicConfig],
+    '@docusaurus/theme-search-algolia',
+  ],
   title: 'micro-lc',
   url: 'https://micro-lc.io',
 }
