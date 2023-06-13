@@ -20,7 +20,7 @@
     "rxjs": "~6.6.0",
     "single-spa": ">=4.0.0",
     "single-spa-angular": "^5.0.2",
-    "tslib": "^2.4.0",
+    "tslib": "^2.5.3",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
