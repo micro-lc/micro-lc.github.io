@@ -4928,7 +4928,7 @@ __metadata:
   resolution: "@micro-lc/react-browser-router@workspace:applications/react-browser-router"
   dependencies:
     "@craco/craco": ^7.1.0
-    "@types/node": ^20.2.1
+    "@types/node": ^20.2.5
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     react: ^18.2.0
@@ -4944,7 +4944,7 @@ __metadata:
   resolution: "@micro-lc/react-hash-router@workspace:applications/react-hash-router"
   dependencies:
     "@craco/craco": ^7.1.0
-    "@types/node": ^20.2.1
+    "@types/node": ^20.2.5
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     react: ^18.2.0
@@ -6374,10 +6374,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.2.1":
-  version: 20.2.1
-  resolution: "@types/node@npm:20.2.1"
-  checksum: ed774afa6e9b4ad7868ed0182a8ca40ad0dd54815a70d3051b23fa850f3bca6bea4d0cb55e1fc769666786ac2cc4c1b37aeade313cb4c4634133f18ebcded496
+"@types/node@npm:*, @types/node@npm:^20.2.5":
+  version: 20.2.5
+  resolution: "@types/node@npm:20.2.5"
+  checksum: 38ce7c7e9d76880dc632f71d71e0d5914fcda9d5e9a7095d6c339abda55ca4affb0f2a882aeb29398f8e09d2c5151f0b6586c81c8ccdfe529c34b1ea3337425e
   languageName: node
   linkType: hard
 
@@ -11192,7 +11192,7 @@ __metadata:
     "@types/glob": ^8.1.0
     "@types/js-yaml": ^4.0.5
     "@types/json-schema": ^7.0.11
-    "@types/node": ^20.2.1
+    "@types/node": ^20.2.5
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     "@typescript-eslint/eslint-plugin": ^5.59.6
