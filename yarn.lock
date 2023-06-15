@@ -5319,7 +5319,7 @@ __metadata:
     "@angular/platform-browser": ^12.2.0
     "@angular/platform-browser-dynamic": ^12.2.0
     "@angular/router": ^12.2.0
-    "@types/jasmine": ~3.10.3
+    "@types/jasmine": ~4.3.2
     "@types/node": ^17.0.8
     "@typescript-eslint/eslint-plugin": 4.33.0
     "@typescript-eslint/parser": 4.33.0
@@ -5355,7 +5355,7 @@ __metadata:
     "@angular/platform-browser": ^13.3.0
     "@angular/platform-browser-dynamic": ^13.3.0
     "@angular/router": ^13.3.0
-    "@types/jasmine": ~3.10.0
+    "@types/jasmine": ~4.3.2
     "@types/node": ^12.11.1
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": ^5.0.0
@@ -6811,10 +6811,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jasmine@npm:~3.10.0, @types/jasmine@npm:~3.10.3":
-  version: 3.10.8
-  resolution: "@types/jasmine@npm:3.10.8"
-  checksum: 4d275e8b4776799d85bf13427e26583ed875f5fa356e81236d7b33576316fa42d0d07d8905d135dab53bb3f2bce9fe2fa9566cc5aafea25f9fc0e14f0e750e95
+"@types/jasmine@npm:~4.3.2":
+  version: 4.3.2
+  resolution: "@types/jasmine@npm:4.3.2"
+  checksum: cb294f19ba27db20c3ea7172c38366b4eb3e93f186e42237cbe35e95c72342e0a1ce3e5c00fb1b2b40b5ee51d58a9320589556b6f898693a9d04769458d6e238
   languageName: node
   linkType: hard
 
