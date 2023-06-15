@@ -21,7 +21,7 @@
                 "selector": "GlobalOutlined"
               },
               "id": "browser",
-              "label": "React :: Browser router",
+              "label": "Browser router",
               "type": "application"
             },
             {
@@ -30,7 +30,7 @@
                 "library": "@ant-design/icons-svg",
                 "selector": "BorderlessTableOutlined"
               },
-              "label": "React :: Hash router",
+              "label": "Hash router",
               "type": "application"
             }
           ]
