@@ -11,14 +11,18 @@
     "cleanup": "rimraf build node_modules static/applications applications/react-browser-router/build applications/react-hash-router/build applications/react-browser-router/node_modules applications/react-hash-router/node_modules",
     "rbr": "yarn workspace @micro-lc/react-browser-router",
     "rhr": "yarn workspace @micro-lc/react-hash-router",
+    "vue": "yarn workspace @micro-lc/vue3",
     "cspell": "cspell \"./docs/**\"",
     "lint:code": "eslint . --ext .mjs,.js,.jsx,.ts,.tsx --resolve-plugins-relative-to .",
     "lint:style": "stylelint \"**/*.{css}\" --allow-empty-input",
     "lint": "NODE_OPTIONS=--max-old-space-size=10000 yarn run-p lint:code lint:style",
-    "build-applications": "yarn workspaces foreach --parallel --from '@micro-lc/react-*' run build",
+    "build-rbr": "yarn rbr build",
+    "build-rhr": "yarn rhr build",
+    "build-vue": "yarn vue build",
+    "build-applications": "run-p build-rbr build-rhr build-vue",
     "build-docusaurus": "docusaurus build",
     "copy-static": "ts-node scripts/copy-static.ts",
-    "prepare": "run-s build-applications copy-static",
+    "prepare": "run-s build-applications build-vue copy-static",
     "start": "docusaurus start",
     "build": "run-s prepare build-docusaurus",
     "test:e2e": "playwright test",
@@ -70,7 +74,7 @@
     "cspell": "^6.31.1",
     "docusaurus-plugin-remote-content": "^3.1.0",
     "docusaurus2-dotenv": "^1.4.0",
-    "eslint": "^8.39.0",
+    "eslint": "^8.42.0",
     "eslint-config-esnext": "^4.1.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
@@ -90,7 +94,7 @@
     "stylelint-config-standard": "^33.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "typescript": "5.0.4"
   },
   "engines": {
     "node": ">=16.17.0"
