@@ -1,8 +1,8 @@
 ---
-title: iFrames
+title: Add iFrames
 description: Nested browsing contexts
-sidebar_label: iFrames
-sidebar_position: 10
+sidebar_label: Add iFrames
+sidebar_position: 40
 ---
 
 When an **iframe integrated** application is configured, its context is rendered inside the <micro-lc></micro-lc> mount

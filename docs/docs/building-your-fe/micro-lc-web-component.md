@@ -1,8 +1,8 @@
 ---
-sidebar_label: micro-lc web component
+sidebar_label: Web Component Definition
 description: micro-lc web component and configuration
-title: micro-lc web component
-sidebar_position: 10
+title: Web Component Definition
+sidebar_position: 55
 ---
 
 ```mdx-code-block

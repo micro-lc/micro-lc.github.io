@@ -1,10 +1,8 @@
 ---
-slug: /docs
-title: Introduction
-description: Introduction to micro-lc
-sidebar_label: Introduction
-sidebar_position: 10
+title: Concepts
+description: Learn more about the most important micro-lc concepts
 ---
+
 
 🎼 <micro-lc></micro-lc> is an open source **micro-frontend orchestrator**.
 
@@ -75,3 +73,8 @@ Compared to other tools, <micro-lc></micro-lc> provides:
 |:-----:|:--------:|:-----------:|:----------:|:------------:|:---------:|
 |   ✖   |    ✔     |      ✔      |     ✔      |      ✔       |     ✔     |
 
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
+```

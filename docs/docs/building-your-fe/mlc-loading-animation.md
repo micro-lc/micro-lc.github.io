@@ -1,8 +1,8 @@
 ---
-title: 🖼 mlc-loading-animation
+title: Add Loading Animation
 description: Beautiful loading animation
-sidebar_label: 🖼 mlc-loading-animation
-sidebar_position: 20
+sidebar_label: Add Loading Animation
+sidebar_position: 800
 ---
 
 Web component to display a loading animation until one of its children has finished loading.

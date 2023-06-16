@@ -1,8 +1,8 @@
 ---
-title: Style
+title: Define Styles
 description: Application styling and theming
-sidebar_label: Style
-sidebar_position: 50
+sidebar_label: Define Styles
+sidebar_position: 150
 ---
 
 ```mdx-code-block

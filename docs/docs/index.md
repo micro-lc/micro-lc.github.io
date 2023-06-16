@@ -1,8 +1,8 @@
 ---
-title: Getting started
+title: Getting Started
 description: Start using micro-lc
-sidebar_label: Getting started
-sidebar_position: 20
+sidebar_label: Getting Started
+sidebar_position: 1
 ---
 
 <micro-lc></micro-lc> is shipped as an ES module [CDN bundle](#import-from-cdn) and can be imported in any HTML page.

@@ -1,8 +1,8 @@
 ---
 title: Reuse third party libraries
 description: Dependency sharing
-sidebar_label: Reuse third party libraries
-sidebar_position: 60
+sidebar_label: Reuse 3rd Party Libraries
+sidebar_position: 660
 ---
 
 ```mdx-code-block

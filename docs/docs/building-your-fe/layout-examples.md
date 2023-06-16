@@ -1,8 +1,8 @@
 ---
-title: 🖼 mlc-layout
-description: Top bar/sidebar navigation layout
-sidebar_label: 🖼 mlc-layout
-sidebar_position: 10
+title: Layout Examples
+description: Some examples of layout for micro-lc
+sidebar_label: Layout Examples
+sidebar_position: 15
 ---
 
 Web component providing a classic navigation top bar/sidebar layout for <micro-lc></micro-lc> applications.

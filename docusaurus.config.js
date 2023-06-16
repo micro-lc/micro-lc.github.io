@@ -42,7 +42,7 @@ const themeConfig = {
   },
   colorMode: {
     defaultMode: 'light',
-    disableSwitch: true,
+    disableSwitch: false,
   },
   docs: {
     sidebar: {
@@ -52,32 +52,23 @@ const themeConfig = {
   },
   image: 'img/microlc-ogimage.jpg',
   navbar: {
-    hideOnScroll: false,
+    hideOnScroll: true,
     items: [
       {
-        docId: 'docs/introduction',
+        docId: 'docs/index',
         label: 'Docs',
         position: 'left',
         type: 'doc',
       },
       {
-        docId: 'api/micro-lc-web-component',
-        label: 'API',
-        position: 'left',
-        type: 'doc',
-      },
-      {
-        docId: 'add-ons/components/index',
-        label: 'Add-ons',
-        position: 'left',
-        type: 'doc',
-      },
-      {
-        label: 'Playground v2',
+        label: 'Playground',
         target: '_blank',
         to: '/playground',
       },
-      { label: 'Blog', position: 'left', to: 'blog' },
+      { label: 'Blog',
+        position: 'left',
+        to: 'blog',
+      },
       {
         position: 'right',
         type: 'docsVersionDropdown',
@@ -119,7 +110,7 @@ const config = {
       {
         documents: ['CHANGELOG.md'],
         name: 'changelog',
-        outDir: 'docs/docs',
+        outDir: 'docs/docs/Support',
         sourceBaseUrl: 'https://raw.githubusercontent.com/micro-lc/micro-lc/main/packages/orchestrator/',
       },
     ],

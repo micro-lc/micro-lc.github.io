@@ -1,8 +1,8 @@
 ---
-title: 🛠 Middleware
+title: Middleware
 description: Configurations service station
-sidebar_label: 🛠 Middleware
-sidebar_position: 10
+sidebar_label: Add Middleware
+sidebar_position: 500
 ---
 
 ```mdx-code-block

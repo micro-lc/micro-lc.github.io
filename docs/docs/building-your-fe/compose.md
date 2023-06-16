@@ -1,8 +1,8 @@
 ---
-title: Compose
+title: Add Web Components
 description: Composition of HTML tags
-sidebar_label: Compose
-sidebar_position: 20
+sidebar_label: Add Web Components
+sidebar_position: 50
 ---
 
 ```mdx-code-block

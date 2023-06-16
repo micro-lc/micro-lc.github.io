@@ -1,8 +1,8 @@
 ---
-title: 🖼 mlc-antd-theme-manager
+title: Add Antd Theme Manager
 description: Adapter for Ant Design dynamic theme
-sidebar_label: 🖼 mlc-antd-theme-manager
-sidebar_position: 30
+sidebar_label: Add Antd Theme Manager
+sidebar_position: 700
 ---
 
 <!-- TODO: add a dynamic theme example -->

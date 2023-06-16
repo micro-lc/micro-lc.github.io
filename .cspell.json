@@ -3,22 +3,23 @@
   "language": "en-GB",
   "words": [
     "antd",
-    "vars",
-    "microlc",
-    "RGBA",
-    "Segoe",
-    "Roboto",
-    "Neue",
-    "Noto",
-    "Delivr",
     "Behavior",
-    "Microlc",
+    "Delivr",
+    "devel",
+    "iframes",
+    "Kefir",
     "keyof",
     "lexer",
-    "iframes",
+    "microlc",
+    "Microlc",
+    "Neue",
+    "Noto",
     "qiankun",
+    "RGBA",
+    "Roboto",
+    "Segoe",
     "srcdoc",
-    "Kefir",
+    "vars",
     "xstream"
   ],
   "dictionaries": [
@@ -27,8 +28,9 @@
     "misc"
   ],
   "flagWords": [],
-  "ignorePaths": ["docs/docs/CHANGELOG.md"],
+  "ignorePaths": [
+    "docs/docs/CHANGELOG.md"
+  ],
   "allowCompoundWords": true,
   "ignoreRegExpList": []
 }
-

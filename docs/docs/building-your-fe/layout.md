@@ -1,8 +1,8 @@
 ---
-title: Layout
-description: Static portion of micro-lc
-sidebar_label: Layout
-sidebar_position: 20
+title: Define Layout
+description: Define Layout for the application
+sidebar_label: Define Layout
+sidebar_position: 10
 ---
 
 ```mdx-code-block

@@ -1,8 +1,8 @@
 ---
-title: Routing
+title: Configure Routing
 description: micro-lc approach to routing
-sidebar_label: Routing
-sidebar_position: 30
+sidebar_label: Configure Routing
+sidebar_position: 140
 ---
 
 Routing refers to the logic <micro-lc></micro-lc> applies when choosing which micro-frontend should be loaded in the

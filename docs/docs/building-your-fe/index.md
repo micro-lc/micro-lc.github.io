@@ -1,6 +1,6 @@
 ---
-title: Guides
-description: Curated collection of guides to get you started with micro-lc
+title: Build Your Frontend
+description: All elements that need to know to build a frontend
 ---
 
 Curated collection of guides to get you started with <micro-lc></micro-lc>!

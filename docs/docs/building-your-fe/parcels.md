@@ -1,8 +1,8 @@
 ---
-title: Parcels
+title: Add Single Page Application - Parcels
 description: micro-frontend loaded using parcels
-sidebar_label: Parcels
-sidebar_position: 30
+sidebar_label: Add Single Page Application
+sidebar_position: 40
 ---
 
 ```mdx-code-block

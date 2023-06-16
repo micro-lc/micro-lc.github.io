@@ -2,7 +2,7 @@
 title: Composer API
 description: micro-lc composer API
 sidebar_label: Composer API
-sidebar_position: 30
+sidebar_position: 100
 ---
 
 ```mdx-code-block

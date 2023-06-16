@@ -1,8 +1,8 @@
 ---
-title: Error pages
+title: Error Pages
 description: Applications to cover for errors
-sidebar_label: Error pages
-sidebar_position: 40
+sidebar_label: Define Error Pages
+sidebar_position: 200
 ---
 
 ```mdx-code-block
