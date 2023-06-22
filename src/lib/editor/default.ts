@@ -58,7 +58,19 @@ const about: Application = {
 export const defaultConfiguration: Config = {
   applications: {
     about,
+    angular: {
+      entry: process.env.MICRO_LC_PREVIEW_ANGULAR_APPLICATION_ENTRY,
+      injectBase: 'override',
+      integrationMode: 'parcel',
+      route: '/angular/',
+    },
     home,
+    react: {
+      entry: process.env.MICRO_LC_PREVIEW_REACT_APPLICATION_ENTRY,
+      injectBase: true,
+      integrationMode: 'parcel',
+      route: '/react/',
+    },
   },
   layout: {
     content: [
@@ -86,13 +98,31 @@ export const defaultConfiguration: Config = {
               label: 'About',
               type: 'application',
             },
+            {
+              icon: {
+                library: '@fortawesome/free-brands-svg-icons',
+                selector: 'faReact',
+              },
+              id: 'react',
+              label: 'React',
+              type: 'application',
+            },
+            {
+              icon: {
+                library: '@fortawesome/free-brands-svg-icons',
+                selector: 'faAngular',
+              },
+              id: 'angular',
+              label: 'Angular',
+              type: 'application',
+            },
           ],
           mode: 'fixedSideBar',
         },
         tag: 'mlc-layout',
       },
     ],
-    sources: 'https://cdn.jsdelivr.net/npm/@micro-lc/layout@~2.0/dist/mlc-layout.js',
+    sources: `https://cdn.jsdelivr.net/npm/@micro-lc/layout@${process.env.MICRO_LC_LAYOUT_VERSION}/dist/mlc-layout.js`,
   },
   settings: {
     defaultUrl: '/home',
