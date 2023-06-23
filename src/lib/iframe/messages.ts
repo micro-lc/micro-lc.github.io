@@ -3,8 +3,8 @@ import type { Component, Config, PluginConfiguration } from '@micro-lc/interface
 interface OptionMessage {
   content: {
     disableOverlay?: boolean
-    instance?: string
     redirectTo?: string
+    run?: boolean
   }
   type: 'options'
 }
@@ -27,6 +27,6 @@ interface OutgoingNewConfigurationMessage {
   type: 'new-configuration'
 }
 
-type Message = OptionMessage | IncomingNewConfigurationMessage
+type Message = OptionMessage | OutgoingNewConfigurationMessage
 
 export type { Message, OptionMessage, IncomingNewConfigurationMessage, OutgoingNewConfigurationMessage }

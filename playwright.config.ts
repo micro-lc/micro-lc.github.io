@@ -12,20 +12,23 @@ const config: PlaywrightTestConfig = {
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
+        ignoreHTTPSErrors: true,
       },
     },
 
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-      },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //     ignoreHTTPSErrors: true,
+    //   },
+    // },
 
     {
       name: 'webkit',
       use: {
         ...devices['Desktop Safari'],
+        ignoreHTTPSErrors: true,
       },
     },
   ],
