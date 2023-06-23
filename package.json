@@ -57,7 +57,7 @@
   "devDependencies": {
     "@cspell/cspell-types": "^6.31.1",
     "@docusaurus/module-type-aliases": "^2.4.1",
-    "@micro-lc/interfaces": "^1.0.2",
+    "@micro-lc/interfaces": "^1.1.0",
     "@playwright/test": "^1.35.0",
     "@tsconfig/docusaurus": "^1.0.7",
     "@types/eslint": "^8.37.0",

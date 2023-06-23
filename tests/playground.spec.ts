@@ -13,7 +13,14 @@ test(`
   should render a playground with the default
   micro-lc configuration
 `, async ({ page }) => {
-  await page.goto(playground)
+  await page.goto(playground, { waitUntil: 'domcontentloaded' })
+  await page.evaluate(() => {
+    let resolveUpdate: () => void
+    const promise = new Promise<void>((resolve) => { resolveUpdate = resolve })
+    window.addEventListener('preview-updated', () => resolveUpdate())
+
+    return promise
+  })
 
   await expect(page.getByRole('button', { name: 'Apply' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Reset' })).toBeVisible()
@@ -35,7 +42,14 @@ test(`
   navigate using the sidebar menu and the back arrow
   inside the preview frame
 `, async ({ page }) => {
-  await page.goto(playground)
+  await page.goto(playground, { waitUntil: 'domcontentloaded' })
+  await page.evaluate(() => {
+    let resolveUpdate: () => void
+    const promise = new Promise<void>((resolve) => { resolveUpdate = resolve })
+    window.addEventListener('preview-updated', () => resolveUpdate())
+
+    return promise
+  })
 
   const preview = page.frameLocator('iframe[title=preview]')
   await preview.getByRole('menuitem', { name: 'About' }).click()
@@ -52,7 +66,14 @@ test(`
   should change model type to YAML
   and persist it across reloads
 `, async ({ page }) => {
-  await page.goto(playground)
+  await page.goto(playground, { waitUntil: 'domcontentloaded' })
+  await page.evaluate(() => {
+    let resolveUpdate: () => void
+    const promise = new Promise<void>((resolve) => { resolveUpdate = resolve })
+    window.addEventListener('preview-updated', () => resolveUpdate())
+
+    return promise
+  })
 
   await page.getByRole('button', { name: 'JSON' }).click()
   await page.getByRole('option', { name: 'YAML' }).click()
@@ -92,7 +113,14 @@ test(`
   and persist it across reloads
   then it should be able to reset
 `, async ({ page, browserName }) => {
-  await page.goto(playground)
+  await page.goto(playground, { waitUntil: 'domcontentloaded' })
+  await page.evaluate(() => {
+    let resolveUpdate: () => void
+    const promise = new Promise<void>((resolve) => { resolveUpdate = resolve })
+    window.addEventListener('preview-updated', () => resolveUpdate())
+
+    return promise
+  })
 
   // unfold settings
   await page.locator('div:nth-child(6) > .cldr').click()
@@ -123,7 +151,14 @@ test(`
   it should be impossible to switch
   to YAML
 `, async ({ page, browserName }) => {
-  await page.goto(playground)
+  await page.goto(playground, { waitUntil: 'domcontentloaded' })
+  await page.evaluate(() => {
+    let resolveUpdate: () => void
+    const promise = new Promise<void>((resolve) => { resolveUpdate = resolve })
+    window.addEventListener('preview-updated', () => resolveUpdate())
+
+    return promise
+  })
 
   await writeToEditor({ browserName, page }, '{ "version": ', { delay: 500 })
   await expect(page.getByText('Error while applying changes')).toBeVisible()

@@ -22,34 +22,43 @@ type RegisteredMessages = |
     type: 'mousedown'
   }
 
+const signalUpdate = (self: Window, instance: string) =>
+  self.dispatchEvent(new CustomEvent('preview-updated', { detail: { instance } }))
+
 const reload = (iframe: HTMLIFrameElement): void => { iframe.src = String(iframe.src) }
 
 // const recv = (iframe: HTMLIFrameElement) => {
-const makeListener = (iframe: HTMLIFrameElement) => ({ data }: MessageEventWithData) => {
-  if (
-    typeof data !== 'object'
+const makeListener = (self: Window, iframe: HTMLIFrameElement) => {
+  return function listener(this: PostChannel<RegisteredMessages>, { data }: MessageEventWithData) {
+    if (
+      typeof data !== 'object'
       || !('type' in data)
       || typeof data.type !== 'string'
-      || !['mousedown', 'mousemove'].includes(data.type)
       || !('content' in data)) {
-    return
-  }
+      return
+    }
 
-  const { type, content: unknownContent } = data
-  switch (type) {
-  case 'mousemove':
-  case 'mousedown': {
-    const boundingClientRect = iframe.getBoundingClientRect()
-    const content = unknownContent as MouseEvent
-    iframe.dispatchEvent(new MouseEvent(type, {
-      ...content,
-      clientX: content.clientX + boundingClientRect.left,
-      clientY: content.clientY + boundingClientRect.right,
-    }))
-    break
-  }
-  default:
-    break
+    console.log(data)
+
+    const { type, content: unknownContent } = data
+    switch (type) {
+    case 'mousemove':
+    case 'mousedown': {
+      const boundingClientRect = iframe.getBoundingClientRect()
+      const content = unknownContent as MouseEvent
+      iframe.dispatchEvent(new MouseEvent(type, {
+        ...content,
+        clientX: content.clientX + boundingClientRect.left,
+        clientY: content.clientY + boundingClientRect.right,
+      }))
+      break
+    }
+    case 'updated':
+      signalUpdate(self, this.instance)
+      break
+    default:
+      break
+    }
   }
 }
 
@@ -65,7 +74,7 @@ const onLoadFactory = (self: Window, origin: string, render: RenderChannel) =>
     const subscription = new Subscription()
 
     const postChannel = new PostChannel<RegisteredMessages>(
-      makeListener(iframe),
+      makeListener(self, iframe),
       window,
       fromWindowToReceiver(to, { targetOrigin: origin }),
       {
