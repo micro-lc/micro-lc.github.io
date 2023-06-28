@@ -17,3 +17,4 @@ updates:
       - dependency-name: "@angular/*"
       - dependency-name: "@angular-eslint/*"
       - dependency-name: "@angular-devkit/*"
+      - dependency-name: "@types/jasmine"
