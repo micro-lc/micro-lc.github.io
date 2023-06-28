@@ -285,16 +285,24 @@ all `<p>` elements in the same DOM of the call will be red.
 
 ## Dark mode
 
-Reference this --> https://ionicframework.com/docs/theming/dark-mode
+<micro-lc></micro-lc> is agnostic in terms of dark-mode support, meaning that since it
+controls only page layout, any kind of dark-mode support must be enabled via web-components
+composing the layout and parcels/compose applications. Notice that the iframe integration mode
+will not be able to support any kind of style injection due its complete sandboxing and encapsulation.
 
-### UA --> add a `<meta>` with `color-scheme` in `index.html` 
+A good reference for implementing dark mode in your components can be found with the [ionic framework](https://ionicframework.com/docs/theming/dark-mode):
 
-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#standard_metadata_names_defined_in_the_html_specification
-- https://caniuse.com/mdn-html_elements_meta_name_color-scheme
+We briefly remind here that UA compatibility can be ensured by using `meta` tags in `index.html` of your <micro-lc></micro-lc>
+orchestrated application like:
 
-### `prefers-color-scheme` as CSS media query to catch OS color preference
+```html
+<meta name="color-scheme" content="dark light" />
+```
 
-Asset:
+this is recommended by [HTML specification](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#standard_metadata_names_defined_in_the_html_specification)
+and has fairly good [browser support](https://caniuse.com/mdn-html_elements_meta_name_color-scheme).
+
+In order to use [OS-provided color scheme preferences](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme), it can be helpful the `media` query construct
 
 ```css
 @media (prefers-color-scheme: light) {
@@ -305,23 +313,14 @@ Asset:
 }
 ```
 
-Component:
+which works inside web-components: even within their shadow-dom by [evaluating](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)
 
-```js
-console.log(window.matchMedia('(prefers-color-scheme: light)')) // --> works
+```javascript
+window.matchMedia('(prefers-color-scheme: light)')
 ```
 
-The component sees the CSS variables correctly
+which has fairly good [browser support](https://caniuse.com/prefers-color-scheme).
 
-- https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
-- https://caniuse.com/prefers-color-scheme
-
-
-### Switching theme
-
-Set in micro-lc API
-
-Set in CSS as class of `<body>` or attribute of `html` --> CSS selectors in a component in shadow root depending on these
-values will not work
-
-OUR TAKE SHOULD BE TO ALWAYS USE CSS VARIABLES
+In order to build theme switch buttons, we recommend using [micro-lc api](../../api/micro-lc-api/extensions.md)
+by, for instance, setting CSS variables when using webcomponents with shadow-dom or CSS classes for the `<body>` tag or attribute of `html`, which though
+will not work inside a shadow-dom of a web-component.
