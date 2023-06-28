@@ -30,6 +30,15 @@ other node in a shadow root, even if it is placed in content –.
 On the other hand, if <micro-lc></micro-lc> Shadow DOM is disabled, both layout and content are placed in regular DOM
 and are always affected by the same styling rules.
 
+:::caution
+Although partially supported in [micro-lc v1](https://micro-lc.io/1.0.0/docs/introduction/#dark-mode),
+v2 does operate a complete [separation of concerns](../concepts/separation-of-concerns.md) between layout,
+routing, and UI components. `dark mode` features are completely delegated to layout and micro-lc API application
+interactions.
+
+Sample [micro-lc components](../../add-ons/components/index.md) do not support dark mode
+:::
+
 ### Style declarations
 
 #### `style` attribute
@@ -273,3 +282,45 @@ all `<p>` elements in the same DOM of the call will be red.
 ```mdx-code-block
 </div>
 ```
+
+## Dark mode
+
+<micro-lc></micro-lc> is agnostic in terms of dark-mode support, meaning that since it
+controls only page layout, any kind of dark-mode support must be enabled via web-components
+composing the layout and parcels/compose applications. Notice that the iframe integration mode
+will not be able to support any kind of style injection due its complete sandboxing and encapsulation.
+
+A good reference for implementing dark mode in your components can be found with the [ionic framework](https://ionicframework.com/docs/theming/dark-mode):
+
+We briefly remind here that UA compatibility can be ensured by using `meta` tags in `index.html` of your <micro-lc></micro-lc>
+orchestrated application like:
+
+```html
+<meta name="color-scheme" content="dark light" />
+```
+
+this is recommended by [HTML specification](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#standard_metadata_names_defined_in_the_html_specification)
+and has fairly good [browser support](https://caniuse.com/mdn-html_elements_meta_name_color-scheme).
+
+In order to use [OS-provided color scheme preferences](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme), it can be helpful the `media` query construct
+
+```css
+@media (prefers-color-scheme: light) {
+  body {
+    --text-color: #eee;
+    --bkg-color: #121212;
+  }
+}
+```
+
+which works inside web-components: even within their shadow-dom by [evaluating](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)
+
+```javascript
+window.matchMedia('(prefers-color-scheme: light)')
+```
+
+which has fairly good [browser support](https://caniuse.com/prefers-color-scheme).
+
+In order to build theme switch buttons, we recommend using [micro-lc api](../../api/micro-lc-api/extensions.md)
+by, for instance, setting CSS variables when using webcomponents with shadow-dom or CSS classes for the `<body>` tag or attribute of `html`, which though
+will not work inside a shadow-dom of a web-component.
