@@ -5408,7 +5408,7 @@ __metadata:
   resolution: "@micro-lc/react-browser-router@workspace:applications/react-browser-router"
   dependencies:
     "@craco/craco": ^7.1.0
-    "@types/node": ^20.2.5
+    "@types/node": ^20.3.2
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     react: ^18.2.0
@@ -5424,7 +5424,7 @@ __metadata:
   resolution: "@micro-lc/react-hash-router@workspace:applications/react-hash-router"
   dependencies:
     "@craco/craco": ^7.1.0
-    "@types/node": ^20.2.5
+    "@types/node": ^20.3.2
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     react: ^18.2.0
@@ -5442,7 +5442,7 @@ __metadata:
     "@micro-lc/orchestrator": ^2.1.0
     "@rushstack/eslint-patch": ^1.2.0
     "@tsconfig/node18": ^2.0.1
-    "@types/node": ^18.16.17
+    "@types/node": ^20.3.2
     "@vitejs/plugin-vue": ^4.2.3
     "@vitejs/plugin-vue-jsx": ^3.0.1
     "@vue/eslint-config-typescript": ^11.0.3
@@ -6903,10 +6903,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.2.5":
-  version: 20.3.1
-  resolution: "@types/node@npm:20.3.1"
-  checksum: 63a393ab6d947be17320817b35d7277ef03728e231558166ed07ee30b09fd7c08861be4d746f10fdc63ca7912e8cd023939d4eab887ff6580ff704ff24ed810c
+"@types/node@npm:*, @types/node@npm:^20.3.2":
+  version: 20.3.2
+  resolution: "@types/node@npm:20.3.2"
+  checksum: 5929ce2b9b12b1e2a2304a0921a953c72a81f5753ad39ac43b99ce6312fbb2b4fb5bc6b60d64a2550704e3223cd5de1299467d36085ac69888899db978f2653a
   languageName: node
   linkType: hard
 
@@ -6921,13 +6921,6 @@ __metadata:
   version: 17.0.45
   resolution: "@types/node@npm:17.0.45"
   checksum: aa04366b9103b7d6cfd6b2ef64182e0eaa7d4462c3f817618486ea0422984c51fc69fd0d436eae6c9e696ddfdbec9ccaa27a917f7c2e8c75c5d57827fe3d95e8
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^18.16.17":
-  version: 18.16.18
-  resolution: "@types/node@npm:18.16.18"
-  checksum: d32d8a0a04cd3f5ecb361bcb42f3a07623881ac90d680e06bf626defb3c663a94860d11690babe607cfe67265eceeb8a59ba5fe40c0e49f5a1b01e0088640469
   languageName: node
   linkType: hard
 
@@ -12038,7 +12031,7 @@ __metadata:
     "@types/glob": ^8.1.0
     "@types/js-yaml": ^4.0.5
     "@types/json-schema": ^7.0.12
-    "@types/node": ^20.2.5
+    "@types/node": ^20.3.2
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     "@typescript-eslint/eslint-plugin": ^5.59.11
