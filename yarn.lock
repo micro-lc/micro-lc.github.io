@@ -5322,7 +5322,7 @@ __metadata:
     "@types/jasmine": ~3.10.3
     "@types/node": ^17.0.8
     "@typescript-eslint/eslint-plugin": 4.33.0
-    "@typescript-eslint/parser": 4.33.0
+    "@typescript-eslint/parser": 5.60.1
     eslint: ^7.26.0
     rxjs: ~6.6.0
     single-spa: ">=4.0.0"
@@ -5358,7 +5358,7 @@ __metadata:
     "@types/jasmine": ~3.10.0
     "@types/node": ^12.11.1
     "@typescript-eslint/eslint-plugin": ^5.0.0
-    "@typescript-eslint/parser": ^5.0.0
+    "@typescript-eslint/parser": ^5.60.1
     eslint: ^7.26.0
     rxjs: ~7.5.0
     single-spa: ">=4.0.0"
@@ -7345,24 +7345,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:4.33.0":
-  version: 4.33.0
-  resolution: "@typescript-eslint/parser@npm:4.33.0"
+"@typescript-eslint/parser@npm:5.60.1, @typescript-eslint/parser@npm:^5.60.1":
+  version: 5.60.1
+  resolution: "@typescript-eslint/parser@npm:5.60.1"
   dependencies:
-    "@typescript-eslint/scope-manager": 4.33.0
-    "@typescript-eslint/types": 4.33.0
-    "@typescript-eslint/typescript-estree": 4.33.0
-    debug: ^4.3.1
+    "@typescript-eslint/scope-manager": 5.60.1
+    "@typescript-eslint/types": 5.60.1
+    "@typescript-eslint/typescript-estree": 5.60.1
+    debug: ^4.3.4
   peerDependencies:
-    eslint: ^5.0.0 || ^6.0.0 || ^7.0.0
+    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 102457eae1acd516211098fea081c8a2ed728522bbda7f5a557b6ef23d88970514f9a0f6285d53fca134d3d4d7d17822b5d5e12438d5918df4d1f89cc9e67d57
+  checksum: 08f1552ab0da178524a8de3654d2fb7c8ecb9efdad8e771c9cbf4af555c42e77d17b2c182d139a531cc76c3cabd091d1d25024c2c215cb809dca8b147c8a493c
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.0.0, @typescript-eslint/parser@npm:^5.5.0, @typescript-eslint/parser@npm:^5.59.1, @typescript-eslint/parser@npm:^5.59.11":
+"@typescript-eslint/parser@npm:^5.5.0, @typescript-eslint/parser@npm:^5.59.1":
   version: 5.59.11
   resolution: "@typescript-eslint/parser@npm:5.59.11"
   dependencies:
@@ -12139,7 +12139,7 @@ __metadata:
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     "@typescript-eslint/eslint-plugin": ^5.60.1
-    "@typescript-eslint/parser": ^5.59.11
+    "@typescript-eslint/parser": ^5.60.1
     clsx: ^1.2.1
     confusing-browser-globals: ^1.0.11
     copy-webpack-plugin: ^11.0.0
