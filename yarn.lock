@@ -5394,12 +5394,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@micro-lc/post-channel@npm:^0.1.0-rc1":
-  version: 0.1.0-rc1
-  resolution: "@micro-lc/post-channel@npm:0.1.0-rc1"
+"@micro-lc/post-channel@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@micro-lc/post-channel@npm:0.1.0"
   peerDependencies:
     rxjs: ^7
-  checksum: 3acdeebd1123fd47733aa04ffc24d361e5522acb2b722ecd53f0703d5f24fcac58ffc89cd79bba9016a06f715a1fa1e76a82f2c1bb1fa74cb7080f44d2f47d12
+  checksum: 254e3b5ccde6e0af341ac2f05d85076b7db251e998bc86500b9669d48e7cda6f59c97d8f5d0d9ff49207052f1bf44999c9108aeed8eb7e39499b61fb061a1922
   languageName: node
   linkType: hard
 
@@ -12125,7 +12125,7 @@ __metadata:
     "@emotion/styled": ^11.11.0
     "@mdx-js/react": 1.6.22
     "@micro-lc/interfaces": ^1.1.0
-    "@micro-lc/post-channel": ^0.1.0-rc1
+    "@micro-lc/post-channel": ^0.1.0
     "@mui/material": ^5.13.5
     "@playwright/test": ^1.35.0
     "@tsconfig/docusaurus": ^2.0.0
