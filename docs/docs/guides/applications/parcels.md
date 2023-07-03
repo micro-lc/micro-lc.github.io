@@ -290,4 +290,4 @@ The correct usage of `injectBase` enables both of them to work correctly (and to
 ### `microlcApi`
 
 <micro-lc></micro-lc> injects some useful utils to each application in order to share state, events, and styles. Read
-[the full reference](../../../api/micro-lc-api) for a detailed description of this property.
+[the full reference](../../../api/micro-lc-api/index.md) for a detailed description of this property.
