@@ -250,7 +250,7 @@ Definition of a dynamically loaded icon.
 
 |  Property  |                                                          Type                                                          |   Default    | Description                                      |
 |:----------:|:----------------------------------------------------------------------------------------------------------------------:|:------------:|--------------------------------------------------|
-| `library`  | <code>@ant-design/icons-svg &#124; @fortawesome/free-brands-svg-icons &#124; @fortawesome/free-regular-svg-icons &#124; @fortawesome/free-solid-svg-icons</code> | **Required** | Library from witch the icon is pulled            |
+| `library`  | <code>@ant-design/icons-svg &#124; @fortawesome/free-brands-svg-icons &#124; @fortawesome/free-regular-svg-icons &#124; @fortawesome/free-solid-svg-icons &#124; phosphor/bold &#124; phosphor/duotone &#124; phosphor/fill &#124; phosphor/light &#124; phosphor/regular &#124; phosphor/thin</code> | **Required** | Library from witch the icon is pulled            |
 | `selector` |                                                  <code>string</code>                                                   | **Required** | Name of the icon according to the chosen library |
 
 there is also a [list](https://cdn.jsdelivr.net/npm/@micro-lc/iconic@latest/dist/icons-list.json) of available icons, divided by library.
