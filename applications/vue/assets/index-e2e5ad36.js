@@ -7318,7 +7318,14 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
         link.addEventListener("error", () => rej(new Error(`Unable to preload CSS for ${dep}`)));
       });
     }
-  })).then(() => baseModule());
+  })).then(() => baseModule()).catch((err) => {
+    const e = new Event("vite:preloadError", { cancelable: true });
+    e.payload = err;
+    window.dispatchEvent(e);
+    if (!e.defaultPrevented) {
+      throw err;
+    }
+  });
 };
 const WelcomeItem_vue_vue_type_style_index_0_scoped_d5ce134a_lang = "";
 const _sfc_main$7 = {};
@@ -7634,7 +7641,7 @@ const createVueRouter = () => {
         // route level code-splitting
         // this generates a separate chunk (About.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => __vitePreload(() => import("./AboutView-5e369795.js"), true ? ["assets/AboutView-5e369795.js","assets/AboutView-ea554600.css"] : void 0),
+        component: () => __vitePreload(() => import("./AboutView-807eed67.js"), true ? ["assets/AboutView-807eed67.js","assets/AboutView-ea554600.css"] : void 0),
         name: "about",
         path: `${paths.parcelBase}about`
       }
