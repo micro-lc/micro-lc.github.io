@@ -34,7 +34,7 @@ Create a blank `index.html` file and paste the following snippet:
 </head>
 <body>
   <!-- 👇 micro-lc tag with config reference -->
-  <micro-lc config-src="./config.json"></micro-lc>
+  <micro-lc config-src="/config.json"></micro-lc>
 </body>
 </html>
 ```
