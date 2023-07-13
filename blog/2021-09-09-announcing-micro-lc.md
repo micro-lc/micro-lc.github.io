@@ -11,7 +11,7 @@ slug: micro-lc-the-new-open-source-micro-fronted-orchestrator
 _Post originally published on [Mia-Platform’s blog](https://blog.mia-platform.eu/en/micro-lc-the-new-open-source-micro-fronted-orchestrator)._
 
 :::info
-This blog post refers to [<micro-lc></micro-lc> v1.0.0](/1.0.0/docs/introduction) and some information are outdated.
+This blog post refers to [<micro-lc></micro-lc> v1.x](/1.x/docs/introduction) and some information are outdated.
 
 **<micro-lc></micro-lc> v2.0 is out now**: read the [updated documentation](/docs/) and the [presentation blog post](/blog/welcome-micro-lc-v2).
 :::

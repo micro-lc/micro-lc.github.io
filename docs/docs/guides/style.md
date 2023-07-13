@@ -31,7 +31,7 @@ On the other hand, if <micro-lc></micro-lc> Shadow DOM is disabled, both layout 
 and are always affected by the same styling rules.
 
 :::caution
-Although partially supported in [micro-lc v1](https://micro-lc.io/1.0.0/docs/introduction/#dark-mode),
+Although partially supported in [micro-lc v1](https://micro-lc.io/1.x/docs/introduction/#dark-mode),
 v2 does operate a complete [separation of concerns](../concepts/separation-of-concerns.md) between layout,
 routing, and UI components. `dark mode` features are completely delegated to layout and micro-lc API application
 interactions.
