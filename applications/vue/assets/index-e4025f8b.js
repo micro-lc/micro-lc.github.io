@@ -5385,7 +5385,7 @@ function normalizeContainer(container) {
 }
 const _imports_0 = "/applications/vue/assets/logo-277e0e97.svg";
 /*!
-  * vue-router v4.2.2
+  * vue-router v4.2.4
   * (c) 2023 Eduardo San Martin Morote
   * @license MIT
   */
@@ -6270,7 +6270,7 @@ function normalizeRecordProps(record) {
     propsObject.default = props;
   } else {
     for (const name in record.components)
-      propsObject[name] = typeof props === "boolean" ? props : props[name];
+      propsObject[name] = typeof props === "object" ? props[name] : props;
   }
   return propsObject;
 }
@@ -6409,7 +6409,7 @@ function useCallbacks() {
   }
   return {
     add: add2,
-    list: () => handlers,
+    list: () => handlers.slice(),
     reset
   };
 }
@@ -6923,8 +6923,8 @@ function createRouter(options) {
       return runGuardQueue(guards);
     }).then(() => {
       guards = [];
-      for (const record of to.matched) {
-        if (record.beforeEnter && !from.matched.includes(record)) {
+      for (const record of enteringRecords) {
+        if (record.beforeEnter) {
           if (isArray(record.beforeEnter)) {
             for (const beforeEnter of record.beforeEnter)
               guards.push(guardToPromiseFn(beforeEnter, to, from));
@@ -6954,9 +6954,7 @@ function createRouter(options) {
     ) ? err : Promise.reject(err));
   }
   function triggerAfterEach(to, from, failure) {
-    for (const guard of afterGuards.list()) {
-      runWithContext(() => guard(to, from, failure));
-    }
+    afterGuards.list().forEach((guard) => runWithContext(() => guard(to, from, failure)));
   }
   function finalizeNavigation(toLocation, from, isPush, replace2, data) {
     const error = checkCanceledNavigation(toLocation, from);
@@ -7130,10 +7128,13 @@ function createRouter(options) {
       }
       const reactiveRoute = {};
       for (const key in START_LOCATION_NORMALIZED) {
-        reactiveRoute[key] = computed(() => currentRoute.value[key]);
+        Object.defineProperty(reactiveRoute, key, {
+          get: () => currentRoute.value[key],
+          enumerable: true
+        });
       }
       app2.provide(routerKey, router2);
-      app2.provide(routeLocationKey, reactive(reactiveRoute));
+      app2.provide(routeLocationKey, shallowReactive(reactiveRoute));
       app2.provide(routerViewLocationKey, currentRoute);
       const unmountApp = app2.unmount;
       installedApps.add(app2);
@@ -7641,7 +7642,7 @@ const createVueRouter = () => {
         // route level code-splitting
         // this generates a separate chunk (About.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => __vitePreload(() => import("./AboutView-807eed67.js"), true ? ["assets/AboutView-807eed67.js","assets/AboutView-ea554600.css"] : void 0),
+        component: () => __vitePreload(() => import("./AboutView-5828d5f1.js"), true ? ["assets/AboutView-5828d5f1.js","assets/AboutView-ea554600.css"] : void 0),
         name: "about",
         path: `${paths.parcelBase}about`
       }

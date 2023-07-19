@@ -1,4 +1,4 @@
-import { _ as _export_sfc, c as createElementBlock, o as openBlock, a as createBaseVNode } from "./index-e2e5ad36.js";
+import { _ as _export_sfc, c as createElementBlock, o as openBlock, a as createBaseVNode } from "./index-e4025f8b.js";
 const AboutView_vue_vue_type_style_index_0_lang = "";
 const _sfc_main = {};
 const _hoisted_1 = { class: "about" };
