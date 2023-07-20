@@ -47,7 +47,7 @@ including its [properties and attributes](#properties-and-attributes).
 
 ```json title=my-compose-application.config.json
 {
-  "sources": "https://cdn.jsdelivr.net/npm/@micro-lc/layout@latest/dist/mlc-layout.js",
+  "sources": "https://cdn.jsdelivr.net/npm/@micro-lc/orchestrator@latest/dist/microfrontend-loader.js",
   "content": [
     {
       "tag": "microfrontend-loader",
