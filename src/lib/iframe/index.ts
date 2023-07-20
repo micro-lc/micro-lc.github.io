@@ -27,7 +27,6 @@ const signalUpdate = (self: Window, instance: string) =>
 
 const reload = (iframe: HTMLIFrameElement): void => { iframe.src = String(iframe.src) }
 
-// const recv = (iframe: HTMLIFrameElement) => {
 const makeListener = (self: Window, iframe: HTMLIFrameElement) => {
   return function listener(this: PostChannel<RegisteredMessages>, { data }: MessageEventWithData) {
     if (
@@ -37,8 +36,6 @@ const makeListener = (self: Window, iframe: HTMLIFrameElement) => {
       || !('content' in data)) {
       return
     }
-
-    console.log(data)
 
     const { type, content: unknownContent } = data
     switch (type) {

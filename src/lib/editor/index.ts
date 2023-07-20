@@ -308,7 +308,6 @@ function useEditor(
         }
       } else {
         result = getJsonValueCallback(editor)
-        console.log('res', result)
         if (!result || result.error) {
           result && dispatchers.errorMessage({ ...result, messages: ['components.editor.error'] })
           return

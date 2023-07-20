@@ -1,7 +1,7 @@
 import type { IncomingNewConfigurationMessage, OutgoingNewConfigurationMessage } from './messages'
 
 const PREVIEW_IFRAME_URL = new URL(
-  `https://unpkg.com/@micro-lc/preview@${process.env.MICRO_LC_PREVIEW_VERSION}/website/index.html`
+  `https://cdn.mia-platform.eu/micro-lc/preview/${process.env.MICRO_LC_PREVIEW_VERSION}/website/index.html`
 )
 
 const fromConfigToPluginConfiguration = (input: IncomingNewConfigurationMessage): OutgoingNewConfigurationMessage => ({
@@ -54,10 +54,10 @@ const fromConfigToPluginConfiguration = (input: IncomingNewConfigurationMessage)
         tag: 'div',
       },
       sources: [
-        `https://cdn.jsdelivr.net/npm/@micro-lc/layout@${process.env.MICRO_LC_LAYOUT_VERSION}/dist/mlc-iconic.js`,
-        `https://cdn.jsdelivr.net/npm/@micro-lc/layout@${process.env.MICRO_LC_LAYOUT_VERSION}/dist/mlc-url.js`,
-        `https://cdn.jsdelivr.net/npm/@micro-lc/layout@${process.env.MICRO_LC_LAYOUT_VERSION}/dist/mlc-loading-animation.js`,
-        `https://cdn.jsdelivr.net/npm/@micro-lc/orchestrator@${process.env.MICRO_LC_ORCHESTRATOR_VERSION}/dist/micro-lc.production.js`,
+        `https://cdn.mia-platform.eu/micro-lc/layout/${process.env.MICRO_LC_LAYOUT_VERSION}/dist/mlc-iconic.js`,
+        `https://cdn.mia-platform.eu/micro-lc/layout/${process.env.MICRO_LC_LAYOUT_VERSION}/dist/mlc-url.js`,
+        `https://cdn.mia-platform.eu/micro-lc/layout/${process.env.MICRO_LC_LAYOUT_VERSION}/dist/mlc-loading-animation.js`,
+        `https://cdn.mia-platform.eu/micro-lc/orchestrator/${process.env.MICRO_LC_ORCHESTRATOR_VERSION}/dist/micro-lc.production.js`,
       ],
     },
   },

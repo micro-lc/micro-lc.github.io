@@ -12,7 +12,8 @@
     "types": [
       "node",
       "@docusaurus/module-type-aliases",
-      "@docusaurus/theme-classic"
+      "@docusaurus/theme-classic",
+      "./src/types/environment.d.ts"
     ],
     "baseUrl": ".",
     "strict": true,
