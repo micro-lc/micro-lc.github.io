@@ -52,7 +52,6 @@ import 'monaco-editor/esm/vs/editor/contrib/wordPartOperations/browser/wordPartO
 import 'monaco-editor/esm/vs/editor/contrib/readOnlyMessage/browser/contribution.js'
 import 'monaco-editor/esm/vs/editor/common/standaloneStrings.js'
 import 'monaco-editor/esm/vs/base/browser/ui/codicons/codiconStyles.js'
-import 'monaco-editor/esm/vs/editor/standalone/browser/accessibilityHelp/accessibilityHelp.js'
 import 'monaco-editor/esm/vs/editor/standalone/browser/iPadShowKeyboard/iPadShowKeyboard.js'
 import 'monaco-editor/esm/vs/editor/standalone/browser/inspectTokens/inspectTokens.js'
 import 'monaco-editor/esm/vs/editor/standalone/browser/quickAccess/standaloneHelpQuickAccess.js'
