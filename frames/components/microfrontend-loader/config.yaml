@@ -1,0 +1,65 @@
+$schema: https://cdn.jsdelivr.net/npm/@micro-lc/interfaces@latest/schemas/v2/config.schema.json
+version: 2
+
+settings:
+  defaultUrl: './home'
+
+layout:
+  sources: https://cdn.jsdelivr.net/npm/@micro-lc/layout@latest/dist/mlc-layout.js
+  content:
+    - tag: mlc-layout
+      properties:
+        mode: topBar
+        logo:
+          url: /img/favicon.png
+        menuItems:
+          - icon:
+              library: '@ant-design/icons-svg'
+              selector: HomeOutlined
+            id: home
+            label: Home
+            type: application
+
+applications:
+  home:
+    integrationMode: compose
+    route: ./home
+    config:
+      sources: https://cdn.jsdelivr.net/npm/@micro-lc/orchestrator@latest/dist/microfrontend-loader.js
+      content:
+        tag: div
+        attributes:
+          style: "display: flex; height: inherit"
+        content:
+          - tag: microfrontend-loader
+            attributes:
+              style: "width: 50%;"
+            properties:
+              application:
+                integrationMode: "parcel"
+                entry: /applications/react-memory-router/index.html
+          - tag: microfrontend-loader
+            attributes:
+              style: "width: 50%; height: inherit;"
+            properties:
+              application:
+                integrationMode: compose
+                config:
+                  content:
+                    tag: div
+                    attributes:
+                      style: "height: 100%; display: flex; flex-direction: column; gap: 20px; justify-content: center; row-gap: 24px"
+                    content:
+                      - tag: div
+                        attributes:
+                          style: "height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; row-gap: 24px"
+                        content:
+                          - content: Hi! 👋 I'm another MFE
+                            tag: span
+                          - content: 👈 while my sybling here is a memory-router MFE!
+                            tag: span
+                          - attributes:
+                              href: https://micro-lc.io/playground/,
+                              target: _blank
+                            content: Try out the <strong>micro-lc</strong> playground!,
+                            tag: a
