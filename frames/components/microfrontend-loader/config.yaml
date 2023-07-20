@@ -25,7 +25,7 @@ applications:
     integrationMode: compose
     route: ./home
     config:
-      sources: https://cdn.jsdelivr.net/npm/@micro-lc/orchestrator@latest/dist/microfrontend-loader.js
+      sources: https://cdn.jsdelivr.net/npm/@micro-lc/orchestrator@2.2.0/dist/microfrontend-loader.js
       content:
         tag: div
         attributes:
