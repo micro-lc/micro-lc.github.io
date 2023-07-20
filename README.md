@@ -30,3 +30,12 @@ then run
 ```shell
 yarn start
 ```
+
+### Notes
+
+> :warning: **DO NOT MODIFY static/frames or static/applications directly**
+>
+> - applications are copied from `applications/**/build` folders and they are parcel applications examples
+> - frames and micro-lc configurations for showcases are first interpolated and they must be created in the mirror folder `static-templates/frames` 
+>
+> the `build` or `prepare` step take care of operations on those folders

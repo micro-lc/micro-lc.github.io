@@ -15,6 +15,7 @@ dist/
 build
 
 static/applications
+static/frames
 
 docs/docs/CHANGELOG.md
 
