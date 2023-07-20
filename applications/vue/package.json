@@ -15,7 +15,7 @@
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
-    "@micro-lc/orchestrator": "^2.1.0",
+    "@micro-lc/orchestrator": "^2.2.0",
     "@rushstack/eslint-patch": "^1.2.0",
     "@tsconfig/node18": "^18.2.0",
     "@types/node": "^20.4.2",

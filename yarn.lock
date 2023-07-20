@@ -5390,18 +5390,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@micro-lc/orchestrator@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "@micro-lc/orchestrator@npm:2.1.0"
+"@micro-lc/orchestrator@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@micro-lc/orchestrator@npm:2.2.0"
   dependencies:
     js-yaml: ^4.1.0
-    qiankun: ^2.10.5
+    qiankun: ^2.10.11
     rxjs: ^7.8.1
   peerDependencies:
     ajv: ">=8.11.0"
     ajv-format: ">=2.1.1"
     es-module-shims: ">=1.5.3"
-  checksum: 474e3efcfff8d7e4fee7e34eaf01a44d52f52d44a4ef0f14e3e6aed6202adee877d35e66a2476eeea1cea301159c7ca0db020ac2fb98c12f5e93242ded5b6105
+  checksum: 2dc440da4c6a10dab59b906267f8f0f1547b9b25219f32a9c9babb24dd82096cd94c1cbafd0c5c9b94f5fed4bf886a2903e2f05edbb825e1f58239da151a5a58
   languageName: node
   linkType: hard
 
@@ -5466,7 +5466,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@micro-lc/vue3@workspace:applications/vue"
   dependencies:
-    "@micro-lc/orchestrator": ^2.1.0
+    "@micro-lc/orchestrator": ^2.2.0
     "@rushstack/eslint-patch": ^1.2.0
     "@tsconfig/node18": ^18.2.0
     "@types/node": ^20.4.2
@@ -22549,7 +22549,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qiankun@npm:^2.10.5":
+"qiankun@npm:^2.10.11":
   version: 2.10.11
   resolution: "qiankun@npm:2.10.11"
   dependencies:
