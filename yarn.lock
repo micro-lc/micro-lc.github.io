@@ -5451,7 +5451,7 @@ __metadata:
   resolution: "@micro-lc/react-memory-router@workspace:applications/react-memory-router"
   dependencies:
     "@craco/craco": ^7.1.0
-    "@types/node": ^20.3.2
+    "@types/node": ^20.4.2
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     react: ^18.2.0
@@ -6946,7 +6946,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.3.2, @types/node@npm:^20.4.2":
+"@types/node@npm:*, @types/node@npm:^20.4.2":
   version: 20.4.2
   resolution: "@types/node@npm:20.4.2"
   checksum: 99e544ea7560d51f01f95627fc40394c24a13da8f041121a0da13e4ef0a2aa332932eaf9a5e8d0e30d1c07106e96a183be392cbba62e8cf0bf6a085d5c0f4149
