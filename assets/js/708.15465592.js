@@ -1,9 +1,9 @@
 "use strict";
-exports.id = 604;
-exports.ids = [604];
+exports.id = 708;
+exports.ids = [708];
 exports.modules = {
 
-/***/ 86604:
+/***/ 90708:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -29,10 +29,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   toRange: () => (/* binding */ toRange),
 /* harmony export */   toTextEdit: () => (/* binding */ toTextEdit)
 /* harmony export */ });
-/* harmony import */ var _editor_editor_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5549);
+/* harmony import */ var _editor_editor_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(773);
 /*!-----------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
- * Version: 0.39.0(ff3621a3fa6389873be5412d17554294ea1b0941)
+ * Version: 0.40.0(83b3cf23ca80c94cccca7c5b3e48351b220f8e35)
  * Released under the MIT license
  * https://github.com/microsoft/monaco-editor/blob/main/LICENSE.txt
  *-----------------------------------------------------------------------------*/
