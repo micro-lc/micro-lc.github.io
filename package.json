@@ -72,7 +72,7 @@
     "@types/node": "^20.4.2",
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.1.0",
     "confusing-browser-globals": "^1.0.11",
     "copy-webpack-plugin": "^11.0.0",
