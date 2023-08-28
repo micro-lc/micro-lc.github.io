@@ -1,5 +1,4 @@
 import type { Config } from '@micro-lc/interfaces/schemas/v2'
-
 import type { PlaywrightTestArgs, PlaywrightWorkerOptions } from '@playwright/test'
 import test, { expect } from '@playwright/test'
 
