@@ -43,12 +43,12 @@
       "integrationMode": "parcel",
       "injectBase": true,
       "route": "./browser/",
-      "entry": "/applications/react-browser-router/"
+      "entry": "https://cdn.mia-platform.eu/micro-lc/examples/0.1.0/static/parcels/react-browser-router/index.html"
     },
     "hash": {
       "integrationMode": "parcel",
       "route": "./hash/",
-      "entry": "/applications/react-hash-router/"
+      "entry": "https://cdn.mia-platform.eu/micro-lc/examples/0.1.0/static/parcels/react-hash-router/index.html"
     }
   }
 }
