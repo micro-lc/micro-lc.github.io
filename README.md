@@ -13,16 +13,12 @@ Documentation site for [micro-lc](https://github.com/micro-lc/micro-lc) and rela
 
 ```shell
 yarn install
-(cd applications/angular12 && yarn install)
-(cd applications/angular13 && yarn install)
 ```
 
-then build the subpackages and copy their static files into docusaurus `static` folder by running
+then build static files into from `static-templates` into docusaurus `static` folder by running
 
 ```shell
-(cd applications/angular12 && yarn build)
-(cd applications/angular13 && yarn build)
-yarn prepare
+yarn build-static-frames
 ```
 
 then run
@@ -33,9 +29,8 @@ yarn start
 
 ### Notes
 
-> :warning: **DO NOT MODIFY static/frames or static/applications directly**
+> :warning: **DO NOT MODIFY static/frames directly**
 >
-> - applications are copied from `applications/**/build` folders and they are parcel applications examples
-> - frames and micro-lc configurations for showcases are first interpolated and they must be created in the mirror folder `static-templates/frames` 
+> frames and micro-lc configurations for showcases are first interpolated and they must be created in the mirror folder `static-templates/frames` 
 >
-> the `build` or `prepare` step take care of operations on those folders
+> the `build-static-frames` or `build` step take care of operations on those folders
