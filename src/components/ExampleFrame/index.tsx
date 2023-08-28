@@ -1,10 +1,9 @@
+import Details from '@docusaurus/theme-classic/lib/theme/Details'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import BrowserWindow from '@site/src/components/BrowserWindow'
 import { SourceCodeBlock } from '@site/src/components/SourceCodeBlock'
 import type { SourceTabsProps } from '@site/src/components/SourceTabs'
 import { SourceTabs } from '@site/src/components/SourceTabs'
-
-import Details from '@docusaurus/theme-classic/lib/theme/Details'
 import React, { useEffect, useRef, useState } from 'react'
 
 interface ExampleFrameProps {

@@ -1,5 +1,4 @@
 import type { Config } from '@micro-lc/interfaces/schemas/v2'
-
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ReplaySubject, startWith, BehaviorSubject, filter, fromEvent, NEVER, Subscription, tap } from 'rxjs'
 
@@ -289,6 +288,7 @@ function useEditor(
         }
 
         setValue(editor, models, initialModelType, result.value)
+          .catch((err) => { throw err })
           .finally(() => {
             render.next({ configuration: JSON.parse(config) as Config, contexts: new Map(), tags: [] })
             release()
@@ -368,10 +368,12 @@ function useEditor(
       return false
     }
 
-    setValue(editor, models, nextModel, value).finally(() => {
-      dispatchers.errorMessage(messages.length === 0 ? '' : { error, messages: ['components.editor.warning'], value })
-      release()
-    })
+    setValue(editor, models, nextModel, value)
+      .catch((err) => { throw err })
+      .finally(() => {
+        dispatchers.errorMessage(messages.length === 0 ? '' : { error, messages: ['components.editor.warning'], value })
+        release()
+      })
     return true
   }, [editor, lock, release, dispatchers])
 

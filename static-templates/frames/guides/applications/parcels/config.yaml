@@ -39,19 +39,19 @@ applications:
   react:
     integrationMode: parcel
     route: ./
-    entry: /applications/react-hash-router/
+    entry: https://cdn.mia-platform.eu/micro-lc/examples/{{MICRO_LC_EXAMPLES_VERSION}}/static/parcels/react-browser-router/index.html
   angular12:
     integrationMode: parcel
     route: ./angular12/
     injectBase: true
-    entry: /applications/angular12/
+    entry: https://cdn.mia-platform.eu/micro-lc/examples/{{MICRO_LC_EXAMPLES_VERSION}}/static/parcels/angular12/index.html
   angular13:
     integrationMode: parcel
     route: ./angular13/
-    injectBase: true
-    entry: /applications/angular13/
+    injectBase: override
+    entry: https://cdn.mia-platform.eu/micro-lc/examples/{{MICRO_LC_EXAMPLES_VERSION}}/static/parcels/angular13/index.html
   vue3:
     integrationMode: parcel
     route: ./vue3/
     injectBase: true
-    entry: /applications/vue/
+    entry: https://cdn.mia-platform.eu/micro-lc/examples/{{MICRO_LC_EXAMPLES_VERSION}}/static/parcels/vue/index.html

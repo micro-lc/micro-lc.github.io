@@ -1,5 +1,5 @@
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
-import { setDiagnosticsOptions } from 'monaco-yaml'
+import { configureMonacoYaml } from 'monaco-yaml'
 
 import './monaco-contrib'
 import { schemas } from './schemas'
@@ -14,7 +14,7 @@ monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
   validate: true,
 })
 
-setDiagnosticsOptions({
+configureMonacoYaml(monaco, {
   enableSchemaRequest: true,
   schemas: [
     schemas['*.config'],
