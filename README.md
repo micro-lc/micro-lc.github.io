@@ -15,10 +15,15 @@ Documentation site for [micro-lc](https://github.com/micro-lc/micro-lc) and rela
 yarn install
 ```
 
-then build static files into from `static-templates` into docusaurus `static` folder by running
+then
+
+- build static files from `static-templates`
+- build vue application from `applications/vue`
+
+into docusaurus `static` folder by running
 
 ```shell
-yarn build-static-frames
+yarn prepare
 ```
 
 then run

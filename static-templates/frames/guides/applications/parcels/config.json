@@ -75,7 +75,7 @@
       "integrationMode": "parcel",
       "route": "./vue3/",
       "injectBase": true,
-      "entry": "https://cdn.mia-platform.eu/micro-lc/examples/{{MICRO_LC_EXAMPLES_VERSION}}/static/parcels/vue/index.html"
+      "entry": "/applications/vue/"
     }
   }
 }
