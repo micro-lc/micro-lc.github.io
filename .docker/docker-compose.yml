@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  micro-lc:
+    image: microlc/middleware
+    env_file:
+      - .env
+    networks:
+      - internal
+    volumes:
+      - ./index.html:/usr/static/public/index.html
+      - ./style.css:/usr/static/public/assets/style.css
+      - ./config.json:/usr/static/configurations/config.json
+      - ./client.js:/usr/static/public/assets/client.js # 👈 here
+
+  reverse-proxy:
+    image: nginx
+    ports:
+      - 80:80
+    networks:
+      - internal
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+  api:
+    image: thomaspoignant/hello-world-rest-json
+    networks:
+      - internal
+
+networks:
+  internal:

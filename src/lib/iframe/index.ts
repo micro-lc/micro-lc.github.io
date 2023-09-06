@@ -59,6 +59,30 @@ const makeListener = (self: Window, iframe: HTMLIFrameElement) => {
   }
 }
 
+const fromWindowToIFrameSender = (self: Window, iframeWindow: WindowProxy) => {
+  type Listener = (message: MessageEventWithData) => void
+  const listeners = new Map<Listener, Listener>()
+  return {
+    addEventListener: (type: 'message', handler: Listener) => {
+      const windowListener = (message: MessageEventWithData) => {
+        const { source } = message
+        if (source === iframeWindow) {
+          handler(message)
+        }
+      }
+      self.addEventListener(type, windowListener)
+      listeners.set(handler, windowListener)
+    },
+    removeEventListener: (type: 'message', handler: Listener) => {
+      const windowListener = listeners.get(handler)
+      if (windowListener) {
+        self.removeEventListener(type, windowListener)
+      }
+      listeners.delete(handler)
+    },
+  }
+}
+
 const onLoadFactory = (self: Window, origin: string, render: RenderChannel) =>
   (event: SyntheticEvent<HTMLIFrameElement>): void => {
     const { currentTarget: iframe } = event
@@ -72,7 +96,7 @@ const onLoadFactory = (self: Window, origin: string, render: RenderChannel) =>
 
     const postChannel = new PostChannel<RegisteredMessages>(
       makeListener(self, iframe),
-      window,
+      fromWindowToIFrameSender(self, to),
       fromWindowToReceiver(to, { targetOrigin: origin }),
       {
         log(this: PostChannel, message: RegisteredMessages) {
@@ -122,6 +146,7 @@ const onLoadFactory = (self: Window, origin: string, render: RenderChannel) =>
         })
     )
   }
+
 
 export type { Render }
 export { onLoadFactory }

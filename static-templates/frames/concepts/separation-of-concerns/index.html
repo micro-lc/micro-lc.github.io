@@ -5,11 +5,18 @@
   <title>Viewport separation</title>
 
   <link rel="stylesheet" href="/frames/frame-base.css">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="/frames/concepts/separation-of-concerns/style.css">
 
   <script async type="module" src="https://cdn.jsdelivr.net/npm/@micro-lc/orchestrator@latest/dist/micro-lc.production.js"></script>
 </head>
 <body>
-<micro-lc config-src="./config.yaml"></micro-lc>
+  <micro-lc config-src="/frames/concepts/separation-of-concerns/config.yaml"></micro-lc>
+  <script>
+    const base = window.location.pathname
+    const id = new URL(window.location.href, window.location.origin).searchParams.get('id')
+    window.addEventListener("popstate", () => {
+      window.top?.postMessage({id, href: window.location.href})
+    });
+  </script>
 </body>
 </html>

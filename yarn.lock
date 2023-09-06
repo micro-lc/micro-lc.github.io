@@ -547,16 +547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.12.7, @babel/parser@npm:^7.18.8, @babel/parser@npm:^7.22.11, @babel/parser@npm:^7.22.5, @babel/parser@npm:^7.7.0":
-  version: 7.22.11
-  resolution: "@babel/parser@npm:7.22.11"
-  bin:
-    parser: ./bin/babel-parser.js
-  checksum: 332079ed09794d3685343e9fc39c6a12dcb6ea589119f2135952cdef2424296786bb609a33f6dfa9be271797bbf8339f1865118418ea50b32a0c701734c96664
-  languageName: node
-  linkType: hard
-
-"@babel/parser@npm:^7.20.15, @babel/parser@npm:^7.21.3":
+"@babel/parser@npm:^7.12.7, @babel/parser@npm:^7.18.8, @babel/parser@npm:^7.20.15, @babel/parser@npm:^7.21.3, @babel/parser@npm:^7.22.11, @babel/parser@npm:^7.22.5, @babel/parser@npm:^7.7.0":
   version: 7.22.13
   resolution: "@babel/parser@npm:7.22.13"
   bin:
@@ -1807,17 +1798,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/cspell-types@npm:7.3.6":
+"@cspell/cspell-types@npm:7.3.6, @cspell/cspell-types@npm:^7.3.5":
   version: 7.3.6
   resolution: "@cspell/cspell-types@npm:7.3.6"
   checksum: d29109a6b808935f4353af8577140d2e767a71989cadc72e9edf5bf1e75e895c0b9dd256a4f574ec6086e206571996698a0225156cd520a63c68cac12b847bf0
-  languageName: node
-  linkType: hard
-
-"@cspell/cspell-types@npm:^7.3.5":
-  version: 7.3.5
-  resolution: "@cspell/cspell-types@npm:7.3.5"
-  checksum: 8926d1967ff0f9ac6c9278ad33936fb553855e34b4e6db9a4e7066a555846db9e5c2535fa9126bb407912d4c717d03507421f88375ca6e49b2043f0ea8ae8238
   languageName: node
   linkType: hard
 
@@ -4013,14 +3997,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.0, @types/json-schema@npm:^7.0.12, @types/json-schema@npm:^7.0.4, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.8, @types/json-schema@npm:^7.0.9":
-  version: 7.0.12
-  resolution: "@types/json-schema@npm:7.0.12"
-  checksum: 00239e97234eeb5ceefb0c1875d98ade6e922bfec39dd365ec6bd360b5c2f825e612ac4f6e5f1d13601b8b30f378f15e6faa805a3a732f4a1bbe61915163d293
-  languageName: node
-  linkType: hard
-
-"@types/json-schema@npm:^7.0.13":
+"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.0, @types/json-schema@npm:^7.0.12, @types/json-schema@npm:^7.0.13, @types/json-schema@npm:^7.0.4, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.8, @types/json-schema@npm:^7.0.9":
   version: 7.0.13
   resolution: "@types/json-schema@npm:7.0.13"
   checksum: 345df21a678fa72fb389f35f33de77833d09d4a142bb2bcb27c18690efa4cf70fc2876e43843cefb3fbdb9fcb12cd3e970a90936df30f53bbee899865ff605ab
@@ -4089,14 +4066,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 20.5.7
-  resolution: "@types/node@npm:20.5.7"
-  checksum: fc284c8e16ddc04569730d58e87eae349eb1c3dd9020cb79a1862d9d9add6f04e7367a236f3252db8db2572f90278e250f4cd43d27d264972b54394eaba1ed76
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^20.6.2":
+"@types/node@npm:*, @types/node@npm:^20.6.2":
   version: 20.6.2
   resolution: "@types/node@npm:20.6.2"
   checksum: 96fe5303872640a173f3fd43e289a451776ed5b8f0090094447c6790b43f23fb607eea8268af0829cef4d132e5afa0bfa4cd871aa7412e9042a414a698e9e971
@@ -9440,22 +9410,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.2.2, glob@npm:^10.2.5":
-  version: 10.3.3
-  resolution: "glob@npm:10.3.3"
-  dependencies:
-    foreground-child: ^3.1.0
-    jackspeak: ^2.0.3
-    minimatch: ^9.0.1
-    minipass: ^5.0.0 || ^6.0.2 || ^7.0.0
-    path-scurry: ^1.10.1
-  bin:
-    glob: dist/cjs/src/bin.js
-  checksum: 29190d3291f422da0cb40b77a72fc8d2c51a36524e99b8bf412548b7676a6627489528b57250429612b6eec2e6fe7826d328451d3e694a9d15e575389308ec53
-  languageName: node
-  linkType: hard
-
-"glob@npm:^10.3.4":
+"glob@npm:^10.2.2, glob@npm:^10.2.5, glob@npm:^10.3.4":
   version: 10.3.4
   resolution: "glob@npm:10.3.4"
   dependencies:

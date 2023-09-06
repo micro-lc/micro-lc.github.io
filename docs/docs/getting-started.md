@@ -8,6 +8,10 @@ sidebar_position: 20
 <micro-lc></micro-lc> is shipped as an ES module [CDN bundle](#import-from-cdn) and can be imported in any HTML page.
 Moreover, a [dockerized webserver](#deploy-docker-container) is available on Docker Hub.
 
+## Tutorial
+
+The best way to get started is the [step-by-step tutorial](compose-your-frontend/index.md)
+
 ## Import from CDN
 
 Create a blank `index.html` file and paste the following snippet:

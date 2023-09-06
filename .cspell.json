@@ -19,7 +19,10 @@
     "qiankun",
     "srcdoc",
     "Kefir",
-    "xstream"
+    "xstream",
+    "IIFE",
+    "typeof",
+    "MFEs"
   ],
   "dictionaries": [
     "softwareTerms",
