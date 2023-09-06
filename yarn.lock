@@ -1807,14 +1807,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/cspell-types@npm:7.3.2":
-  version: 7.3.2
-  resolution: "@cspell/cspell-types@npm:7.3.2"
-  checksum: 1050fd43dc74523f0cf5fd8e369aeca742312384974000e85d6296047bd99949bf6a80195ffd766bbf88adbcd2993853eddb77eab79f9815782fbf42839fcdfe
-  languageName: node
-  linkType: hard
-
-"@cspell/cspell-types@npm:^7.3.2":
+"@cspell/cspell-types@npm:7.3.2, @cspell/cspell-types@npm:^7.3.2":
   version: 7.3.2
   resolution: "@cspell/cspell-types@npm:7.3.2"
   checksum: 1050fd43dc74523f0cf5fd8e369aeca742312384974000e85d6296047bd99949bf6a80195ffd766bbf88adbcd2993853eddb77eab79f9815782fbf42839fcdfe
