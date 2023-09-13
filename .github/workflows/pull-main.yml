@@ -3,7 +3,7 @@ name: Pull Request
 env:
   context: './'
   cache-name: cache-release
-  node-version: 16.x
+  node-version: 18.x
 
 on:
   pull_request:
