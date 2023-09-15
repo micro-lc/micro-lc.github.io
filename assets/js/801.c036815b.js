@@ -10566,6 +10566,22 @@ var Event;
     }
     Event.toPromise = toPromise;
     /**
+     * Creates an event out of a promise that fires once when the promise is
+     * resolved with the result of the promise or `undefined`.
+     */
+    function fromPromise(promise) {
+        const result = new Emitter();
+        promise.then(res => {
+            result.fire(res);
+        }, () => {
+            result.fire(undefined);
+        }).finally(() => {
+            result.dispose();
+        });
+        return result.event;
+    }
+    Event.fromPromise = fromPromise;
+    /**
      * Adds a listener to an event and calls the listener immediately with undefined as the event object.
      *
      * @example
@@ -11108,6 +11124,29 @@ class MicrotaskEmitter extends (/* unused pure expression or super */ null && (E
         }
     }
 }
+/**
+ * An event emitter that multiplexes many events into a single event.
+ *
+ * @example Listen to the `onData` event of all `Thing`s, dynamically adding and removing `Thing`s
+ * to the multiplexer as needed.
+ *
+ * ```typescript
+ * const anythingDataMultiplexer = new EventMultiplexer<{ data: string }>();
+ *
+ * const thingListeners = DisposableMap<Thing, IDisposable>();
+ *
+ * thingService.onDidAddThing(thing => {
+ *   thingListeners.set(thing, anythingDataMultiplexer.add(thing.onData);
+ * });
+ * thingService.onDidRemoveThing(thing => {
+ *   thingListeners.deleteAndDispose(thing);
+ * });
+ *
+ * anythingDataMultiplexer.event(e => {
+ *   console.log('Something fired data ' + e.data)
+ * });
+ * ```
+ */
 class EventMultiplexer {
     constructor() {
         this.hasListeners = false;
@@ -12009,12 +12048,6 @@ function regExpLeadsToEndlessLoop(regexp) {
     const match = regexp.exec('');
     return !!(match && regexp.lastIndex === 0);
 }
-function regExpFlags(regexp) {
-    return (regexp.global ? 'g' : '')
-        + (regexp.ignoreCase ? 'i' : '')
-        + (regexp.multiline ? 'm' : '')
-        + (regexp /* standalone editor compilation */.unicode ? 'u' : '');
-}
 function splitLines(str) {
     return str.split(/\r\n|\r|\n/);
 }
@@ -12590,10 +12623,10 @@ function isEmojiModifier(codePoint) {
 const noBreakWhitespace = '\xa0';
 class AmbiguousCharacters {
     static getInstance(locales) {
-        return AmbiguousCharacters.cache.get(Array.from(locales));
+        return strings_a.cache.get(Array.from(locales));
     }
     static getLocales() {
-        return AmbiguousCharacters._locales.value;
+        return strings_a._locales.value;
     }
     constructor(confusableDictionary) {
         this.confusableDictionary = confusableDictionary;
@@ -12657,9 +12690,9 @@ AmbiguousCharacters.cache = new LRUCachedFunction((locales) => {
     }
     const commonMap = arrayToMap(data['_common']);
     const map = mergeMaps(commonMap, languageSpecificMap);
-    return new AmbiguousCharacters(map);
+    return new strings_a(map);
 });
-AmbiguousCharacters._locales = new Lazy(() => Object.keys(AmbiguousCharacters.ambiguousCharacterData.value).filter((k) => !k.startsWith('_')));
+AmbiguousCharacters._locales = new Lazy(() => Object.keys(strings_a.ambiguousCharacterData.value).filter((k) => !k.startsWith('_')));
 class InvisibleCharacters {
     static getRawData() {
         // Generated using https://github.com/hediet/vscode-unicode-data
@@ -17114,13 +17147,13 @@ function distinct(array, keyFn = value => value) {
     });
 }
 function findLast(arr, predicate) {
-    const idx = lastIndex(arr, predicate);
+    const idx = findLastIndex(arr, predicate);
     if (idx === -1) {
         return undefined;
     }
     return arr[idx];
 }
-function lastIndex(array, fn) {
+function findLastIndex(array, fn) {
     for (let i = array.length - 1; i >= 0; i--) {
         const element = array[i];
         if (fn(element)) {
@@ -17252,6 +17285,10 @@ var CompareResult;
         return result < 0;
     }
     CompareResult.isLessThan = isLessThan;
+    function isLessThanOrEqual(result) {
+        return result <= 0;
+    }
+    CompareResult.isLessThanOrEqual = isLessThanOrEqual;
     function isGreaterThan(result) {
         return result > 0;
     }
@@ -17267,10 +17304,25 @@ var CompareResult;
 function compareBy(selector, comparator) {
     return (a, b) => comparator(selector(a), selector(b));
 }
+function tieBreakComparators(...comparators) {
+    return (item1, item2) => {
+        for (const comparator of comparators) {
+            const result = comparator(item1, item2);
+            if (!CompareResult.isNeitherLessOrGreaterThan(result)) {
+                return result;
+            }
+        }
+        return CompareResult.neitherLessOrGreaterThan;
+    };
+}
 /**
  * The natural order on numbers.
 */
 const numberComparator = (a, b) => a - b;
+const booleanComparator = (a, b) => numberComparator(a ? 1 : 0, b ? 1 : 0);
+function reverseOrder(comparator) {
+    return (a, b) => -comparator(a, b);
+}
 /**
  * Returns the first item that is equal to or greater than every other item.
 */
@@ -17308,6 +17360,19 @@ function findLastMaxBy(items, comparator) {
 */
 function findMinBy(items, comparator) {
     return findMaxBy(items, (a, b) => -comparator(a, b));
+}
+function findMaxIdxBy(items, comparator) {
+    if (items.length === 0) {
+        return -1;
+    }
+    let maxIdx = 0;
+    for (let i = 1; i < items.length; i++) {
+        const item = items[i];
+        if (comparator(item, items[maxIdx]) > 0) {
+            maxIdx = i;
+        }
+    }
+    return maxIdx;
 }
 class ArrayQueue {
     /**
@@ -19072,18 +19137,6 @@ function validateConstraint(arg, constraint) {
         throw new Error(`argument does not match one of these constraints: arg instanceof constraint, arg.constructor === constraint, nor constraint(arg) === true`);
     }
 }
-/**
- * Converts null to undefined, passes all other values through.
- */
-function withNullAsUndefined(x) {
-    return x === null ? undefined : x;
-}
-/**
- * Converts undefined to null, passes all other values through.
- */
-function withUndefinedAsNull(x) {
-    return typeof x === 'undefined' ? null : x;
-}
 
 ;// CONCATENATED MODULE: ./node_modules/monaco-editor/esm/vs/base/common/codicons.js
 
@@ -19131,6 +19184,7 @@ const Codicon = {
     tag: register('tag', 0xea66),
     tagAdd: register('tag-add', 0xea66),
     tagRemove: register('tag-remove', 0xea66),
+    gitPullRequestLabel: register('git-pull-request-label', 0xea66),
     person: register('person', 0xea67),
     personFollow: register('person-follow', 0xea67),
     personOutline: register('person-outline', 0xea67),
@@ -19385,6 +19439,7 @@ const Codicon = {
     megaphone: register('megaphone', 0xeb1e),
     mention: register('mention', 0xeb1f),
     milestone: register('milestone', 0xeb20),
+    gitPullRequestMilestone: register('git-pull-request-milestone', 0xeb20),
     mortarBoard: register('mortar-board', 0xeb21),
     move: register('move', 0xeb22),
     multipleWindows: register('multiple-windows', 0xeb23),
@@ -19509,9 +19564,11 @@ const Codicon = {
     menu: register('menu', 0xeb94),
     expandAll: register('expand-all', 0xeb95),
     feedback: register('feedback', 0xeb96),
+    gitPullRequestReviewer: register('git-pull-request-reviewer', 0xeb96),
     groupByRefType: register('group-by-ref-type', 0xeb97),
     ungroupByRefType: register('ungroup-by-ref-type', 0xeb98),
     account: register('account', 0xeb99),
+    gitPullRequestAssignee: register('git-pull-request-assignee', 0xeb99),
     bellDot: register('bell-dot', 0xeb9a),
     debugConsole: register('debug-console', 0xeb9b),
     library: register('library', 0xeb9c),
@@ -19634,6 +19691,7 @@ const Codicon = {
     send: register('send', 0xec0f),
     sparkle: register('sparkle', 0xec10),
     insert: register('insert', 0xec11),
+    mic: register('mic', 0xec12),
     // derived icons, that could become separate icons
     dialogError: register('dialog-error', 'error'),
     dialogWarning: register('dialog-warning', 'warning'),
@@ -20482,6 +20540,7 @@ var EditorOption;
     EditorOption[EditorOption["wrappingInfo"] = 143] = "wrappingInfo";
     EditorOption[EditorOption["defaultColorDecorators"] = 144] = "defaultColorDecorators";
     EditorOption[EditorOption["colorDecoratorsActivatedOn"] = 145] = "colorDecoratorsActivatedOn";
+    EditorOption[EditorOption["inlineCompletionsAccessibilityVerbose"] = 146] = "inlineCompletionsAccessibilityVerbose";
 })(EditorOption || (EditorOption = {}));
 /**
  * End of line character preference.
@@ -21993,11 +22052,191 @@ function isAllowedInvisibleCharacter(character) {
     return character === ' ' || character === '\n' || character === '\t';
 }
 
+;// CONCATENATED MODULE: ./node_modules/monaco-editor/esm/vs/editor/common/core/offsetRange.js
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/**
+ * A range of offsets (0-based).
+*/
+class OffsetRange {
+    static addRange(range, sortedRanges) {
+        let i = 0;
+        while (i < sortedRanges.length && sortedRanges[i].endExclusive < range.start) {
+            i++;
+        }
+        let j = i;
+        while (j < sortedRanges.length && sortedRanges[j].start <= range.endExclusive) {
+            j++;
+        }
+        if (i === j) {
+            sortedRanges.splice(i, 0, range);
+        }
+        else {
+            const start = Math.min(range.start, sortedRanges[i].start);
+            const end = Math.max(range.endExclusive, sortedRanges[j - 1].endExclusive);
+            sortedRanges.splice(i, j - i, new OffsetRange(start, end));
+        }
+    }
+    static tryCreate(start, endExclusive) {
+        if (start > endExclusive) {
+            return undefined;
+        }
+        return new OffsetRange(start, endExclusive);
+    }
+    static ofLength(length) {
+        return new OffsetRange(0, length);
+    }
+    constructor(start, endExclusive) {
+        this.start = start;
+        this.endExclusive = endExclusive;
+        if (start > endExclusive) {
+            throw new BugIndicatingError(`Invalid range: ${this.toString()}`);
+        }
+    }
+    get isEmpty() {
+        return this.start === this.endExclusive;
+    }
+    delta(offset) {
+        return new OffsetRange(this.start + offset, this.endExclusive + offset);
+    }
+    deltaStart(offset) {
+        return new OffsetRange(this.start + offset, this.endExclusive);
+    }
+    deltaEnd(offset) {
+        return new OffsetRange(this.start, this.endExclusive + offset);
+    }
+    get length() {
+        return this.endExclusive - this.start;
+    }
+    toString() {
+        return `[${this.start}, ${this.endExclusive})`;
+    }
+    equals(other) {
+        return this.start === other.start && this.endExclusive === other.endExclusive;
+    }
+    containsRange(other) {
+        return this.start <= other.start && other.endExclusive <= this.endExclusive;
+    }
+    contains(offset) {
+        return this.start <= offset && offset < this.endExclusive;
+    }
+    /**
+     * for all numbers n: range1.contains(n) or range2.contains(n) => range1.join(range2).contains(n)
+     * The joined range is the smallest range that contains both ranges.
+     */
+    join(other) {
+        return new OffsetRange(Math.min(this.start, other.start), Math.max(this.endExclusive, other.endExclusive));
+    }
+    /**
+     * for all numbers n: range1.contains(n) and range2.contains(n) <=> range1.intersect(range2).contains(n)
+     *
+     * The resulting range is empty if the ranges do not intersect, but touch.
+     * If the ranges don't even touch, the result is undefined.
+     */
+    intersect(other) {
+        const start = Math.max(this.start, other.start);
+        const end = Math.min(this.endExclusive, other.endExclusive);
+        if (start <= end) {
+            return new OffsetRange(start, end);
+        }
+        return undefined;
+    }
+    slice(arr) {
+        return arr.slice(this.start, this.endExclusive);
+    }
+    /**
+     * Returns the given value if it is contained in this instance, otherwise the closest value that is contained.
+     * The range must not be empty.
+     */
+    clip(value) {
+        if (this.isEmpty) {
+            throw new BugIndicatingError(`Invalid clipping range: ${this.toString()}`);
+        }
+        return Math.max(this.start, Math.min(this.endExclusive - 1, value));
+    }
+    /**
+     * Returns `r := value + k * length` such that `r` is contained in this range.
+     * The range must not be empty.
+     *
+     * E.g. `[5, 10).clipCyclic(10) === 5`, `[5, 10).clipCyclic(11) === 6` and `[5, 10).clipCyclic(4) === 9`.
+     */
+    clipCyclic(value) {
+        if (this.isEmpty) {
+            throw new BugIndicatingError(`Invalid clipping range: ${this.toString()}`);
+        }
+        if (value < this.start) {
+            return this.endExclusive - ((this.start - value) % this.length);
+        }
+        if (value >= this.endExclusive) {
+            return this.start + ((value - this.start) % this.length);
+        }
+        return value;
+    }
+}
+class OffsetRangeSet {
+    constructor() {
+        this._sortedRanges = [];
+    }
+    addRange(range) {
+        let i = 0;
+        while (i < this._sortedRanges.length && this._sortedRanges[i].endExclusive < range.start) {
+            i++;
+        }
+        let j = i;
+        while (j < this._sortedRanges.length && this._sortedRanges[j].start <= range.endExclusive) {
+            j++;
+        }
+        if (i === j) {
+            this._sortedRanges.splice(i, 0, range);
+        }
+        else {
+            const start = Math.min(range.start, this._sortedRanges[i].start);
+            const end = Math.max(range.endExclusive, this._sortedRanges[j - 1].endExclusive);
+            this._sortedRanges.splice(i, j - i, new OffsetRange(start, end));
+        }
+    }
+    toString() {
+        return this._sortedRanges.map(r => r.toString()).join(', ');
+    }
+    /**
+     * Returns of there is a value that is contained in this instance and the given range.
+     */
+    intersectsStrict(other) {
+        // TODO use binary search
+        let i = 0;
+        while (i < this._sortedRanges.length && this._sortedRanges[i].endExclusive <= other.start) {
+            i++;
+        }
+        return i < this._sortedRanges.length && this._sortedRanges[i].start < other.endExclusive;
+    }
+    intersectWithRange(other) {
+        // TODO use binary search + slice
+        const result = new OffsetRangeSet();
+        for (const range of this._sortedRanges) {
+            const intersection = range.intersect(other);
+            if (intersection) {
+                result.addRange(intersection);
+            }
+        }
+        return result;
+    }
+    intersectWithRangeLength(other) {
+        return this.intersectWithRange(other).length;
+    }
+    get length() {
+        return this._sortedRanges.reduce((prev, cur) => prev + cur.length, 0);
+    }
+}
+
 ;// CONCATENATED MODULE: ./node_modules/monaco-editor/esm/vs/editor/common/core/lineRange.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
 
 
 /**
@@ -22131,6 +22370,9 @@ class LineRange {
     delta(offset) {
         return new LineRange(this.startLineNumber + offset, this.endLineNumberExclusive + offset);
     }
+    deltaLength(offset) {
+        return new LineRange(this.startLineNumber, this.endLineNumberExclusive + offset);
+    }
     /**
      * The number of lines this line range spans.
      */
@@ -22196,6 +22438,13 @@ class LineRange {
     }
     includes(lineNumber) {
         return this.startLineNumber <= lineNumber && lineNumber < this.endLineNumberExclusive;
+    }
+    /**
+     * Converts this 1-based line range to a 0-based offset range (subtracts 1!).
+     * @internal
+     */
+    toOffsetRange() {
+        return new OffsetRange(this.startLineNumber - 1, this.endLineNumberExclusive - 1);
     }
 }
 
@@ -22287,6 +22536,9 @@ class SimpleLineRangeMapping {
     flip() {
         return new SimpleLineRangeMapping(this.modified, this.original);
     }
+    join(other) {
+        return new SimpleLineRangeMapping(this.original.join(other.original), this.modified.join(other.modified));
+    }
 }
 class MovedText {
     constructor(lineRangeMapping, changes) {
@@ -22298,7 +22550,7 @@ class MovedText {
     }
 }
 
-;// CONCATENATED MODULE: ./node_modules/monaco-editor/esm/vs/editor/common/diff/smartLinesDiffComputer.js
+;// CONCATENATED MODULE: ./node_modules/monaco-editor/esm/vs/editor/common/diff/legacyLinesDiffComputer.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22310,7 +22562,7 @@ class MovedText {
 
 
 const MINIMUM_MATCHING_CHARACTER_LENGTH = 3;
-class SmartLinesDiffComputer {
+class LegacyLinesDiffComputer {
     computeDiff(originalLines, modifiedLines, options) {
         var _a;
         const diffComputer = new DiffComputer(originalLines, modifiedLines, {
@@ -22765,88 +23017,46 @@ function createContinueProcessingPredicate(maximumRuntime) {
     };
 }
 
-;// CONCATENATED MODULE: ./node_modules/monaco-editor/esm/vs/editor/common/core/offsetRange.js
+;// CONCATENATED MODULE: ./node_modules/monaco-editor/esm/vs/base/common/collections.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
-/**
- * A range of offsets (0-based).
-*/
-class OffsetRange {
-    static addRange(range, sortedRanges) {
-        let i = 0;
-        while (i < sortedRanges.length && sortedRanges[i].endExclusive < range.start) {
-            i++;
-        }
-        let j = i;
-        while (j < sortedRanges.length && sortedRanges[j].start <= range.endExclusive) {
-            j++;
-        }
-        if (i === j) {
-            sortedRanges.splice(i, 0, range);
-        }
-        else {
-            const start = Math.min(range.start, sortedRanges[i].start);
-            const end = Math.max(range.endExclusive, sortedRanges[j - 1].endExclusive);
-            sortedRanges.splice(i, j - i, new OffsetRange(start, end));
-        }
+class SetMap {
+    constructor() {
+        this.map = new Map();
     }
-    static tryCreate(start, endExclusive) {
-        if (start > endExclusive) {
-            return undefined;
+    add(key, value) {
+        let values = this.map.get(key);
+        if (!values) {
+            values = new Set();
+            this.map.set(key, values);
         }
-        return new OffsetRange(start, endExclusive);
+        values.add(value);
     }
-    constructor(start, endExclusive) {
-        this.start = start;
-        this.endExclusive = endExclusive;
-        if (start > endExclusive) {
-            throw new BugIndicatingError(`Invalid range: ${this.toString()}`);
+    delete(key, value) {
+        const values = this.map.get(key);
+        if (!values) {
+            return;
+        }
+        values.delete(value);
+        if (values.size === 0) {
+            this.map.delete(key);
         }
     }
-    get isEmpty() {
-        return this.start === this.endExclusive;
-    }
-    delta(offset) {
-        return new OffsetRange(this.start + offset, this.endExclusive + offset);
-    }
-    get length() {
-        return this.endExclusive - this.start;
-    }
-    toString() {
-        return `[${this.start}, ${this.endExclusive})`;
-    }
-    equals(other) {
-        return this.start === other.start && this.endExclusive === other.endExclusive;
-    }
-    containsRange(other) {
-        return this.start <= other.start && other.endExclusive <= this.endExclusive;
-    }
-    contains(offset) {
-        return this.start <= offset && offset < this.endExclusive;
-    }
-    /**
-     * for all numbers n: range1.contains(n) or range2.contains(n) => range1.join(range2).contains(n)
-     * The joined range is the smallest range that contains both ranges.
-     */
-    join(other) {
-        return new OffsetRange(Math.min(this.start, other.start), Math.max(this.endExclusive, other.endExclusive));
-    }
-    /**
-     * for all numbers n: range1.contains(n) and range2.contains(n) <=> range1.intersect(range2).contains(n)
-     *
-     * The resulting range is empty if the ranges do not intersect, but touch.
-     * If the ranges don't even touch, the result is undefined.
-     */
-    intersect(other) {
-        const start = Math.max(this.start, other.start);
-        const end = Math.min(this.endExclusive, other.endExclusive);
-        if (start <= end) {
-            return new OffsetRange(start, end);
+    forEach(key, fn) {
+        const values = this.map.get(key);
+        if (!values) {
+            return;
         }
-        return undefined;
+        values.forEach(fn);
+    }
+    get(key) {
+        const values = this.map.get(key);
+        if (!values) {
+            return new Set();
+        }
+        return values;
     }
 }
 
@@ -23072,6 +23282,44 @@ function smoothenSequenceDiffs(sequence1, sequence2, sequenceDiffs) {
     }
     return result;
 }
+function removeRandomLineMatches(sequence1, _sequence2, sequenceDiffs) {
+    let diffs = sequenceDiffs;
+    if (diffs.length === 0) {
+        return diffs;
+    }
+    let counter = 0;
+    let shouldRepeat;
+    do {
+        shouldRepeat = false;
+        const result = [
+            diffs[0]
+        ];
+        for (let i = 1; i < diffs.length; i++) {
+            const cur = diffs[i];
+            const lastResult = result[result.length - 1];
+            function shouldJoinDiffs(before, after) {
+                const unchangedRange = new OffsetRange(lastResult.seq1Range.endExclusive, cur.seq1Range.start);
+                const unchangedText = sequence1.getText(unchangedRange);
+                const unchangedTextWithoutWs = unchangedText.replace(/\s/g, '');
+                if (unchangedTextWithoutWs.length <= 4
+                    && (before.seq1Range.length + before.seq2Range.length > 5 || after.seq1Range.length + after.seq2Range.length > 5)) {
+                    return true;
+                }
+                return false;
+            }
+            const shouldJoin = shouldJoinDiffs(lastResult, cur);
+            if (shouldJoin) {
+                shouldRepeat = true;
+                result[result.length - 1] = result[result.length - 1].join(cur);
+            }
+            else {
+                result.push(cur);
+            }
+        }
+        diffs = result;
+    } while (counter++ < 10 && shouldRepeat);
+    return diffs;
+}
 function removeRandomMatches(sequence1, sequence2, sequenceDiffs) {
     let diffs = sequenceDiffs;
     if (diffs.length === 0) {
@@ -23127,6 +23375,24 @@ function removeRandomMatches(sequence1, sequence2, sequenceDiffs) {
         }
         diffs = result;
     } while (counter++ < 10 && shouldRepeat);
+    // Remove short suffixes/prefixes
+    for (let i = 0; i < diffs.length; i++) {
+        const cur = diffs[i];
+        let range1 = cur.seq1Range;
+        let range2 = cur.seq2Range;
+        const fullRange1 = sequence1.extendToFullLines(cur.seq1Range);
+        const prefix = sequence1.getText(new OffsetRange(fullRange1.start, cur.seq1Range.start));
+        if (prefix.length > 0 && prefix.trim().length <= 3 && cur.seq1Range.length + cur.seq2Range.length > 100) {
+            range1 = cur.seq1Range.deltaStart(-prefix.length);
+            range2 = cur.seq2Range.deltaStart(-prefix.length);
+        }
+        const suffix = sequence1.getText(new OffsetRange(cur.seq1Range.endExclusive, fullRange1.endExclusive));
+        if (suffix.length > 0 && (suffix.trim().length <= 3 && cur.seq1Range.length + cur.seq2Range.length > 150)) {
+            range1 = range1.deltaEnd(suffix.length);
+            range2 = range2.deltaEnd(suffix.length);
+        }
+        diffs[i] = new SequenceDiff(range1, range2);
+    }
     return diffs;
 }
 /**
@@ -23238,16 +23504,14 @@ function shiftDiffToBetterPosition(diff, sequence1, sequence2, seq1ValidRange, s
     let deltaBefore = 1;
     while (diff.seq1Range.start - deltaBefore >= seq1ValidRange.start &&
         diff.seq2Range.start - deltaBefore >= seq2ValidRange.start &&
-        sequence2.getElement(diff.seq2Range.start - deltaBefore) ===
-            sequence2.getElement(diff.seq2Range.endExclusive - deltaBefore) && deltaBefore < maxShiftLimit) {
+        sequence2.isStronglyEqual(diff.seq2Range.start - deltaBefore, diff.seq2Range.endExclusive - deltaBefore) && deltaBefore < maxShiftLimit) {
         deltaBefore++;
     }
     deltaBefore--;
     let deltaAfter = 0;
     while (diff.seq1Range.start + deltaAfter < seq1ValidRange.endExclusive &&
         diff.seq2Range.endExclusive + deltaAfter < seq2ValidRange.endExclusive &&
-        sequence2.getElement(diff.seq2Range.start + deltaAfter) ===
-            sequence2.getElement(diff.seq2Range.endExclusive + deltaAfter) && deltaAfter < maxShiftLimit) {
+        sequence2.isStronglyEqual(diff.seq2Range.start + deltaAfter, diff.seq2Range.endExclusive + deltaAfter) && deltaAfter < maxShiftLimit) {
         deltaAfter++;
     }
     if (deltaBefore === 0 && deltaAfter === 0) {
@@ -23426,7 +23690,7 @@ class FastArrayNegativeIndices {
     }
 }
 
-;// CONCATENATED MODULE: ./node_modules/monaco-editor/esm/vs/editor/common/diff/standardLinesDiffComputer.js
+;// CONCATENATED MODULE: ./node_modules/monaco-editor/esm/vs/editor/common/diff/advancedLinesDiffComputer.js
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -23441,22 +23705,24 @@ class FastArrayNegativeIndices {
 
 
 
-class StandardLinesDiffComputer {
+
+
+
+class AdvancedLinesDiffComputer {
     constructor() {
         this.dynamicProgrammingDiffing = new DynamicProgrammingDiffing();
         this.myersDiffingAlgorithm = new MyersDiffAlgorithm();
     }
     computeDiff(originalLines, modifiedLines, options) {
+        if (originalLines.length <= 1 && arrays_equals(originalLines, modifiedLines, (a, b) => a === b)) {
+            return new LinesDiff([], [], false);
+        }
         if (originalLines.length === 1 && originalLines[0].length === 0 || modifiedLines.length === 1 && modifiedLines[0].length === 0) {
-            return {
-                changes: [
-                    new LineRangeMapping(new LineRange(1, originalLines.length + 1), new LineRange(1, modifiedLines.length + 1), [
-                        new RangeMapping(new range_Range(1, 1, originalLines.length, originalLines[0].length + 1), new range_Range(1, 1, modifiedLines.length, modifiedLines[0].length + 1))
-                    ])
-                ],
-                hitTimeout: false,
-                moves: [],
-            };
+            return new LinesDiff([
+                new LineRangeMapping(new LineRange(1, originalLines.length + 1), new LineRange(1, modifiedLines.length + 1), [
+                    new RangeMapping(new range_Range(1, 1, originalLines.length, originalLines[0].length + 1), new range_Range(1, 1, modifiedLines.length, modifiedLines[0].length + 1))
+                ])
+            ], [], false);
         }
         const timeout = options.maxComputationTimeMs === 0 ? InfiniteTimeout.instance : new DateTimeout(options.maxComputationTimeMs);
         const considerWhitespaceChanges = !options.ignoreTrimWhitespace;
@@ -23471,10 +23737,10 @@ class StandardLinesDiffComputer {
         }
         const srcDocLines = originalLines.map((l) => getOrCreateHash(l.trim()));
         const tgtDocLines = modifiedLines.map((l) => getOrCreateHash(l.trim()));
-        const sequence1 = new standardLinesDiffComputer_LineSequence(srcDocLines, originalLines);
-        const sequence2 = new standardLinesDiffComputer_LineSequence(tgtDocLines, modifiedLines);
+        const sequence1 = new advancedLinesDiffComputer_LineSequence(srcDocLines, originalLines);
+        const sequence2 = new advancedLinesDiffComputer_LineSequence(tgtDocLines, modifiedLines);
         const lineAlignmentResult = (() => {
-            if (sequence1.length + sequence2.length < 1500) {
+            if (sequence1.length + sequence2.length < 1700) {
                 // Use the improved algorithm for small files
                 return this.dynamicProgrammingDiffing.compute(sequence1, sequence2, timeout, (offset1, offset2) => originalLines[offset1] === modifiedLines[offset2]
                     ? modifiedLines[offset2].length === 0
@@ -23487,6 +23753,7 @@ class StandardLinesDiffComputer {
         let lineAlignments = lineAlignmentResult.diffs;
         let hitTimeout = lineAlignmentResult.hitTimeout;
         lineAlignments = optimizeSequenceDiffs(sequence1, sequence2, lineAlignments);
+        lineAlignments = removeRandomLineMatches(sequence1, sequence2, lineAlignments);
         const alignments = [];
         const scanForWhitespaceChanges = (equalLinesCount) => {
             if (!considerWhitespaceChanges) {
@@ -23525,31 +23792,9 @@ class StandardLinesDiffComputer {
         }
         scanForWhitespaceChanges(originalLines.length - seq1LastStart);
         const changes = lineRangeMappingFromRangeMappings(alignments, originalLines, modifiedLines);
-        const moves = [];
+        let moves = [];
         if (options.computeMoves) {
-            const deletions = changes
-                .filter(c => c.modifiedRange.isEmpty && c.originalRange.length >= 3)
-                .map(d => new LineRangeFragment(d.originalRange, originalLines));
-            const insertions = new Set(changes
-                .filter(c => c.originalRange.isEmpty && c.modifiedRange.length >= 3)
-                .map(d => new LineRangeFragment(d.modifiedRange, modifiedLines)));
-            for (const deletion of deletions) {
-                let highestSimilarity = -1;
-                let best;
-                for (const insertion of insertions) {
-                    const similarity = deletion.computeSimilarity(insertion);
-                    if (similarity > highestSimilarity) {
-                        highestSimilarity = similarity;
-                        best = insertion;
-                    }
-                }
-                if (highestSimilarity > 0.90 && best) {
-                    const moveChanges = this.refineDiff(originalLines, modifiedLines, new SequenceDiff(new OffsetRange(deletion.range.startLineNumber - 1, deletion.range.endLineNumberExclusive - 1), new OffsetRange(best.range.startLineNumber - 1, best.range.endLineNumberExclusive - 1)), timeout, considerWhitespaceChanges);
-                    const mappings = lineRangeMappingFromRangeMappings(moveChanges.mappings, originalLines, modifiedLines, true);
-                    insertions.delete(best);
-                    moves.push(new MovedText(new SimpleLineRangeMapping(deletion.range, best.range), mappings));
-                }
-            }
+            moves = this.computeMoves(changes, originalLines, modifiedLines, srcDocLines, tgtDocLines, timeout, considerWhitespaceChanges);
         }
         // Make sure all ranges are valid
         assertFn(() => {
@@ -23591,6 +23836,139 @@ class StandardLinesDiffComputer {
         });
         return new LinesDiff(changes, moves, hitTimeout);
     }
+    computeMoves(changes, originalLines, modifiedLines, hashedOriginalLines, hashedModifiedLines, timeout, considerWhitespaceChanges) {
+        const moves = [];
+        const deletions = changes
+            .filter(c => c.modifiedRange.isEmpty && c.originalRange.length >= 3)
+            .map(d => new LineRangeFragment(d.originalRange, originalLines, d));
+        const insertions = new Set(changes
+            .filter(c => c.originalRange.isEmpty && c.modifiedRange.length >= 3)
+            .map(d => new LineRangeFragment(d.modifiedRange, modifiedLines, d)));
+        const excludedChanges = new Set();
+        for (const deletion of deletions) {
+            let highestSimilarity = -1;
+            let best;
+            for (const insertion of insertions) {
+                const similarity = deletion.computeSimilarity(insertion);
+                if (similarity > highestSimilarity) {
+                    highestSimilarity = similarity;
+                    best = insertion;
+                }
+            }
+            if (highestSimilarity > 0.90 && best) {
+                insertions.delete(best);
+                moves.push(new SimpleLineRangeMapping(deletion.range, best.range));
+                excludedChanges.add(deletion.source);
+                excludedChanges.add(best.source);
+            }
+            if (!timeout.isValid()) {
+                return [];
+            }
+        }
+        const original3LineHashes = new SetMap();
+        for (const change of changes) {
+            if (excludedChanges.has(change)) {
+                continue;
+            }
+            for (let i = change.originalRange.startLineNumber; i < change.originalRange.endLineNumberExclusive - 2; i++) {
+                const key = `${hashedOriginalLines[i - 1]}:${hashedOriginalLines[i + 1 - 1]}:${hashedOriginalLines[i + 2 - 1]}`;
+                original3LineHashes.add(key, { range: new LineRange(i, i + 3) });
+            }
+        }
+        const possibleMappings = [];
+        changes.sort(compareBy(c => c.modifiedRange.startLineNumber, numberComparator));
+        for (const change of changes) {
+            if (excludedChanges.has(change)) {
+                continue;
+            }
+            let lastMappings = [];
+            for (let i = change.modifiedRange.startLineNumber; i < change.modifiedRange.endLineNumberExclusive - 2; i++) {
+                const key = `${hashedModifiedLines[i - 1]}:${hashedModifiedLines[i + 1 - 1]}:${hashedModifiedLines[i + 2 - 1]}`;
+                const currentModifiedRange = new LineRange(i, i + 3);
+                const nextMappings = [];
+                original3LineHashes.forEach(key, ({ range }) => {
+                    for (const lastMapping of lastMappings) {
+                        // does this match extend some last match?
+                        if (lastMapping.originalLineRange.endLineNumberExclusive + 1 === range.endLineNumberExclusive &&
+                            lastMapping.modifiedLineRange.endLineNumberExclusive + 1 === currentModifiedRange.endLineNumberExclusive) {
+                            lastMapping.originalLineRange = new LineRange(lastMapping.originalLineRange.startLineNumber, range.endLineNumberExclusive);
+                            lastMapping.modifiedLineRange = new LineRange(lastMapping.modifiedLineRange.startLineNumber, currentModifiedRange.endLineNumberExclusive);
+                            nextMappings.push(lastMapping);
+                            return;
+                        }
+                    }
+                    const mapping = {
+                        modifiedLineRange: currentModifiedRange,
+                        originalLineRange: range,
+                    };
+                    possibleMappings.push(mapping);
+                    nextMappings.push(mapping);
+                });
+                lastMappings = nextMappings;
+            }
+            if (!timeout.isValid()) {
+                return [];
+            }
+        }
+        possibleMappings.sort(reverseOrder(compareBy(m => m.modifiedLineRange.length, numberComparator)));
+        const modifiedSet = new LineRangeSet();
+        const originalSet = new LineRangeSet();
+        for (const mapping of possibleMappings) {
+            const diffOrigToMod = mapping.modifiedLineRange.startLineNumber - mapping.originalLineRange.startLineNumber;
+            const modifiedSections = modifiedSet.subtractFrom(mapping.modifiedLineRange);
+            const originalTranslatedSections = originalSet.subtractFrom(mapping.originalLineRange).map(r => r.delta(diffOrigToMod));
+            const modifiedIntersectedSections = intersectRanges(modifiedSections, originalTranslatedSections);
+            for (const s of modifiedIntersectedSections) {
+                if (s.length < 3) {
+                    continue;
+                }
+                const modifiedLineRange = s;
+                const originalLineRange = s.delta(-diffOrigToMod);
+                moves.push(new SimpleLineRangeMapping(originalLineRange, modifiedLineRange));
+                modifiedSet.addRange(modifiedLineRange);
+                originalSet.addRange(originalLineRange);
+            }
+        }
+        // join moves
+        moves.sort(compareBy(m => m.original.startLineNumber, numberComparator));
+        if (moves.length === 0) {
+            return [];
+        }
+        let joinedMoves = [moves[0]];
+        for (let i = 1; i < moves.length; i++) {
+            const last = joinedMoves[joinedMoves.length - 1];
+            const current = moves[i];
+            const originalDist = current.original.startLineNumber - last.original.endLineNumberExclusive;
+            const modifiedDist = current.modified.startLineNumber - last.modified.endLineNumberExclusive;
+            const currentMoveAfterLast = originalDist >= 0 && modifiedDist >= 0;
+            if (currentMoveAfterLast && originalDist + modifiedDist <= 2) {
+                joinedMoves[joinedMoves.length - 1] = last.join(current);
+                continue;
+            }
+            const originalText = current.original.toOffsetRange().slice(originalLines).map(l => l.trim()).join('\n');
+            if (originalText.length <= 10) {
+                // Ignore small moves
+                continue;
+            }
+            joinedMoves.push(current);
+        }
+        // Ignore non moves
+        const originalChanges = MonotonousFinder.createOfSorted(changes, c => c.originalRange.endLineNumberExclusive, numberComparator);
+        joinedMoves = joinedMoves.filter(m => {
+            const diffBeforeOriginalMove = originalChanges.findLastItemBeforeOrEqual(m.original.startLineNumber)
+                || new LineRangeMapping(new LineRange(1, 1), new LineRange(1, 1), []);
+            const modifiedDistToPrevDiff = m.modified.startLineNumber - diffBeforeOriginalMove.modifiedRange.endLineNumberExclusive;
+            const originalDistToPrevDiff = m.original.startLineNumber - diffBeforeOriginalMove.originalRange.endLineNumberExclusive;
+            const differentDistances = modifiedDistToPrevDiff !== originalDistToPrevDiff;
+            return differentDistances;
+        });
+        const fullMoves = joinedMoves.map(m => {
+            const moveChanges = this.refineDiff(originalLines, modifiedLines, new SequenceDiff(m.original.toOffsetRange(), m.modified.toOffsetRange()), timeout, considerWhitespaceChanges);
+            const mappings = lineRangeMappingFromRangeMappings(moveChanges.mappings, originalLines, modifiedLines, true);
+            return new MovedText(m, mappings);
+        });
+        return fullMoves;
+    }
     refineDiff(originalLines, modifiedLines, diff, timeout, considerWhitespaceChanges) {
         const slice1 = new LinesSliceCharSequence(originalLines, diff.seq1Range, considerWhitespaceChanges);
         const slice2 = new LinesSliceCharSequence(modifiedLines, diff.seq2Range, considerWhitespaceChanges);
@@ -23609,6 +23987,111 @@ class StandardLinesDiffComputer {
             hitTimeout: diffResult.hitTimeout,
         };
     }
+}
+class MonotonousFinder {
+    static createOfSorted(items, itemToDomain, domainComparator) {
+        return new MonotonousFinder(items, itemToDomain, domainComparator);
+    }
+    constructor(_items, _itemToDomain, _domainComparator) {
+        this._items = _items;
+        this._itemToDomain = _itemToDomain;
+        this._domainComparator = _domainComparator;
+        this._currentIdx = 0; // All values with index lower than this are smaller than or equal to _lastValue and vice versa.
+        this._lastValue = undefined; // Represents a smallest value.
+        this._hasLastValue = false;
+    }
+    /**
+     * Assumes the values are monotonously increasing.
+     */
+    findLastItemBeforeOrEqual(value) {
+        if (this._hasLastValue && CompareResult.isLessThan(this._domainComparator(value, this._lastValue))) {
+            // Values must be monotonously increasing
+            throw new BugIndicatingError();
+        }
+        this._lastValue = value;
+        this._hasLastValue = true;
+        while (this._currentIdx < this._items.length
+            && CompareResult.isLessThanOrEqual(this._domainComparator(this._itemToDomain(this._items[this._currentIdx]), value))) {
+            this._currentIdx++;
+        }
+        return this._currentIdx === 0 ? undefined : this._items[this._currentIdx - 1];
+    }
+}
+function intersectRanges(ranges1, ranges2) {
+    const result = [];
+    let i1 = 0;
+    let i2 = 0;
+    while (i1 < ranges1.length && i2 < ranges2.length) {
+        const r1 = ranges1[i1];
+        const r2 = ranges2[i2];
+        const i = r1.intersect(r2);
+        if (i && !i.isEmpty) {
+            result.push(i);
+        }
+        if (r1.endLineNumberExclusive < r2.endLineNumberExclusive) {
+            i1++;
+        }
+        else {
+            i2++;
+        }
+    }
+    return result;
+}
+// TODO make this fast
+class LineRangeSet {
+    constructor() {
+        this._normalizedRanges = [];
+    }
+    addRange(range) {
+        // Idea: Find joinRange such that:
+        // replaceRange = _normalizedRanges.replaceRange(joinRange, range.joinAll(joinRange.map(idx => this._normalizedRanges[idx])))
+        // idx of first element that touches range or that is after range
+        const joinRangeStartIdx = mapMinusOne(this._normalizedRanges.findIndex(r => r.endLineNumberExclusive >= range.startLineNumber), this._normalizedRanges.length);
+        // idx of element after { last element that touches range or that is before range }
+        const joinRangeEndIdxExclusive = findLastIndex(this._normalizedRanges, r => r.startLineNumber <= range.endLineNumberExclusive) + 1;
+        if (joinRangeStartIdx === joinRangeEndIdxExclusive) {
+            // If there is no element that touches range, then joinRangeStartIdx === joinRangeEndIdxExclusive and that value is the index of the element after range
+            this._normalizedRanges.splice(joinRangeStartIdx, 0, range);
+        }
+        else if (joinRangeStartIdx === joinRangeEndIdxExclusive - 1) {
+            // Else, there is an element that touches range and in this case it is both the first and last element. Thus we can replace it
+            const joinRange = this._normalizedRanges[joinRangeStartIdx];
+            this._normalizedRanges[joinRangeStartIdx] = joinRange.join(range);
+        }
+        else {
+            // First and last element are different - we need to replace the entire range
+            const joinRange = this._normalizedRanges[joinRangeStartIdx].join(this._normalizedRanges[joinRangeEndIdxExclusive - 1]).join(range);
+            this._normalizedRanges.splice(joinRangeStartIdx, joinRangeEndIdxExclusive - joinRangeStartIdx, joinRange);
+        }
+    }
+    /**
+     * Subtracts all ranges in this set from `range` and returns the result.
+     */
+    subtractFrom(range) {
+        // idx of first element that touches range or that is after range
+        const joinRangeStartIdx = mapMinusOne(this._normalizedRanges.findIndex(r => r.endLineNumberExclusive >= range.startLineNumber), this._normalizedRanges.length);
+        // idx of element after { last element that touches range or that is before range }
+        const joinRangeEndIdxExclusive = findLastIndex(this._normalizedRanges, r => r.startLineNumber <= range.endLineNumberExclusive) + 1;
+        if (joinRangeStartIdx === joinRangeEndIdxExclusive) {
+            return [range];
+        }
+        const result = [];
+        let startLineNumber = range.startLineNumber;
+        for (let i = joinRangeStartIdx; i < joinRangeEndIdxExclusive; i++) {
+            const r = this._normalizedRanges[i];
+            if (r.startLineNumber > startLineNumber) {
+                result.push(new LineRange(startLineNumber, r.startLineNumber));
+            }
+            startLineNumber = r.endLineNumberExclusive;
+        }
+        if (startLineNumber < range.endLineNumberExclusive) {
+            result.push(new LineRange(startLineNumber, range.endLineNumberExclusive));
+        }
+        return result;
+    }
+}
+function mapMinusOne(idx, mapTo) {
+    return idx === -1 ? mapTo : idx;
 }
 function coverFullWords(sequence1, sequence2, sequenceDiffs) {
     const additional = [];
@@ -23756,7 +24239,7 @@ function* group(items, shouldBeGrouped) {
         yield currentGroup;
     }
 }
-class standardLinesDiffComputer_LineSequence {
+class advancedLinesDiffComputer_LineSequence {
     constructor(trimmedHash, lines) {
         this.trimmedHash = trimmedHash;
         this.lines = lines;
@@ -23771,6 +24254,12 @@ class standardLinesDiffComputer_LineSequence {
         const indentationBefore = length === 0 ? 0 : getIndentation(this.lines[length - 1]);
         const indentationAfter = length === this.lines.length ? 0 : getIndentation(this.lines[length]);
         return 1000 - (indentationBefore + indentationAfter);
+    }
+    getText(range) {
+        return this.lines.slice(range.start, range.endExclusive).join('\n');
+    }
+    isStronglyEqual(offset1, offset2) {
+        return this.lines[offset1] === this.lines[offset2];
     }
 }
 function getIndentation(str) {
@@ -23789,7 +24278,7 @@ class LinesSliceCharSequence {
         this.elements = [];
         this.firstCharOffsetByLineMinusOne = [];
         // To account for trimming
-        this.offsetByLine = [];
+        this.additionalOffsetByLine = [];
         // If the slice covers the end, but does not start at the beginning, we include just the \n of the previous line.
         let trimFirstLineFully = false;
         if (lineRange.start > 0 && lineRange.endExclusive >= lines.length) {
@@ -23810,7 +24299,7 @@ class LinesSliceCharSequence {
                 offset = line.length - trimmedStartLine.length;
                 line = trimmedStartLine.trimEnd();
             }
-            this.offsetByLine.push(offset);
+            this.additionalOffsetByLine.push(offset);
             for (let i = 0; i < line.length; i++) {
                 this.elements.push(line.charCodeAt(i));
             }
@@ -23821,7 +24310,7 @@ class LinesSliceCharSequence {
             }
         }
         // To account for the last line
-        this.offsetByLine.push(0);
+        this.additionalOffsetByLine.push(0);
     }
     toString() {
         return `Slice: "${this.text}"`;
@@ -23875,7 +24364,7 @@ class LinesSliceCharSequence {
             }
         }
         const offsetOfFirstCharInLine = i === 0 ? 0 : this.firstCharOffsetByLineMinusOne[i - 1];
-        return new position_Position(this.lineRange.start + i + 1, offset - offsetOfFirstCharInLine + 1 + this.offsetByLine[i]);
+        return new position_Position(this.lineRange.start + i + 1, offset - offsetOfFirstCharInLine + 1 + this.additionalOffsetByLine[i]);
     }
     translateRange(range) {
         return range_Range.fromPositions(this.translateOffset(range.start), this.translateOffset(range.endExclusive));
@@ -23905,6 +24394,61 @@ class LinesSliceCharSequence {
     countLinesIn(range) {
         return this.translateOffset(range.endExclusive).lineNumber - this.translateOffset(range.start).lineNumber;
     }
+    isStronglyEqual(offset1, offset2) {
+        return this.elements[offset1] === this.elements[offset2];
+    }
+    extendToFullLines(range) {
+        var _a, _b;
+        const start = (_a = findLastMonotonous(this.firstCharOffsetByLineMinusOne, x => x <= range.start)) !== null && _a !== void 0 ? _a : 0;
+        const end = (_b = findFirstMonotonous(this.firstCharOffsetByLineMinusOne, x => range.endExclusive <= x)) !== null && _b !== void 0 ? _b : this.elements.length;
+        return new OffsetRange(start, end);
+    }
+}
+/**
+ * `arr.map(predicate)` must be like `[true, ..., true, false, ..., false]`!
+ *
+ * @returns -1 if predicate is false for all items
+ */
+function findLastIdxMonotonous(arr, predicate) {
+    let i = 0;
+    let j = arr.length;
+    while (i < j) {
+        const k = Math.floor((i + j) / 2);
+        if (predicate(arr[k])) {
+            i = k + 1;
+        }
+        else {
+            j = k;
+        }
+    }
+    return i - 1;
+}
+function findLastMonotonous(arr, predicate) {
+    const idx = findLastIdxMonotonous(arr, predicate);
+    return idx === -1 ? undefined : arr[idx];
+}
+/**
+ * `arr.map(predicate)` must be like `[false, ..., false, true, ..., true]`!
+ *
+ * @returns arr.length if predicate is false for all items
+ */
+function findFirstIdxMonotonous(arr, predicate) {
+    let i = 0;
+    let j = arr.length;
+    while (i < j) {
+        const k = Math.floor((i + j) / 2);
+        if (predicate(arr[k])) {
+            j = k;
+        }
+        else {
+            i = k + 1;
+        }
+    }
+    return i;
+}
+function findFirstMonotonous(arr, predicate) {
+    const idx = findFirstIdxMonotonous(arr, predicate);
+    return idx === arr.length ? undefined : arr[idx];
 }
 function isWordChar(charCode) {
     return charCode >= 97 /* CharCode.a */ && charCode <= 122 /* CharCode.z */
@@ -23963,9 +24507,10 @@ function getKey(chr) {
     return key;
 }
 class LineRangeFragment {
-    constructor(range, lines) {
+    constructor(range, lines, source) {
         this.range = range;
         this.lines = lines;
+        this.source = source;
         this.histogram = [];
         let counter = 0;
         for (let i = range.startLineNumber - 1; i < range.endLineNumberExclusive - 1; i++) {
@@ -24001,8 +24546,8 @@ class LineRangeFragment {
 
 
 const linesDiffComputers = {
-    getLegacy: () => new SmartLinesDiffComputer(),
-    getAdvanced: () => new StandardLinesDiffComputer(),
+    getLegacy: () => new LegacyLinesDiffComputer(),
+    getAdvanced: () => new AdvancedLinesDiffComputer(),
 };
 
 ;// CONCATENATED MODULE: ./node_modules/monaco-editor/esm/vs/base/common/color.js
