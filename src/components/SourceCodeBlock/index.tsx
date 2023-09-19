@@ -3,13 +3,24 @@ import React, { useEffect, useState } from 'react'
 
 export interface SourceCodeProps {
   base?: string
-  filePath: string
+  content?: string
+  filePath?: string
+  language?: string
 }
 
-export function SourceCodeBlock({ base, filePath }: SourceCodeProps): JSX.Element {
+export function SourceCodeBlock({ base, filePath, content, language }: SourceCodeProps): JSX.Element {
   const [fileContent, setFileContent] = useState('')
 
   useEffect(() => {
+    if (content !== undefined) {
+      setFileContent(content)
+      return
+    }
+
+    if (filePath === undefined) {
+      return
+    }
+
     const calcFilePath = [base, filePath].join('')
 
     const abortController = new AbortController()
@@ -23,9 +34,9 @@ export function SourceCodeBlock({ base, filePath }: SourceCodeProps): JSX.Elemen
       })
 
     return () => { abortController.abort() }
-  }, [base, filePath])
+  }, [base, content, filePath])
 
-  const fileExtension = filePath.slice((filePath.lastIndexOf('.') - 1 >>> 0) + 2)
+  const fileExtension = language ?? filePath?.slice((filePath.lastIndexOf('.') - 1 >>> 0) + 2)
 
   return (<CodeBlock language={fileExtension}>{fileContent}</CodeBlock>)
 }

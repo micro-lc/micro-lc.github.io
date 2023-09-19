@@ -1,14 +1,16 @@
+import BrowserOnly from '@docusaurus/BrowserOnly'
 import Details from '@docusaurus/theme-classic/lib/theme/Details'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import BrowserWindow from '@site/src/components/BrowserWindow'
 import { SourceCodeBlock } from '@site/src/components/SourceCodeBlock'
 import type { SourceTabsProps } from '@site/src/components/SourceTabs'
 import { SourceTabs } from '@site/src/components/SourceTabs'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 interface ExampleFrameProps {
   base?: string
   height?: string
+  id?: string
   showSource: boolean
   sourceTabs?: SourceTabsProps['tabs']
   src: string
@@ -50,25 +52,45 @@ const frameUrlChangeListener = (element: HTMLIFrameElement, callback: UrlChangeC
   attachUnload()
 }
 
-export function ExampleFrame({
+function Example({
   base,
   height,
   showSource = true,
   sourceTabs,
   src,
+  id,
   title,
 }: ExampleFrameProps): JSX.Element {
   const iFrameRef = useRef<HTMLIFrameElement | null>()
+  const url = useMemo(() => {
+    const iframeSrc = new URL([base, src].join(''), window.location.origin)
+    iframeSrc.search = id ? new URLSearchParams({ id }).toString() : ''
+
+    return iframeSrc
+  }, [base, id, src])
   const [isLoading, setIsLoading] = useState(true)
-  const [currUrl, setCurrUrl] = useState<string | undefined>(undefined)
+  const [currUrl, setCurrUrl] = useState<string>()
 
   const loadingImagePath = useBaseUrl('/img/loading.svg')
 
   useEffect(() => {
-    if (iFrameRef.current) {
-      frameUrlChangeListener(iFrameRef.current, url => setCurrUrl(url))
+    if (id === undefined) {
+      setCurrUrl(url.toString())
+    } else {
+      window.addEventListener('message', (message: MessageEvent<unknown>) => {
+        const { data } = message
+        if (data === null || typeof data !== 'object' || !('id' in data) || data.id !== id) {
+          return
+        }
+
+        setCurrUrl((data as { href?: string }).href)
+      })
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    if (iFrameRef.current) {
+      frameUrlChangeListener(iFrameRef.current, frameUrl => setCurrUrl(frameUrl))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [iFrameRef, iFrameRef.current])
 
   return (
@@ -84,7 +106,7 @@ export function ExampleFrame({
               top: 'calc(50% - 20px)',
               width: '40px',
             }}>
-              <img alt='Loading...' src={loadingImagePath}/>
+              <img alt='Loading...' src={loadingImagePath} />
             </div>
           )
         }
@@ -92,7 +114,7 @@ export function ExampleFrame({
         <iframe
           onLoad={() => setIsLoading(false)}
           ref={innerRef => { iFrameRef.current = innerRef }}
-          src={[base, src].join('')}
+          src={url.toString()}
           style={{ height: '100%', width: '100%' }}
           title={title}
         ></iframe>
@@ -103,12 +125,20 @@ export function ExampleFrame({
           <Details {...{ summary: <summary>Source code</summary> }}>
             {
               sourceTabs
-                ? (<SourceTabs base={base} tabs={sourceTabs}/>)
+                ? (<SourceTabs base={base} tabs={sourceTabs} />)
                 : (<SourceCodeBlock base={base} filePath={src} />)
             }
           </Details>
         )
       }
     </>
+  )
+}
+
+export default function ExampleFrame(props: ExampleFrameProps) {
+  return (
+    <BrowserOnly>
+      {() => <Example {...props} />}
+    </BrowserOnly>
   )
 }

@@ -3,7 +3,7 @@ version: 2
 
 layout:
   content: |
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="/frames/concepts/separation-of-concerns/style.css">
     <div class="top-bar layout">Layout</div>
     <div class="layout-content">
       <div class="side-bar layout">
@@ -17,4 +17,19 @@ applications:
     integrationMode: compose
     route: ./
     config:
-      content: <div class="content">Content</div>
+      sources: https://cdn.jsdelivr.net/npm/@micro-lc/bk-web-components@{{MICRO_LC_BACK_KIT_VERSION}}/dist/bk-web-components.esm.js
+      content: |
+        <div class="content">
+          Content: Home
+          <bk-button .content=${"Go About"} .action=${{"type": "push", "config": {"url": "/frames/concepts/separation-of-concerns/about"}}}></bk-button>
+        </div>
+  about:
+    integrationMode: compose
+    route: ./about
+    config:
+      sources: https://cdn.jsdelivr.net/npm/@micro-lc/bk-web-components@{{MICRO_LC_BACK_KIT_VERSION}}/dist/bk-web-components.esm.js
+      content: |
+        <div class="content">
+          Content: About
+          <bk-button .content=${"Go Home"} .action=${{"type": "push", "config": {"url": "/frames/concepts/separation-of-concerns/home"}}}></bk-button>
+        </div>
