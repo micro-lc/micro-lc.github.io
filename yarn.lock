@@ -12162,13 +12162,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"monaco-languageserver-types@npm:^0.2.0":
-  version: 0.2.2
-  resolution: "monaco-languageserver-types@npm:0.2.2"
+"monaco-languageserver-types@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "monaco-languageserver-types@npm:0.2.3"
   dependencies:
     monaco-types: ^0.1.0
     vscode-languageserver-protocol: ^3.0.0
-  checksum: 9ad31185e5abd67cdd7810d33a30e665e42c3c0b92d06bcb3eff0fd421271df5283495e9fd3493a40116d11dddde2f3f068fd1eafb830202554991a9a7282011
+  checksum: c12dc0dcca23c073046a179ee85b0a3e113bd140ff4b14b7ff18fecb16bc91c8bddbce13eacb22b0759e25802b5ba768b36eb73acad5fdded5f1ca59487fa510
   languageName: node
   linkType: hard
 
