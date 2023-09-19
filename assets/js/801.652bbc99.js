@@ -39208,9 +39208,6 @@ function getLanguageService(params) {
   };
 }
 
-// src/constants.ts
-var languageId = "yaml";
-
 // src/yaml.worker.ts
 async function schemaRequestService(uri) {
   const response = await fetch(uri);
@@ -39220,13 +39217,11 @@ async function schemaRequestService(uri) {
   throw new Error(`Schema request failed for ${uri}`);
 }
 var telemetry = {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   send() {
   },
   sendError(name, properties) {
     console.error("monaco-yaml", name, properties);
   },
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   sendTrack() {
   }
 };
@@ -39236,81 +39231,42 @@ var workspaceContext = {
   }
 };
 worker_initialize((ctx, { enableSchemaRequest, ...languageSettings }) => {
-  const languageService = getLanguageService({
+  const ls = getLanguageService({
     // @ts-expect-error Type definitions are wrong. This may be null.
     schemaRequestService: enableSchemaRequest ? schemaRequestService : null,
     telemetry,
     workspaceContext
   });
-  languageService.configure(languageSettings);
-  const getTextDocument = (uri) => {
+  const withDocument = (fn) => (uri, ...args) => {
     const models = ctx.getMirrorModels();
     for (const model of models) {
       if (String(model.uri) === uri) {
-        return TextDocument.create(uri, languageId, model.version, model.getValue());
+        return fn(TextDocument.create(uri, "yaml", model.version, model.getValue()), ...args);
       }
     }
   };
+  ls.configure(languageSettings);
   return {
-    doValidation(uri) {
-      const document = getTextDocument(uri);
-      if (document) {
-        return languageService.doValidation(document, Boolean(languageSettings.isKubernetes));
-      }
-    },
-    doComplete(uri, position) {
-      const document = getTextDocument(uri);
-      if (document) {
-        return languageService.doComplete(
-          document,
-          position,
-          Boolean(languageSettings.isKubernetes)
-        );
-      }
-    },
-    doDefinition(uri, position) {
-      const document = getTextDocument(uri);
-      if (document) {
-        return languageService.doDefinition(document, { position, textDocument: { uri } });
-      }
-    },
-    doHover(uri, position) {
-      const document = getTextDocument(uri);
-      if (document) {
-        return languageService.doHover(document, position);
-      }
-    },
-    format(uri, options) {
-      const document = getTextDocument(uri);
-      if (document) {
-        return languageService.doFormat(document, options);
-      }
-    },
-    resetSchema(uri) {
-      return languageService.resetSchema(uri);
-    },
-    findDocumentSymbols(uri) {
-      const document = getTextDocument(uri);
-      if (document) {
-        return languageService.findDocumentSymbols2(document, {});
-      }
-    },
-    findLinks(uri) {
-      const document = getTextDocument(uri);
-      if (document) {
-        return languageService.findLinks(document);
-      }
-    },
-    getCodeAction(uri, range, diagnostics) {
-      const document = getTextDocument(uri);
-      if (document) {
-        return languageService.getCodeAction(document, {
-          range,
-          textDocument: { uri },
-          context: { diagnostics }
-        });
-      }
-    }
+    doValidation: withDocument(
+      (document) => ls.doValidation(document, Boolean(languageSettings.isKubernetes))
+    ),
+    doComplete: withDocument(
+      (document, position) => ls.doComplete(document, position, Boolean(languageSettings.isKubernetes))
+    ),
+    doDefinition: withDocument(
+      (document, position) => ls.doDefinition(document, { position, textDocument: document })
+    ),
+    doHover: withDocument((document, position) => ls.doHover(document, position)),
+    format: withDocument((document) => ls.doFormat(document, {})),
+    resetSchema: (uri) => ls.resetSchema(uri),
+    findDocumentSymbols: withDocument((document) => ls.findDocumentSymbols2(document, {})),
+    findLinks: withDocument((document) => ls.findLinks(document)),
+    getCodeAction: withDocument(
+      (document, range, context) => ls.getCodeAction(document, { range, textDocument: document, context })
+    ),
+    getFoldingRanges: withDocument(
+      (document) => ls.getFoldingRanges(document, { lineFoldingOnly: true })
+    )
   };
 });
 //# sourceMappingURL=yaml.worker.js.map
