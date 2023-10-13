@@ -34,6 +34,11 @@ as the current URL, `goTo` behaves as a [`history.replaceState`](https://develop
 Finally, if the new URL has **same origin and different pathname** than the current URL, `goTo` behaves as a 
 [`history.pushState`](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState).
 
+:::caution
+Using this API does not ensure that the url is changed after the `unmount` of the current
+application, if any. To achieve that use [`goToApplication`](#gotoapplication)
+:::
+
 ## `goToApplication`
 
 ```typescript
@@ -47,13 +52,20 @@ export interface MicrolcApi {
 }
 ```
 
-`goToApplication` can be used to trigger a routing to a given sub-application (it behaves as 
-[`history.pushState`](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState)). Target application is defined
-by `id` argument, while `data` corresponds to the first argument of `history.pushState`.
+`goToApplication` is the primary method for moving across applications in <micro-lc></micro-lc>. Instead of
+requiring the next url, it expects the `id` of the application that needs to be mounted next. The application
+must be available in the configuration field `applications`.
+
+The API then proceeds to:
+
+1. `unmount` the currently mounted application, if any
+2. retrieve the next url from the application `id`
+3. call such url via [`history.pushState`](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState) to update the browser
+4. `mount` the application with the given `id`
 
 :::caution
-If provided `id` does not match any registered application, `goToApplication` will route to 404 
-[error page](../../docs/guides/applications/error-pages.md). 
+If provided `id` does not match any registered application, `goToApplication` will route to 404
+[error page](../../docs/guides/applications/error-pages.md).
 :::
 
 ## `goToErrorPage`
