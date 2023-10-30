@@ -59,14 +59,14 @@ export const defaultConfiguration: Config = {
   applications: {
     about,
     angular: {
-      entry: process.env.MICRO_LC_PREVIEW_ANGULAR_APPLICATION_ENTRY,
+      entry: `https://cdn.mia-platform.eu/micro-lc/examples/${process.env.MICRO_LC_EXAMPLES_VERSION}/${process.env.MICRO_LC_PREVIEW_ANGULAR_APPLICATION_ENTRY}`,
       injectBase: 'override',
       integrationMode: 'parcel',
       route: '/angular/',
     },
     home,
     react: {
-      entry: process.env.MICRO_LC_PREVIEW_REACT_APPLICATION_ENTRY,
+      entry: `https://cdn.mia-platform.eu/micro-lc/examples/${process.env.MICRO_LC_EXAMPLES_VERSION}/${process.env.MICRO_LC_PREVIEW_REACT_APPLICATION_ENTRY}`,
       injectBase: true,
       integrationMode: 'parcel',
       route: '/react/',
