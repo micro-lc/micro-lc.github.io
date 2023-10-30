@@ -19,6 +19,8 @@ const fromConfigToPluginConfiguration = (input: IncomingNewConfigurationMessage)
               matcher: PREVIEW_IFRAME_URL.origin,
               origin: 'https://my-domain',
               style: `
+                  box-sizing: border-box;
+                  height: 53px;
                   position: sticky;
                   top: 0;
                   padding: 10px;
