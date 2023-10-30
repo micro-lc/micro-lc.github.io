@@ -1,4 +1,4 @@
-import PostChannel, { fromWindowToReceiver } from '@micro-lc/post-channel'
+import { PostChannel, fromWindowToReceiver } from '@micro-lc/post-channel'
 import type { MessageEventWithData } from '@micro-lc/post-channel'
 import type { SyntheticEvent } from 'react'
 import { skip, take, Subscription } from 'rxjs'

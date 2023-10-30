@@ -23,7 +23,7 @@ test(`
 
   await expect(page.getByRole('button', { name: 'Apply' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Reset' })).toBeVisible()
-  await expect(page.getByRole('button', { name: 'JSON' })).toBeVisible()
+  await expect(page.getByRole('combobox')).toBeVisible()
 
   const preview = page.frameLocator('iframe[title=preview]')
 
@@ -74,12 +74,12 @@ test(`
     return promise
   })
 
-  await page.getByRole('button', { name: 'JSON' }).click()
+  await page.getByRole('combobox').click()
   await page.getByRole('option', { name: 'YAML' }).click()
 
   await page.reload()
 
-  await expect(page.getByRole('button', { name: 'YAML' })).toBeVisible()
+  await expect(page.getByRole('combobox').filter({ hasText: 'YAML' })).toBeVisible()
 })
 
 
@@ -162,25 +162,8 @@ test(`
   await writeToEditor({ browserName, page }, '{ "version": ', { delay: 500 })
   await expect(page.getByText('Error while applying changes')).toBeVisible()
 
-  await page.getByRole('button', { name: 'JSON' }).click()
+  await page.getByRole('combobox').filter({ hasText: 'JSON' }).click()
   await page.getByRole('option', { name: 'YAML' }).click()
 
-  await expect(page.getByRole('button', { name: 'JSON' })).toBeVisible()
-})
-
-test.describe('tests with smaller viewport', () => {
-  test.use({ viewport: { height: 700, width: 400 } })
-
-  test.skip(`
-  [playground]
-  should overflow on x-axis on viewports
-  smaller than 800px
-`, async ({ page }) => {
-    await page.goto(playground)
-
-    const preview = page.frameLocator('iframe[title=preview]')
-    await expect(preview.getByText('welcome to the micro-lc playground')).toBeVisible()
-
-    await page.mouse.wheel(400, 0)
-  })
+  await expect(page.getByRole('combobox').filter({ hasText: 'JSON' })).toBeVisible()
 })
