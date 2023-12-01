@@ -31,7 +31,7 @@
     "@docusaurus/core": "^2.4.3",
     "@docusaurus/plugin-content-blog": "^2.4.3",
     "@docusaurus/plugin-content-docs": "^2.4.3",
-    "@docusaurus/plugin-content-pages": "^2.4.3",
+    "@docusaurus/plugin-content-pages": "^3.0.1",
     "@docusaurus/theme-classic": "^2.4.3",
     "@docusaurus/theme-common": "^2.4.3",
     "@docusaurus/theme-search-algolia": "^2.4.3",
