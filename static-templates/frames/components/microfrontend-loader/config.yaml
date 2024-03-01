@@ -37,7 +37,7 @@ applications:
             properties:
               application:
                 integrationMode: "parcel"
-                entry: /applications/react-memory-router/index.html
+                entry: https://cdn.mia-platform.eu/micro-lc/examples/{{MICRO_LC_EXAMPLES_VERSION}}/static/parcels/react-memory-router/index.html
           - tag: microfrontend-loader
             attributes:
               style: "width: 50%; height: inherit;"
