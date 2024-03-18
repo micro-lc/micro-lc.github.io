@@ -457,12 +457,12 @@ will be
 #### Language translation
 
 Middleware implements a [Content Negotiation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation) mechanism
-in order to serve configuration files translated according to the most suitable language representation.
+in order to serve configuration files translated according to the most suitable language representation for the client.
 
-In order to provide this feature, you have to add a JSON language configuration file in the directory defined by the environment
-variable `LANGUAGES_DIRECTORY_PATH` for each language you want to support. The name of these files should reflect the
-language-tag format as formally defined in [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) (followed by the JSON
-extension). The translation values defined in these language files are identified by the 
+In order to provide this feature, you have to add JSON language configuration files in the directory defined by the environment
+variable `LANGUAGES_DIRECTORY_PATH`: one for each language you want to support. The name of these files should reflect the
+language-tag format as formally defined in [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) followed by the JSON
+extension (e.g. `en-US.json`). The translation values defined in these language files are resolved by the 
 [lodash get](https://lodash.com/docs/4.17.15#get) function.
 
 ##### Example
@@ -476,7 +476,8 @@ Let's consider the following configuration file:
 }
 ```
 
-both of the 2 following language configuration files will produce the same translated JSON:
+the `en-US.json` language configuration file can adhere to one of the following structures and produce the same translated
+JSON:
 
 ```json
 {
