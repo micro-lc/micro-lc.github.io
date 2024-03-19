@@ -476,16 +476,15 @@ Let's consider the following configuration file:
 }
 ```
 
-the `en-US.json` language configuration file can adhere to one of the following structures and produce the same translated
-JSON:
+language configuration files can adhere to one of the following structures and produce the same translated JSON:
 
-```json
+```json title="en-US.json"
 {
   "main.text": "translated!"
 }
 ```
 
-```json
+```json title="en-US.json"
 {
   "main": {
     "text": "translated!"
