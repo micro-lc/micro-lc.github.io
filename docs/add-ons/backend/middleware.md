@@ -454,6 +454,53 @@ will be
 }
 ```
 
+#### Language translation
+
+Middleware implements a [Content Negotiation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation) mechanism
+in order to serve configuration files translated according to the most suitable language representation for the client.
+
+In order to provide this feature, you have to add JSON language configuration files in the directory defined by the environment
+variable `LANGUAGES_DIRECTORY_PATH`: one for each language you want to support. The name of these files should reflect the
+language-tag format as formally defined in [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) followed by the JSON
+extension (e.g. `en-US.json`). The translation values defined in these language files are resolved by the 
+[lodash get](https://lodash.com/docs/4.17.15#get) function.
+
+##### Example
+
+Let's consider the following configuration file:
+
+```json
+{
+  "property": "value",
+  "textProperty": "main.text"
+}
+```
+
+language configuration files can adhere to one of the following structures and produce the same translated JSON:
+
+```json title="en-US.json"
+{
+  "main.text": "translated!"
+}
+```
+
+```json title="en-US.json"
+{
+  "main": {
+    "text": "translated!"
+  }
+}
+```
+
+The resulting JSON is:
+
+```json
+{
+  "property": "value",
+  "textProperty": "translated!"
+}
+```
+
 #### References resolution
 
 In order to avoid writing repeating values multiple times in your configurations, Middleware supports references resolutions

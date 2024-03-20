@@ -37,8 +37,8 @@ Create a blank `index.html` file and paste the following snippet:
 
 </head>
 <body>
-  <!-- 👇 micro-lc tag with config reference -->
-  <micro-lc config-src="/config.json"></micro-lc>
+  <!-- 👇 micro-lc tag with config reference and fallback language -->
+  <micro-lc config-src="/config.json" fallback-language="en-US"></micro-lc>
 </body>
 </html>
 ```
