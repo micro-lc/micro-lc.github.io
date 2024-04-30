@@ -12,7 +12,7 @@ on:
 
 jobs:
   checks:
-    uses: micro-lc/documentation/.github/workflows/checks.yml@main
+    uses: micro-lc/micro-lc.github.io/.github/workflows/checks.yml@main
 
   file-changes:
     runs-on: ubuntu-latest
@@ -33,11 +33,11 @@ jobs:
               - 'applications/**'
 
   build:
-    uses: micro-lc/documentation/.github/workflows/build.yml@main
+    uses: micro-lc/micro-lc.github.io/.github/workflows/build.yml@main
 
   e2e-tests:
     needs:
       - build
       - file-changes
     if: needs.file-changes.outputs.test-files == 'true'
-    uses: micro-lc/documentation/.github/workflows/playwright-tests.yml@main
+    uses: micro-lc/micro-lc.github.io/.github/workflows/playwright-tests.yml@main
