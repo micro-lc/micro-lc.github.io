@@ -185,11 +185,13 @@ needs the environment variables outlined in the
 
 On top of those, Middleware accepts the following environment variables:
 
-|            Name            |   Type   |              Default              | Description                                                                                                 |
-| :------------------------: | :------: | :-------------------------------: | ----------------------------------------------------------------------------------------------------------- |
-|  `PUBLIC_DIRECTORY_PATH`   | `string` |   `/usr/static/configurations`    | Absolute path of the [directory](#serving-from-file-system) containing static files to be served            |
-| `RESOURCES_DIRECTORY_PATH` | `string` |       `/usr/static/public`        | Absolute path of the [directory](#serving-from-file-system) containing configuration resources to be served |
-|   `SERVICE_CONFIG_PATH`    | `string` | `/usr/src/app/config/config.json` | Absolute path of the [service configuration](#service-configuration) file                                   |
+|            Name            |   Type   |                    Default                   | Description                                                                                                 |
+| :------------------------: | :------: | :------------------------------------------: | ----------------------------------------------------------------------------------------------------------- |
+| `ACL_CONTEXT_BUILDER_PATH` | `string` | `/usr/src/app/config/acl-context-builder.js` | Absolute path of the [ACL context builder](#custom-extraction) file                                         |
+| `LANGUAGES_DIRECTORY_PATH` | `string` |            `/usr/static/languages`           | Absolute path of the [directory](#language-translation) containing language files                           |
+|  `PUBLIC_DIRECTORY_PATH`   | `string` |         `/usr/static/configurations`         | Absolute path of the [directory](#serving-from-file-system) containing static files to be served            |
+| `RESOURCES_DIRECTORY_PATH` | `string` |             `/usr/static/public`             | Absolute path of the [directory](#serving-from-file-system) containing configuration resources to be served |
+|   `SERVICE_CONFIG_PATH`    | `string` |       `/usr/src/app/config/config.json`      | Absolute path of the [service configuration](#service-configuration) file                                   |
 
 ## Service configuration
 
@@ -377,16 +379,8 @@ If a required **configuration** file is a JSON or YAML resource (i.e., a file ex
 #### ACL application
 
 Middleware allows you to implement **access control limit** on served files, removing sections of configurations based on
-certain properties of the caller. Namely, Middleware considers caller's **groups** and **permissions**.
-
-Caller's **groups** are extracted from request headers, particularly from the header the key of which is specified through
-`GROUPS_HEADER_KEY` [environment variable](#environment-variables). The value of the header should be a comma-separated
-list of groups (e.g., `"admin,user"`).
-
-Caller's **permissions** are extracted from request headers too. Middleware takes the header the key of which is specified
-through `USER_PROPERTIES_HEADER_KEY` [environment variable](#environment-variables) and expects a stringified JSON
-object containing a comma-separated list of permissions under the key `permissions` (e.g.,
-`"{\"permissions\":"api.users.get,api.users.post"}"`).
+certain properties of the caller. Namely, Middleware considers caller's **groups** and **permissions**. These properties
+can be extracted in a [default](#default-extraction) or a [custom](#custom-extraction) way.
 
 ACL expressions can be specified anywhere in configuration using the special key `aclExpression` having as value a
 **stringified boolean expression** based on caller's groups and permissions (e.g., 
@@ -406,6 +400,41 @@ For example, the following expressions are all valid:
 Middleware evaluates each ACL expression against caller's properties and, if the expression results in a `falsy value`, it
 removes from the configuration the **whole object** which the expression is a property of. It then proceeds to remove
 any `aclExpression` key left over to not leak server-side logic into the client.
+
+##### Default extraction
+
+Caller's **groups** are extracted from request headers, particularly from the header the key of which is specified through
+`GROUPS_HEADER_KEY` [environment variable](#environment-variables). The value of the header should be a comma-separated
+list of groups (e.g., `"admin,user"`).
+
+Caller's **permissions** are extracted from request headers too. Middleware takes the header the key of which is specified
+through `USER_PROPERTIES_HEADER_KEY` [environment variable](#environment-variables) and expects a stringified JSON
+object containing a comma-separated list of permissions under the key `permissions` (e.g.,
+`"{\"permissions\":"api.users.get,api.users.post"}"`).
+
+##### Custom extraction
+
+Caller's **groups** are not extracted.
+
+Caller's **permissions** are extracted by a user-defined custom function that Middleware reads from the path specified
+through `ACL_CONTEXT_BUILDER_PATH` [environment variable](#environment-variables). The function must return an array of
+strings and has only one input argument which is a JSON object with the following schema:
+
+```json
+{
+  "headers": {
+    "header-1": "value",
+  },
+  "method": "GET",
+  "pathParams": {
+    "*": "/file.json"
+  },
+  "queryParams": {
+    "foo": "bar"
+  },
+  "url": "/configurations/file.json"
+}
+```
 
 ##### Example
 
