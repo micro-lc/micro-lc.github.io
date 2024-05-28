@@ -493,6 +493,10 @@ strings and has only one input argument which is a JSON object with the followin
 In this scenario properties are placed at root level. Thus, ACL expressions should be simply defined as `<property-name>`.
 :::
 
+:::caution
+The user-defined custom function cannot access the default **global** object.
+:::
+
 ###### Example
 
 Let's consider the following configuration file served under `GET - /middleware/config.json`.
