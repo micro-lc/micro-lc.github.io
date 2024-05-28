@@ -379,29 +379,30 @@ If a required **configuration** file is a JSON or YAML resource (i.e., a file ex
 #### ACL application
 
 Middleware allows you to implement **access control limit** on served files, removing sections of configurations based on
-certain properties of the caller. Namely, Middleware considers caller's **groups** and **permissions**. These properties
-can be extracted in a [default](#default-extraction) or a [custom](#custom-extraction) way.
+certain properties of the caller. These properties can be extracted in a [default](#default-extraction) or a 
+[custom](#custom-extraction) way.
 
 ACL expressions can be specified anywhere in configuration using the special key `aclExpression` having as value a
-**stringified boolean expression** based on caller's groups and permissions (e.g., 
-`groups.admin || permissions.api.users.get`).
+**stringified boolean expression** based on caller's properties.
 
 :::tip
-You can use any combination of groups, permissions and JavaScript operators in you ACL expressions.
+You can use any combination of properties and JavaScript operators in you ACL expressions.
 
 For example, the following expressions are all valid:
 * `groups.admin && permissions.api.users.get`
 * `!groups.developer`
-* `permissions.api.users.get || permissions.api.users.post`
-* `(groups.admin && !permissions.api.users.post) || permissions.api.users.count.get`
-* `(groups.admin === true && permissions.api.users.post === true)`
+* `api.users.get || api.users.post`
+* `(admin && !permissions.api.users.post) || permissions.api.users.count.get`
+* `(groups.admin === true && api.users.post === true)`
 :::
 
-Middleware evaluates each ACL expression against caller's properties and, if the expression results in a `falsy value`, it
+Middleware evaluates each ACL expression against caller's properties and, if the expression results in a `falsy` value, it
 removes from the configuration the **whole object** which the expression is a property of. It then proceeds to remove
 any `aclExpression` key left over to not leak server-side logic into the client.
 
 ##### Default extraction
+
+Middleware considers caller's **groups** and **permissions** as properties.
 
 Caller's **groups** are extracted from request headers, particularly from the header the key of which is specified through
 `GROUPS_HEADER_KEY` [environment variable](#environment-variables). The value of the header should be a comma-separated
@@ -412,31 +413,12 @@ through `USER_PROPERTIES_HEADER_KEY` [environment variable](#environment-variabl
 object containing a comma-separated list of permissions under the key `permissions` (e.g.,
 `"{\"permissions\":"api.users.get,api.users.post"}"`).
 
-##### Custom extraction
+:::info
+In this scenario groups and permissions are respectively placed within `groups` and `permissions` objects. Thus,
+ACL expressions should be defined as `groups.<group-name>` and `permissions.<permissions-name>`.
+:::
 
-Caller's **groups** are not extracted.
-
-Caller's **permissions** are extracted by a user-defined custom function that Middleware reads from the path specified
-through `ACL_CONTEXT_BUILDER_PATH` [environment variable](#environment-variables). The function must return an array of
-strings and has only one input argument which is a JSON object with the following schema:
-
-```json
-{
-  "headers": {
-    "header-1": "value",
-  },
-  "method": "GET",
-  "pathParams": {
-    "*": "/file.json"
-  },
-  "queryParams": {
-    "foo": "bar"
-  },
-  "url": "/configurations/file.json"
-}
-```
-
-##### Example
+###### Example
 
 Let's consider the following configuration file served under `GET - /middleware/config.json`.
 
@@ -466,6 +448,89 @@ The response of the following request
 curl 'https://*********/middleware/config.json' \
   -H 'user-groups: user' \
   -H 'user-properties: { "permissions": "api.users.get" }'
+```
+
+will be
+
+```json
+{
+  "content": {
+    "tag": "div",
+    "content": [
+      {
+        "tag": "button"
+      }
+    ]
+  }
+}
+```
+
+##### Custom extraction
+
+Middleware considers the result of a custom function as caller's **properties**.
+
+Caller's **properties** are extracted by a user-defined custom function that Middleware reads from the path specified
+through `ACL_CONTEXT_BUILDER_PATH` [environment variable](#environment-variables). The function must return an array of
+strings and has only one input argument which is a JSON object with the following schema:
+
+```json
+{
+  "headers": {
+    "header-1": "value",
+  },
+  "method": "GET",
+  "pathParams": {
+    "*": "/file.json"
+  },
+  "queryParams": {
+    "foo": "bar"
+  },
+  "url": "/configurations/file.json"
+}
+```
+
+:::info
+In this scenario properties are placed at root level. Thus, ACL expressions should be simply defined as `<property-name>`.
+:::
+
+###### Example
+
+Let's consider the following configuration file served under `GET - /middleware/config.json`.
+
+```json
+{
+  "content": {
+    "tag": "div",
+    "properties": {
+      // highlight-next-line
+      "aclExpression": "property-1",
+      "adminName": "John Doe"
+    },
+    "content": [
+      {
+        // highlight-next-line
+        "aclExpression": "prop.resource.get || api.users.get",
+        "tag": "button"
+      }
+    ]
+  }
+}
+```
+
+Then let's consider the following custom ACL context builder.
+
+```js
+export default ({ headers, method, pathParams, queryParams, url }) => {
+  const property = headers['my-custom-header']
+  return [property]
+}
+```
+
+The response of the following request
+
+```shell
+curl 'https://*********/middleware/config.json' \
+  -H 'my-custom-header: prop.resource.get'
 ```
 
 will be
