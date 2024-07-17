@@ -59,7 +59,7 @@ applications:
                           - content: 👈 while my sybling here is a memory-router MFE!
                             tag: span
                           - attributes:
-                              href: https://micro-lc.io/playground/,
+                              href: https://micro-lc.io/playground/
                               target: _blank
                             content: Try out the <strong>micro-lc</strong> playground!,
                             tag: a
