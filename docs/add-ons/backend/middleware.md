@@ -185,13 +185,13 @@ needs the environment variables outlined in the
 
 On top of those, Middleware accepts the following environment variables:
 
-|            Name            |   Type   |                    Default                   | Description                                                                                                 |
+|            Name            |   Type   |                   Default                    | Description                                                                                                 |
 | :------------------------: | :------: | :------------------------------------------: | ----------------------------------------------------------------------------------------------------------- |
 | `ACL_CONTEXT_BUILDER_PATH` | `string` | `/usr/src/app/config/acl-context-builder.js` | Absolute path of the [ACL context builder](#custom-extraction) file                                         |
-| `LANGUAGES_DIRECTORY_PATH` | `string` |            `/usr/static/languages`           | Absolute path of the [directory](#language-translation) containing language files                           |
-|  `PUBLIC_DIRECTORY_PATH`   | `string` |         `/usr/static/configurations`         | Absolute path of the [directory](#serving-from-file-system) containing static files to be served            |
-| `RESOURCES_DIRECTORY_PATH` | `string` |             `/usr/static/public`             | Absolute path of the [directory](#serving-from-file-system) containing configuration resources to be served |
-|   `SERVICE_CONFIG_PATH`    | `string` |       `/usr/src/app/config/config.json`      | Absolute path of the [service configuration](#service-configuration) file                                   |
+| `LANGUAGES_DIRECTORY_PATH` | `string` |           `/usr/static/languages`            | Absolute path of the [directory](#language-translation) containing language files                           |
+|  `PUBLIC_DIRECTORY_PATH`   | `string` |             `/usr/static/public`             | Absolute path of the [directory](#serving-from-file-system) containing static files to be served            |
+| `RESOURCES_DIRECTORY_PATH` | `string` |         `/usr/static/configurations`         | Absolute path of the [directory](#serving-from-file-system) containing configuration resources to be served |
+|   `SERVICE_CONFIG_PATH`    | `string` |      `/usr/src/app/config/config.json`       | Absolute path of the [service configuration](#service-configuration) file                                   |
 
 ## Service configuration
 
@@ -673,6 +673,15 @@ will be
   }
 }
 ```
+
+## Parsing configurations
+
+The service exposes a utility route that accepts a configuration as body and responds with a [parsed](#configuration-files-manipulation) version (i.e., it applies all the manipulation logic usually applied to a served configuration file). The routes specifics are the following.
+
+* Method: `POST`
+* Path: `/configurations/parse`
+* Body: the valid JSON object that has to be parsed
+* Response: a JSON object with manipulations applied
 
 ## SDK
 
