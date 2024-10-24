@@ -471,14 +471,30 @@ Middleware considers the result of a custom function as caller's **properties**.
 
 Caller's **properties** are extracted by a user-defined custom function that Middleware reads from the path specified
 through `ACL_CONTEXT_BUILDER_PATH` [environment variable](#environment-variables). The function must return an array of
-strings and has only one input argument which is a JSON object with the following schema:
+strings and has only one input argument which is a JSON object with the following type:
+
+```ts
+type AclContextBuilderInput = {
+  body?: unknown
+  headers: Record<string, string | string[] | undefined>
+  method: string
+  pathParams: unknown
+  queryParams: unknown
+  url: string
+}
+```
+
+For example,
 
 ```json
 {
+  "body": {
+    "foo": "bar"
+  },
   "headers": {
     "header-1": "value",
   },
-  "method": "GET",
+  "method": "POST",
   "pathParams": {
     "*": "/file.json"
   },
