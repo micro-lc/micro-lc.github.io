@@ -25,6 +25,7 @@ interface ComposableApplication {
   integrationMode: "compose"
   config: PluginConfiguration | string // See explanation below
   route: string // Path on which the composable application will be rendered
+  options?: ComposableApplicationOptions // See explanation below
 }
 ```
 
@@ -464,3 +465,27 @@ layout:
 ```mdx-code-block
 </div>
 ```
+
+## Application options
+
+:::caution
+Application options are available starting form <micro-lc></micro-lc> version `2.4.2` and `@micro-lc/composer` version `2.2.0`
+:::
+
+A set of options can be passed along in the application configuration through the `options` keyword. Options are an optional object with the following structure:
+
+```typescript
+interface ComposableApplicationOptions {
+  fetchConfigOnMount?: boolean
+}
+```
+
+### `fetchConfigOnMount`
+
+By default, <micro-lc></micro-lc> retrieves compose applications configurations just once, at _bootstrap_ (i.e., the first time the user navigates to them). At any subsequent visit, configurations are retrieved from an in-memory cache during the _mount_ stage of the application lifecycle.
+
+If you need to re-fetch the configuration each time an application is visited, you can instruct <micro-lc></micro-lc> to do so by setting the `fetchConfigOnMount` option to `true`.
+
+:::caution
+This option will have effect only on applications that specify a **URL string** in the `config` key.
+:::
