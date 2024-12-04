@@ -185,13 +185,14 @@ needs the environment variables outlined in the
 
 On top of those, Middleware accepts the following environment variables:
 
-|            Name            |   Type   |                   Default                    | Description                                                                                                 |
-| :------------------------: | :------: | :------------------------------------------: | ----------------------------------------------------------------------------------------------------------- |
-| `ACL_CONTEXT_BUILDER_PATH` | `string` | `/usr/src/app/config/acl-context-builder.js` | Absolute path of the [ACL context builder](#custom-extraction) file                                         |
-| `LANGUAGES_DIRECTORY_PATH` | `string` |           `/usr/static/languages`            | Absolute path of the [directory](#language-translation) containing language files                           |
-|  `PUBLIC_DIRECTORY_PATH`   | `string` |             `/usr/static/public`             | Absolute path of the [directory](#serving-from-file-system) containing static files to be served            |
-| `RESOURCES_DIRECTORY_PATH` | `string` |         `/usr/static/configurations`         | Absolute path of the [directory](#serving-from-file-system) containing configuration resources to be served |
-|   `SERVICE_CONFIG_PATH`    | `string` |      `/usr/src/app/config/config.json`       | Absolute path of the [service configuration](#service-configuration) file                                   |
+|            Name            |   Type    |                   Default                    | From version | Description                                                                                                 |
+| :------------------------: | :-------: | :------------------------------------------: | :----------: | ----------------------------------------------------------------------------------------------------------- |
+| `ACL_CONTEXT_BUILDER_PATH` | `string`  | `/usr/src/app/config/acl-context-builder.js` |              | Absolute path of the [ACL context builder](#custom-extraction) file                                         |
+| `LANGUAGES_DIRECTORY_PATH` | `string`  |           `/usr/static/languages`            |              | Absolute path of the [directory](#language-translation) containing language files                           |
+|  `PUBLIC_DIRECTORY_PATH`   | `string`  |             `/usr/static/public`             |              | Absolute path of the [directory](#serving-from-file-system) containing static files to be served            |
+| `RESOURCES_DIRECTORY_PATH` | `string`  |         `/usr/static/configurations`         |              | Absolute path of the [directory](#serving-from-file-system) containing configuration resources to be served |
+|   `SERVICE_CONFIG_PATH`    | `string`  |      `/usr/src/app/config/config.json`       |              | Absolute path of the [service configuration](#service-configuration) file                                   |
+|       `ENABLE_CACHE`       | `boolean` |                    `true`                    |   `3.4.0`    | Toggle internal caching of config and public files                                                          |
 
 ## Service configuration
 
