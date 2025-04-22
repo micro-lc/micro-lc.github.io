@@ -81,7 +81,7 @@ const Editor: React.FC<EditorProps> = ({ style, render, ...props }) => {
     { errorMessage: setErrorMessage, loading: setLoading }
   ), [])
 
-  const { editorRef, dispatchSubmit, dispatchReset, handleChangeModel } = useEditor(
+  const { editorRef, dispatchSubmit, dispatchReset, handleChangeModel, dispatchSetValue } = useEditor(
     render,
     initialModelType,
     dispatchers
@@ -116,6 +116,12 @@ const Editor: React.FC<EditorProps> = ({ style, render, ...props }) => {
             width: '100%',
           }}
         ></div>
+        {/* <div
+          onClick={() => {
+            dispatchSetValue('{}')
+          }}
+          style={{ minWidth: '400px', width: '40%' }}
+        > ciao </div>*/}
         <div style={{ alignItems: 'baseline', display: 'flex', gap: '16px', padding: '16px 24px', textAlign: 'center' }}>
           <ModelTypeSelect
             onChange={({ target: { value } }) => {

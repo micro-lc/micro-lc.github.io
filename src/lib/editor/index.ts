@@ -60,7 +60,7 @@ const addCtrlSpaceSupport = (triggerer: Element | null, editor: Editor.IStandalo
   })
 }
 
-export function getJsonValue(currentEditor: Editor.IStandaloneCodeEditor, { lintErrorIsError }: {lintErrorIsError?: boolean} = {}): ValidationError | undefined {
+export function getJsonValue(currentEditor: Editor.IStandaloneCodeEditor, { lintErrorIsError }: { lintErrorIsError?: boolean } = {}): ValidationError | undefined {
   const currentModel = currentEditor.getModel()
   if (currentModel === null) {
     return
@@ -69,7 +69,7 @@ export function getJsonValue(currentEditor: Editor.IStandaloneCodeEditor, { lint
   const { uri: resource } = currentModel
   const { editor: me, MarkerSeverity } = monaco
   const { ok, warnings, errors } = me.getModelMarkers({ resource })
-    .reduce<{errors: string[]; ok: boolean; warnings: string[]}>((markers, { severity, message }) => {
+    .reduce<{ errors: string[]; ok: boolean; warnings: string[] }>((markers, { severity, message }) => {
       if (severity === MarkerSeverity.Error) {
         markers.ok = false
         markers.errors.push(message)
@@ -179,7 +179,7 @@ const getJsonValueCallback = (currentEditor: Editor.IStandaloneCodeEditor): Vali
 function useEditor(
   render: ReplaySubject<Render>,
   initialModelType: ModelType,
-  dispatchers: {errorMessage: (value: ValidationError | string | undefined) => void; loading: (value: boolean) => void}
+  dispatchers: { errorMessage: (value: ValidationError | string | undefined) => void; loading: (value: boolean) => void }
 ) {
   const editorRef = useRef<HTMLDivElement | null>()
 
@@ -281,8 +281,8 @@ function useEditor(
 
         const result = dump(content).to(initialModelType)
         if (result.error) {
-        // an error here means that either backend is corrupted or
-        // for some reason the config was stored but it is not compliant
+          // an error here means that either backend is corrupted or
+          // for some reason the config was stored but it is not compliant
           dispatchers.errorMessage(result)
           return release()
         }
@@ -377,7 +377,16 @@ function useEditor(
     return true
   }, [editor, lock, release, dispatchers])
 
-  return { dispatchReset, dispatchSubmit, editorRef, handleChangeModel }
+  const dispatchSetValue = useCallback((value: string) => {
+    if (!(editor)) {
+      release()
+      return false
+    }
+
+    editor.getModel()?.setValue(value)
+  }, [editor])
+
+  return { dispatchReset, dispatchSetValue, dispatchSubmit, editorRef, handleChangeModel }
 }
 
 export {
